@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parts Request | Total Services Bahamas</title>
+<style>
+body { margin:0; font-family:Arial,sans-serif; background:#f5f7fa; color:#0b1f3b; }
+.header { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; background:white; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+.brand { font-weight:800; font-size:20px; }
+.nav a { margin-left:18px; text-decoration:none; color:#0b1f3b; font-weight:600; }
+.hero { padding:70px 40px; background:#0b1f3b; color:white; text-align:center; }
+.container { max-width:1000px; margin:40px auto; padding:30px; background:white; border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,.08); }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:24px 0; }
+.card { background:#f5f7fa; padding:20px; border-radius:12px; font-weight:700; }
+label { font-weight:700; display:block; margin-top:14px; }
+input, textarea, select { width:100%; padding:13px; margin-top:6px; border:1px solid #ccc; border-radius:8px; font-size:15px; }
+button { margin-top:20px; padding:14px 22px; background:#0b1f3b; color:white; border:none; border-radius:8px; font-weight:800; cursor:pointer; }
+.status { margin-top:14px; font-weight:800; }
+@media(max-width:800px){ .grid{grid-template-columns:1fr;} .header{flex-direction:column;gap:14px;} }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="brand">TOTAL SERVICES</div>
+  <div class="nav">
+    <a href="/">Home</a>
+    <a href="/parts.html">Parts</a>
+    <a href="/industries.html">Industries</a>
+    <a href="/catalog.html">Catalog</a>
+    <a href="/rfq.html">RFQ</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>Parts Request</h1>
+  <p>Generator parts, filters, AVR systems, controllers, sensors, belts, breakers, and ATS components.</p>
+</div>
+
+<div class="container">
+  <h2>Common Parts We Support</h2>
+
+  <div class="grid">
+    <div class="card">Filters & Fluids</div>
+    <div class="card">AVR & Controllers</div>
+    <div class="card">Sensors & Switches</div>
+    <div class="card">Breakers & ATS Parts</div>
+    <div class="card">Fuel System Components</div>
+    <div class="card">Belts, Hoses & Service Kits</div>
+  </div>
+
+  <h2>Submit Parts Request</h2>
+
+  <label>Full Name *</label>
+  <input id="name" placeholder="Full name" />
+
+  <label>Company</label>
+  <input id="company" placeholder="Company name" />
+
+  <label>Email *</label>
+  <input id="email" type="email" placeholder="Email address" />
+
+  <label>Generator Brand</label>
+  <input id="brand" placeholder="Example: Rehlko / Kohler / CAT / Cummins" />
+
+  <label>Model Number</label>
+  <input id="model" placeholder="Generator model number" />
+
+  <label>Serial Number</label>
+  <input id="serial" placeholder="Generator serial number" />
+
+  <label>Part Needed</label>
+  <input id="part" placeholder="Example: oil filter, AVR, controller, sensor" />
+
+  <label>Message *</label>
+  <textarea id="msg" rows="6" placeholder="Describe the part, urgency, equipment condition, and any numbers visible on the component."></textarea>
+
+  <button onclick="submitPartsRequest()">Submit Parts Request</button>
+
+  <div class="status" id="status"></div>
+</div>
+
+<script>
+async function submitPartsRequest(){
+  const status = document.getElementById("status");
+
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    company: document.getElementById("company").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    message:
+      "Request Type: Parts Request\n" +
+      "Generator Brand: " + document.getElementById("brand").value.trim() + "\n" +
+      "Model Number: " + document.getElementById("model").value.trim() + "\n" +
+      "Serial Number: " + document.getElementById("serial").value.trim() + "\n" +
+      "Part Needed: " + document.getElementById("part").value.trim() + "\n\n" +
+      document.getElementById("msg").value.trim()
+  };
+
+  if (!data.name || !data.email || !document.getElementById("msg").value.trim()) {
+    status.textContent = "Name, email, and message are required.";
+    return;
+  }
+
+  status.textContent = "Submitting parts request...";
+
+  try {
+    const res = await fetch("/rfq", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      status.textContent = result.error || "Request failed.";
+      return;
+    }
+
+    status.textContent = "Parts request submitted successfully.";
+
+    document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+
+  } catch (err) {
+    status.textContent = "Server connection failed.";
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>

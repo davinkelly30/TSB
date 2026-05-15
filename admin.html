@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Total Services Admin</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #111827;
+}
+
+.header {
+  background: #0b1f3b;
+  color: white;
+  padding: 18px 30px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  background: #0b1f3b;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #163a5f;
+}
+
+.hidden {
+  display: none;
+}
+
+.status {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.product {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Total Services Admin Dashboard</div>
+
+<div class="container">
+
+  <div class="card" id="loginBox">
+    <h2>Admin Login</h2>
+
+    <input id="loginUser" placeholder="Username" />
+    <input id="loginPass" type="password" placeholder="Password" />
+
+    <button onclick="login()">Login</button>
+
+    <div class="status" id="loginStatus"></div>
+  </div>
+
+  <div id="adminPanel" class="hidden">
+
+    <div class="card">
+      <h2>Add Product</h2>
+
+      <input id="name" placeholder="Product Name" />
+      <input id="category" placeholder="Category" />
+      <textarea id="desc" placeholder="Description"></textarea>
+
+      <button onclick="addProduct()">Add Product</button>
+
+      <div class="status" id="productStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>Current Products</h2>
+      <div id="productList">Loading products...</div>
+    </div>
+
+    <div class="card">
+      <h2>Customer RFQs</h2>
+      <div id="rfqList">Loading RFQs...</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const API = "http://localhost:3000";
+
+function getToken() {
+  return localStorage.getItem("tsb_admin_token");
+}
+
+async function login() {
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value.trim();
+  const status = document.getElementById("loginStatus");
+
+  status.textContent = "Logging in...";
+
+  try {
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user, pass })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      status.textContent = data.error || "Login failed";
+      return;
+    }
+
+    localStorage.setItem("tsb_admin_token", data.token);
+
+    status.textContent = "Login successful";
+
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+
+    loadProducts();
+    loadRFQs();
+
+  } catch (err) {
+    status.textContent = "Server connection failed";
+    console.error(err);
+  }
+}
+
+async function addProduct() {
+  const token = getToken();
+  const status = document.getElementById("productStatus");
+
+  const product = {
+    name: document.getElementById("name").value.trim(),
+    category: document.getElementById("category").value.trim(),
+    description: document.getElementById("desc").value.trim()
+  };
+
+  if (!product.name || !product.category || !product.description) {
+    status.textContent = "All product fields are required";
+    return;
+  }
+
+  status.textContent = "Adding product...";
+
+  try {
+    const res = await fetch(`${API}/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(product)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      status.textContent = data.error || "Product was not added";
+      return;
+    }
+
+    status.textContent = "Product added successfully";
+
+    document.getElementById("name").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("desc").value = "";
+
+    loadProducts();
+    loadRFQs();
+
+  } catch (err) {
+    status.textContent = "Server connection failed";
+    console.error(err);
+  }
+}
+
+async function loadProducts() {
+  const list = document.getElementById("productList");
+
+  try {
+    const res = await fetch(`${API}/products`);
+    const products = await res.json();
+
+    if (!products.length) {
+      list.innerHTML = "No products added yet.";
+      return;
+    }
+
+    list.innerHTML = products.map(p => `
+      <div class="product">
+        <strong>${p.name}</strong><br>
+        Category: ${p.category}<br>
+        ${p.description}
+      </div>
+    `).join("");
+
+  } catch (err) {
+    list.innerHTML = "Failed to load products.";
+    console.error(err);
+  }
+}
+
+if (getToken()) {
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("adminPanel").classList.remove("hidden");
+  loadProducts();
+  loadRFQs();
+}
+
+async function loadRFQs() {
+  const token = getToken();
+  const list = document.getElementById("rfqList");
+
+  try {
+    const res = await fetch(`${API}/rfq`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const rfqs = await res.json();
+
+    if (!res.ok) {
+      list.innerHTML = rfqs.error || "Failed to load RFQs.";
+      return;
+    }
+
+    if (!rfqs.length) {
+      list.innerHTML = "No RFQs submitted yet.";
+      return;
+    }
+
+    list.innerHTML = rfqs.map(r => `
+      <div class="product">
+        <strong>${r.name}</strong><br>
+        Company: ${r.company || "N/A"}<br>
+        Email: ${r.email}<br>
+        Message: ${r.message}<br>
+        Date: ${new Date(r.createdAt).toLocaleString()}<br><br>
+        <button onclick="deleteRFQ('${r._id}')">Delete RFQ</button>
+      </div>
+    `).join("");
+
+  } catch (err) {
+    list.innerHTML = "Server connection failed.";
+    console.error(err);
+  }
+}
+
+async function deleteRFQ(id) {
+  const token = getToken();
+
+  if (!confirm("Delete this RFQ?")) return;
+
+  try {
+    const res = await fetch(`${API}/rfq/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Delete failed");
+      return;
+    }
+
+    loadRFQs();
+
+  } catch (err) {
+    alert("Server connection failed");
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>
