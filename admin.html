@@ -215,6 +215,7 @@ async function addProduct() {
 
 async function loadProducts() {
   const list = document.getElementById("productList");
+  const token = getToken();
 
   try {
     const res = await fetch(`${API}/products`);
@@ -229,7 +230,8 @@ async function loadProducts() {
       <div class="product">
         <strong>${p.name}</strong><br>
         Category: ${p.category}<br>
-        ${p.description}
+        ${p.description}<br><br>
+        <button onclick="deleteProduct('${p._id}')">Delete Product</button>
       </div>
     `).join("");
 
@@ -307,6 +309,34 @@ async function deleteRFQ(id) {
     }
 
     loadRFQs();
+
+  } catch (err) {
+    alert("Server connection failed");
+    console.error(err);
+  }
+}
+
+async function deleteProduct(id) {
+  const token = getToken();
+
+  if (!confirm("Delete this product?")) return;
+
+  try {
+    const res = await fetch(`${API}/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Delete failed");
+      return;
+    }
+
+    loadProducts();
 
   } catch (err) {
     alert("Server connection failed");
