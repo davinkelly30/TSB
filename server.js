@@ -1413,6 +1413,72 @@ app.get(
   }
 );
 
+/* =========================================================
+   QUOTES — GET RFQ SOURCE
+========================================================= */
+
+app.get(
+  "/quotes/source/rfq/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (
+        !mongoose.Types.ObjectId.isValid(id)
+      ) {
+        return res.status(400).json({
+          error: "Invalid RFQ ID",
+        });
+      }
+
+      const rfq =
+        await RFQ.findById(id).lean();
+
+      if (!rfq) {
+        return res.status(404).json({
+          error: "RFQ not found",
+        });
+      }
+
+      res.json({
+        sourceType: "RFQ",
+        sourceId: rfq._id,
+
+        customerName: rfq.name,
+        company: rfq.company,
+        email: rfq.email,
+
+        product: {
+          productId: rfq.productId,
+          name: rfq.productName,
+          category: rfq.productCategory,
+          manufacturer:
+            rfq.productManufacturer,
+          partNumber:
+            rfq.productPartNumber,
+          compatibleModels:
+            rfq.productCompatibleModels,
+        },
+
+        message: rfq.message,
+        status: rfq.status,
+        createdAt: rfq.createdAt,
+      });
+    } catch (error) {
+      console.error(
+        "Get RFQ source error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to retrieve RFQ source",
+      });
+    }
+  }
+);
+
 /* =========================
    HEALTH CHECK
 ========================= */
