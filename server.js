@@ -1414,6 +1414,49 @@ app.get(
 );
 
 /* =========================================================
+   QUOTES — GET ONE
+========================================================= */
+
+app.get(
+  "/quotes/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (
+        !mongoose.Types.ObjectId.isValid(id)
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote ID",
+        });
+      }
+
+      const quote =
+        await Quote.findById(id).lean();
+
+      if (!quote) {
+        return res.status(404).json({
+          error: "Quote not found",
+        });
+      }
+
+      res.json(quote);
+    } catch (error) {
+      console.error(
+        "Get quote error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to retrieve quote",
+      });
+    }
+  }
+);
+
+/* =========================================================
    QUOTES — GET RFQ SOURCE
 ========================================================= */
 
