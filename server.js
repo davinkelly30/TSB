@@ -1479,6 +1479,115 @@ app.get(
   }
 );
 
+/* =========================================================
+   QUOTES — GET SITE ASSESSMENT SOURCE
+========================================================= */
+
+app.get(
+  "/quotes/source/site-assessment/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (
+        !mongoose.Types.ObjectId.isValid(id)
+      ) {
+        return res.status(400).json({
+          error:
+            "Invalid site assessment ID",
+        });
+      }
+
+      const assessment =
+        await SiteAssessment.findById(
+          id
+        ).lean();
+
+      if (!assessment) {
+        return res.status(404).json({
+          error:
+            "Site assessment not found",
+        });
+      }
+
+      res.json({
+        sourceType: "SiteAssessment",
+        sourceId: assessment._id,
+
+        customerName:
+          assessment.name,
+
+        company:
+          assessment.company,
+
+        email:
+          assessment.email,
+
+        phone:
+          assessment.phone,
+
+        location:
+          assessment.location,
+
+        propertyType:
+          assessment.propertyType,
+
+        siteStatus:
+          assessment.siteStatus,
+
+        generator: {
+          brand:
+            assessment.generatorBrand,
+
+          model:
+            assessment.generatorModel,
+
+          rating:
+            assessment.generatorRating,
+
+          serial:
+            assessment.generatorSerial,
+
+          voltage:
+            assessment.voltage,
+
+          phase:
+            assessment.phase,
+
+          breaker:
+            assessment.breaker,
+
+          fuel:
+            assessment.fuel,
+        },
+
+        assessmentType:
+          assessment.assessmentType,
+
+        requirements:
+          assessment.requirements,
+
+        status:
+          assessment.status,
+
+        createdAt:
+          assessment.createdAt,
+      });
+    } catch (error) {
+      console.error(
+        "Get assessment source error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to retrieve site assessment source",
+      });
+    }
+  }
+);
+
 /* =========================
    HEALTH CHECK
 ========================= */
