@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const { buildDocumentPdf } = require("./document-pdf");
 
 const app = express();
 
@@ -813,7 +814,7 @@ app.delete("/products/:id", authenticateToken, async (req, res) => {
 });
 
 /* =========================================================
-   SITE ASSESSMENT — CREATE
+   SITE ASSESSMENT â€” CREATE
 ========================================================= */
 
 app.post(
@@ -966,7 +967,7 @@ ${requirements}
 );
 
 /* =========================================================
-   SITE ASSESSMENTS — GET
+   SITE ASSESSMENTS â€” GET
 ========================================================= */
 
 app.get(
@@ -995,7 +996,7 @@ app.get(
 );
 
 /* =========================================================
-   SITE ASSESSMENTS — STATUS
+   SITE ASSESSMENTS â€” STATUS
 ========================================================= */
 
 app.patch(
@@ -1052,7 +1053,7 @@ app.patch(
 );
 
 /* =========================================================
-   SITE ASSESSMENTS — DELETE
+   SITE ASSESSMENTS â€” DELETE
 ========================================================= */
 
 app.delete(
@@ -1447,7 +1448,7 @@ app.post("/ai", async (req, res) => {
 });
 
 /* =========================================================
-   QUOTES — CREATE
+   QUOTES â€” CREATE
 ========================================================= */
 
 app.post(
@@ -1676,7 +1677,7 @@ app.post(
 );
 
 /* =========================================================
-   QUOTES — GET ALL
+   QUOTES â€” GET ALL
 ========================================================= */
 
 app.get(
@@ -1705,7 +1706,7 @@ app.get(
 );
 
 /* =========================================================
-   QUOTES — GET ONE
+   QUOTES â€” GET ONE
 ========================================================= */
 
 app.get(
@@ -1748,7 +1749,7 @@ app.get(
 );
 
 /* =========================================================
-   QUOTES — GET RFQ SOURCE
+   QUOTES â€” GET RFQ SOURCE
 ========================================================= */
 
 app.get(
@@ -1814,7 +1815,7 @@ app.get(
 );
 
 /* =========================================================
-   QUOTES — GET SITE ASSESSMENT SOURCE
+   QUOTES â€” GET SITE ASSESSMENT SOURCE
 ========================================================= */
 
 app.get(
@@ -1923,7 +1924,7 @@ app.get(
 );
 
 /* =========================================================
-   QUOTES — UPDATE
+   QUOTES â€” UPDATE
 ========================================================= */
 
 app.put(
@@ -2107,7 +2108,7 @@ app.put(
 );
 
 /* =========================================================
-   QUOTES — STATUS
+   QUOTES â€” STATUS
 ========================================================= */
 
 app.patch(
@@ -2164,7 +2165,7 @@ app.patch(
 );
 
 /* =========================================================
-   QUOTES — DELETE
+   QUOTES â€” DELETE
 ========================================================= */
 
 app.delete(
@@ -2265,7 +2266,7 @@ function validQuoteToken(token) {
 }
 
 /* =========================================================
-   QUOTES — CREATE CUSTOMER LINK
+   QUOTES â€” CREATE CUSTOMER LINK
 ========================================================= */
 
 app.post(
@@ -2400,7 +2401,7 @@ app.post(
 );
 
 /* =========================================================
-   PUBLIC QUOTE — VIEW
+   PUBLIC QUOTE â€” VIEW
 ========================================================= */
 
 app.get(
@@ -2474,7 +2475,7 @@ app.get(
 );
 
 /* =========================================================
-   PUBLIC QUOTE — ACCEPT / DECLINE
+   PUBLIC QUOTE â€” ACCEPT / DECLINE
 ========================================================= */
 
 app.post(
@@ -2639,3 +2640,240 @@ app.listen(PORT, () => {
 
   console.log(`Server running on port ${PORT}`);
 });
+
+
+/* =========================
+   INVOICE / RECEIPT EMAIL
+========================= */
+
+app.post(
+  "/invoices/:id/email",
+  authenticateToken,
+  async (req, res) => {
+    let submitted = false;
+
+    try {
+      const { paymentId, recipient } = req.body || {};
+
+      if (
+        !mongoose.Types.ObjectId.isValid(req.params.id) ||
+        (
+          paymentId !== undefined &&
+          !mongoose.Types.ObjectId.isValid(paymentId)
+        )
+      ) {
+        return res.status(400).json({
+          error: "Invalid invoice or payment ID"
+        });
+      }
+
+      const invoice = await Invoice.findById(
+        req.params.id
+      ).lean();
+
+      if (!invoice) {
+        return res.status(404).json({
+          error: "Invoice not found"
+        });
+      }
+
+      const email = String(
+        invoice.quote.email || ""
+      ).trim();
+
+      if (!/^[^\s@<>;,]+@[^\s@<>;,]+\.[^\s@<>;,]+$/.test(email)) {
+        return res.status(400).json({
+          error: "The invoice has no valid customer email address"
+        });
+      }
+
+      if (recipient !== email) {
+        return res.status(409).json({
+          error: "Recipient changed. Reopen the invoice and confirm again."
+        });
+      }
+
+      const payment = paymentId
+        ? (invoice.payments || []).find(
+            item => String(item._id) === paymentId
+          )
+        : null;
+
+      if (paymentId && !payment) {
+        return res.status(404).json({
+          error: "Payment not found"
+        });
+      }
+
+      if (
+        !process.env.EMAIL_USER ||
+        !process.env.EMAIL_PASS
+      ) {
+        return res.status(503).json({
+          error: "Email service is not configured"
+        });
+      }
+
+      const q = invoice.quote;
+      const totals = paymentSummary(invoice);
+
+      const money = cents =>
+        `BSD ${(cents / 100).toFixed(2)}`;
+
+      const title = payment
+        ? `Receipt ${payment.receiptNumber}`
+        : `Invoice ${invoice.invoiceNumber}`;
+
+      const lines = [
+        "Total Services Bahamas",
+        title,
+        `Customer: ${q.customerName || ""}`,
+        `Company: ${q.company || ""}`,
+        `Invoice: ${invoice.invoiceNumber}`
+      ];
+
+      if (payment) {
+        lines.push(
+          `Recorded: ${new Date(payment.recordedAt).toISOString()}`,
+          `Payment received: ${money(payment.amountCents)}`,
+          `Method: ${payment.method}`,
+          `Reference: ${payment.reference || "â€”"}`,
+          `Balance after this payment: ${money(payment.balanceAfterCents)}`
+        );
+
+      } else {
+        lines.push(
+          `Issued: ${new Date(invoice.issuedAt).toISOString().slice(0, 10)}`,
+          "",
+          "Items:"
+        );
+
+        for (const item of q.items || []) {
+          lines.push(
+            `${item.description || ""} ${item.partNumber || ""}` +
+            ` â€” ${item.quantity} Ã— ` +
+            `${money(Math.round(item.unitPrice * 100))}` +
+            ` = ${money(Math.round(item.total * 100))}`
+          );
+        }
+
+        lines.push(
+          "",
+          `Subtotal: ${money(Math.round(q.subtotal * 100))}`,
+          `Discount: ${money(Math.round(q.discountAmount * 100))}`,
+          `VAT (${q.taxRate}%): ${money(Math.round(q.taxAmount * 100))}`,
+          `Total: ${money(totals.totalCents)}`,
+          `Payments received: ${money(totals.paidCents)}`,
+          `Remaining balance: ${money(totals.balanceCents)}`
+        );
+
+        if (q.notes) {
+          lines.push("", "Notes:", q.notes);
+        }
+
+        if (q.terms) {
+          lines.push("", "Terms:", q.terms);
+        }
+      }
+
+      const text = lines.join("\n");
+
+      const escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      const pdfBuffer = await buildDocumentPdf(lines);
+
+      const attachmentName =
+        title.replace(/[^a-zA-Z0-9_-]/g, "_") + ".pdf";
+
+      const result = await mailer.sendMail({
+        attachments: [
+          {
+            filename: attachmentName,
+            content: pdfBuffer,
+            contentType: "application/pdf"
+          }
+        ],
+        from: {
+          name: "Total Services Bahamas",
+          address: process.env.EMAIL_USER
+        },
+        to: email,
+        subject: `${title} â€” Total Services Bahamas`,
+        text,
+        html: `
+          <div style="
+            font-family:Arial,sans-serif;
+            max-width:760px;
+            margin:auto;
+            color:#0b1f3b;
+          ">
+            <pre style="
+              font-family:inherit;
+              white-space:pre-wrap;
+              line-height:1.6;
+            ">${escaped}</pre>
+          </div>
+        `
+      });
+
+      if (
+        !result.accepted ||
+        !result.accepted.length
+      ) {
+        throw new Error("Mail was not accepted");
+      }
+
+      submitted = true;
+
+      const sentAt = new Date();
+
+      const filter = {
+        _id: invoice._id
+      };
+
+      const field = payment
+        ? "payments.$.lastEmailedAt"
+        : "lastEmailedAt";
+
+      if (payment) {
+        filter["payments._id"] = payment._id;
+      }
+
+      const updated = await Invoice.updateOne(
+        filter,
+        {
+          $max: {
+            [field]: sentAt
+          }
+        }
+      );
+
+      if (!updated.matchedCount) {
+        throw new Error("Timestamp was not saved");
+      }
+
+      res.json({
+        message: `Email submitted to ${email}.`,
+        sentAt
+      });
+
+    } catch {
+      if (submitted) {
+        return res.json({
+          message:
+            "Email submitted, but its timestamp could not be saved. " +
+            "Do not resend just to fix the timestamp."
+        });
+      }
+
+      res.status(502).json({
+        error:
+          "Email could not be confirmed. " +
+          "Check your Sent folder before trying again."
+      });
+    }
+  }
+);
