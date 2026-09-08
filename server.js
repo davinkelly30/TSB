@@ -102,6 +102,117 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
+/* =========================================================
+   SITE ASSESSMENT SCHEMA
+========================================================= */
+
+const siteAssessmentSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  company: {
+    type: String,
+    default: "",
+    trim: true,
+  },
+
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  phone: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  location: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  propertyType: {
+    type: String,
+    default: "",
+  },
+
+  siteStatus: {
+    type: String,
+    default: "",
+  },
+
+  generatorBrand: {
+    type: String,
+    default: "",
+  },
+
+  generatorModel: {
+    type: String,
+    default: "",
+  },
+
+  generatorRating: {
+    type: String,
+    default: "",
+  },
+
+  generatorSerial: {
+    type: String,
+    default: "",
+  },
+
+  voltage: {
+    type: String,
+    default: "",
+  },
+
+  phase: {
+    type: String,
+    default: "",
+  },
+
+  breaker: {
+    type: String,
+    default: "",
+  },
+
+  fuel: {
+    type: String,
+    default: "",
+  },
+
+  assessmentType: {
+    type: [String],
+    default: [],
+  },
+
+  requirements: {
+    type: String,
+    required: true,
+  },
+
+  status: {
+    type: String,
+    default: "New",
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const SiteAssessment = mongoose.model(
+  "SiteAssessment",
+  siteAssessmentSchema
+);
+
 /* =========================
    AUTH MIDDLEWARE
 ========================= */
@@ -387,6 +498,293 @@ app.delete("/products/:id", authenticateToken, async (req, res) => {
     res.status(500).json({ error: "Failed to delete product" });
   }
 });
+
+/* =========================================================
+   SITE ASSESSMENT — CREATE
+========================================================= */
+
+app.post(
+  "/site-assessments",
+  async (req, res) => {
+    try {
+      const {
+        name,
+        company,
+        email,
+        phone,
+        location,
+        propertyType,
+        siteStatus,
+        generatorBrand,
+        generatorModel,
+        generatorRating,
+        generatorSerial,
+        voltage,
+        phase,
+        breaker,
+        fuel,
+        assessmentType,
+        requirements,
+      } = req.body;
+
+      if (
+        !name ||
+        !email ||
+        !phone ||
+        !location ||
+        !requirements
+      ) {
+        return res.status(400).json({
+          error:
+            "Name, email, phone, location, and requirements are required",
+        });
+      }
+
+      let normalizedAssessmentType = [];
+
+      if (Array.isArray(assessmentType)) {
+        normalizedAssessmentType =
+          assessmentType;
+      } else if (assessmentType) {
+        normalizedAssessmentType = [
+          assessmentType,
+        ];
+      }
+
+      const assessment =
+        new SiteAssessment({
+          name,
+          company,
+          email,
+          phone,
+          location,
+          propertyType,
+          siteStatus,
+          generatorBrand,
+          generatorModel,
+          generatorRating,
+          generatorSerial,
+          voltage,
+          phase,
+          breaker,
+          fuel,
+          assessmentType:
+            normalizedAssessmentType,
+          requirements,
+        });
+
+      await assessment.save();
+
+      if (
+        process.env.EMAIL_USER &&
+        process.env.EMAIL_PASS &&
+        process.env.ADMIN_EMAIL
+      ) {
+        try {
+          await mailer.sendMail({
+            from: process.env.EMAIL_USER,
+            to: process.env.ADMIN_EMAIL,
+            subject: `New Site Assessment - ${name}`,
+            text: `
+New Total Services Site Assessment
+
+Name: ${name}
+Company: ${company || "N/A"}
+Email: ${email}
+Phone: ${phone}
+Location: ${location}
+
+Property Type:
+${propertyType || "N/A"}
+
+Generator:
+${generatorBrand || "N/A"} ${generatorModel || ""}
+
+Generator Rating:
+${generatorRating || "N/A"}
+
+Generator Serial:
+${generatorSerial || "N/A"}
+
+Voltage:
+${voltage || "N/A"}
+
+Phase:
+${phase || "N/A"}
+
+Breaker:
+${breaker || "N/A"}
+
+Fuel:
+${fuel || "N/A"}
+
+Assessment Type:
+${normalizedAssessmentType.join(", ") || "N/A"}
+
+Requirements:
+${requirements}
+            `,
+          });
+        } catch (emailError) {
+          console.error(
+            "Assessment email error:",
+            emailError.message
+          );
+        }
+      }
+
+      res.status(201).json({
+        message:
+          "Site assessment submitted successfully",
+        assessment,
+      });
+    } catch (error) {
+      console.error(
+        "Site assessment error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to submit site assessment",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   SITE ASSESSMENTS — GET
+========================================================= */
+
+app.get(
+  "/site-assessments",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const assessments =
+        await SiteAssessment.find()
+          .sort({ createdAt: -1 })
+          .lean();
+
+      res.json(assessments);
+    } catch (error) {
+      console.error(
+        "Get site assessments error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to retrieve site assessments",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   SITE ASSESSMENTS — STATUS
+========================================================= */
+
+app.patch(
+  "/site-assessments/:id/status",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const allowedStatuses = [
+        "New",
+        "Contacted",
+        "Scheduled",
+        "Assessment Complete",
+        "Quoted",
+        "Completed",
+        "Archived",
+      ];
+
+      if (!allowedStatuses.includes(status)) {
+        return res.status(400).json({
+          error:
+            "Invalid site assessment status",
+        });
+      }
+
+      const assessment =
+        await SiteAssessment.findByIdAndUpdate(
+          id,
+          { status },
+          { new: true }
+        );
+
+      if (!assessment) {
+        return res.status(404).json({
+          error: "Site assessment not found",
+        });
+      }
+
+      res.json(assessment);
+    } catch (error) {
+      console.error(
+        "Update assessment status error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to update assessment status",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   SITE ASSESSMENTS — DELETE
+========================================================= */
+
+app.delete(
+  "/site-assessments/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+          error:
+            "Invalid site assessment ID",
+        });
+      }
+
+      const deleted =
+        await SiteAssessment.findByIdAndDelete(
+          id
+        );
+
+      if (!deleted) {
+        return res.status(404).json({
+          error:
+            "Site assessment not found",
+        });
+      }
+
+      res.json({
+        message:
+          "Site assessment deleted successfully",
+      });
+    } catch (error) {
+      console.error(
+        "Delete assessment error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to delete site assessment",
+      });
+    }
+  }
+);
 
 /* =========================
    AI ASSISTANT ROUTE
