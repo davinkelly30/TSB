@@ -2860,7 +2860,9 @@ app.post(
         sentAt
       });
 
-    } catch {
+    } catch (error) {
+      console.error("Invoice email error:", error);
+
       if (submitted) {
         return res.json({
           message:
