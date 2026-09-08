@@ -1100,6 +1100,296 @@ app.delete(
 );
 
 /* =========================
+   INVOICES
+========================= */
+
+const invoiceSchema = new mongoose.Schema({
+  quoteId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Quote",
+    required: true,
+    unique: true
+  },
+  invoiceNumber: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  quote: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ["Unpaid", "Paid"],
+    default: "Unpaid"
+  },
+  issuedAt: {
+    type: Date,
+    default: Date.now
+  }
+}, { timestamps: true });
+
+invoiceSchema.add({
+  payments: [{
+    requestId: { type: String, required: true },
+    receiptNumber: { type: String, required: true },
+    amountCents: { type: Number, required: true, min: 1 },
+    method: {
+      type: String,
+      enum: ["Cash", "Bank transfer", "Card", "Cheque", "Other"],
+      required: true
+    },
+    reference: { type: String, default: "" },
+    recordedAt: { type: Date, default: Date.now },
+    balanceAfterCents: { type: Number, required: true, min: 0 }
+  }]
+});
+
+invoiceSchema.add({
+  lastEmailedAt: {
+    type: Date,
+    default: null
+  }
+});
+
+invoiceSchema.path("payments").schema.add({
+  lastEmailedAt: {
+    type: Date,
+    default: null
+  }
+});
+
+const Invoice = mongoose.model("Invoice", invoiceSchema);
+
+app.post(
+  "/quotes/:id/invoice",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+          error: "Invalid quote ID"
+        });
+      }
+
+      await Invoice.init();
+
+      const existing = await Invoice.findOne({
+        quoteId: id
+      }).lean();
+
+      if (existing) {
+        return res.json({ invoice: existing });
+      }
+
+      const quote = await Quote.findById(id).lean();
+
+      if (!quote) {
+        return res.status(404).json({
+          error: "Quote not found"
+        });
+      }
+
+      if (quote.status !== "Accepted") {
+        return res.status(409).json({
+          error: "Accept the quote before creating an invoice"
+        });
+      }
+
+      const data = {
+        quoteId: quote._id,
+        invoiceNumber: `INV-${quote.quoteNumber}`,
+        quote: customerQuoteView(quote),
+        status: "Unpaid",
+        issuedAt: new Date()
+      };
+
+      let invoice;
+
+      try {
+        invoice = await Invoice.findOneAndUpdate(
+          { quoteId: quote._id },
+          { $setOnInsert: data },
+          {
+            upsert: true,
+            new: true,
+            runValidators: true
+          }
+        );
+      } catch (error) {
+        if (error.code !== 11000) throw error;
+
+        invoice = await Invoice.findOne({
+          quoteId: quote._id
+        });
+
+        if (!invoice) throw error;
+      }
+
+      res.json({ invoice });
+    } catch (error) {
+      console.error("Invoice error:", error);
+      res.status(500).json({
+        error: "Unable to create or load invoice"
+      });
+    }
+  }
+);
+
+function paymentSummary(invoice) {
+  const totalCents = Math.round(Number(invoice.quote.total) * 100);
+  const paidCents = (invoice.payments || []).reduce(
+    (sum, payment) => sum + payment.amountCents,
+    0
+  );
+
+  if (!Number.isSafeInteger(totalCents) || totalCents < 0 ||
+      !Number.isSafeInteger(paidCents) || paidCents < 0 ||
+      paidCents > totalCents) {
+    throw new Error("Invalid invoice totals");
+  }
+
+  return {
+    totalCents,
+    paidCents,
+    balanceCents: totalCents - paidCents
+  };
+}
+
+app.get(
+  "/invoices/:id/payments",
+  authenticateToken,
+  async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    try {
+      if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({ error: "Invalid invoice ID" });
+      }
+
+      const invoice = await Invoice.findById(req.params.id).lean();
+      if (!invoice) return res.status(404).json({ error: "Invoice not found" });
+
+      res.json({ invoice, ...paymentSummary(invoice) });
+    } catch {
+      res.status(500).json({ error: "Unable to load payments" });
+    }
+  }
+);
+
+app.post(
+  "/invoices/:id/payments",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { amount, method, reference = "", requestId } = req.body || {};
+
+      if (!mongoose.Types.ObjectId.isValid(req.params.id) ||
+          typeof requestId !== "string" || !/^[a-f0-9-]{36}$/.test(requestId)) {
+        return res.status(400).json({ error: "Invalid invoice or payment request ID" });
+      }
+
+      const methods = ["Cash", "Bank transfer", "Card", "Cheque", "Other"];
+      if (typeof amount !== "string" || !/^\d{1,9}(\.\d{1,2})?$/.test(amount) ||
+          !methods.includes(method) || typeof reference !== "string" || reference.length > 200) {
+        return res.status(400).json({ error: "Enter a valid amount, method and reference" });
+      }
+
+      const amountCents = Math.round(Number(amount) * 100);
+      if (amountCents <= 0) return res.status(400).json({ error: "Amount must be greater than zero" });
+
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const invoice = await Invoice.findById(req.params.id).lean();
+        if (!invoice) return res.status(404).json({ error: "Invoice not found" });
+
+        const existing = (invoice.payments || []).find(payment => payment.requestId === requestId);
+        if (existing) {
+          if (existing.amountCents !== amountCents || existing.method !== method || existing.reference !== reference.trim()) {
+            return res.status(409).json({ error: "This request ID belongs to a different payment" });
+          }
+          return res.json({ payment: existing, ...paymentSummary(invoice) });
+        }
+
+        const summary = paymentSummary(invoice);
+        if (amountCents > summary.balanceCents) {
+          return res.status(409).json({ error: "Payment exceeds the remaining invoice balance" });
+        }
+
+        const payment = {
+          requestId,
+          amountCents,
+          method,
+          reference: reference.trim(),
+          receiptNumber: `RCP-${new mongoose.Types.ObjectId()}`,
+          recordedAt: new Date(),
+          balanceAfterCents: summary.balanceCents - amountCents
+        };
+
+        const filter = { _id: invoice._id };
+        filter.__v = invoice.__v == null ? { $exists: false } : invoice.__v;
+
+        const updated = await Invoice.findOneAndUpdate(
+          filter,
+          {
+            $push: { payments: payment },
+            $inc: { __v: 1 },
+            $set: { status: payment.balanceAfterCents === 0 ? "Paid" : "Unpaid" }
+          },
+          { new: true, runValidators: true }
+        );
+
+        if (updated) return res.json({ payment, ...paymentSummary(updated) });
+      }
+
+      res.status(409).json({ error: "Invoice changed. Retry the same payment request." });
+    } catch {
+      res.status(500).json({ error: "Unable to confirm payment. Retry the same request to avoid duplication." });
+    }
+  }
+);
+
+app.get("/invoices", authenticateToken, async (req, res) => {
+  res.set("Cache-Control", "no-store");
+
+  try {
+    const documents = await Invoice.find()
+      .select(
+        "invoiceNumber issuedAt quote.customerName " +
+        "quote.company quote.total payments.amountCents"
+      )
+      .sort({ issuedAt: -1, _id: -1 })
+      .lean();
+
+    const invoices = documents.map(invoice => {
+      const totals = paymentSummary(invoice);
+
+      return {
+        _id: invoice._id,
+        invoiceNumber: invoice.invoiceNumber,
+        issuedAt: invoice.issuedAt,
+        customerName: invoice.quote.customerName,
+        company: invoice.quote.company,
+        ...totals,
+        paymentStatus:
+          totals.balanceCents === 0
+            ? "Paid"
+            : totals.paidCents > 0
+              ? "Partially Paid"
+              : "Unpaid"
+      };
+    });
+
+    res.json({ invoices });
+  } catch {
+    res.status(500).json({
+      error: "Unable to load invoices"
+    });
+  }
+});
+
+/* =========================
    AI ASSISTANT ROUTE
 ========================= */
 
