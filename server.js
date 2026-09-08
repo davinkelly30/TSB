@@ -1815,6 +1815,63 @@ app.put(
   }
 );
 
+/* =========================================================
+   QUOTES — STATUS
+========================================================= */
+
+app.patch(
+  "/quotes/:id/status",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const allowedStatuses = [
+        "Draft",
+        "Sent",
+        "Accepted",
+        "Declined",
+        "Expired",
+      ];
+
+      if (
+        !allowedStatuses.includes(status)
+      ) {
+        return res.status(400).json({
+          error:
+            "Invalid quote status",
+        });
+      }
+
+      const quote =
+        await Quote.findByIdAndUpdate(
+          id,
+          { status },
+          { new: true }
+        );
+
+      if (!quote) {
+        return res.status(404).json({
+          error: "Quote not found",
+        });
+      }
+
+      res.json(quote);
+    } catch (error) {
+      console.error(
+        "Update quote status error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to update quote status",
+      });
+    }
+  }
+);
+
 /* =========================
    HEALTH CHECK
 ========================= */
