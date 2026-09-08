@@ -7,6 +7,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 const app = express();
 
@@ -1867,6 +1868,463 @@ app.patch(
       res.status(500).json({
         error:
           "Failed to update quote status",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   QUOTES — DELETE
+========================================================= */
+
+app.delete(
+  "/quotes/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (
+        !mongoose.Types.ObjectId.isValid(id)
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote ID",
+        });
+      }
+
+      const deleted =
+        await Quote.findByIdAndDelete(id);
+
+      if (!deleted) {
+        return res.status(404).json({
+          error: "Quote not found",
+        });
+      }
+
+      res.json({
+        message:
+          "Quote deleted successfully",
+      });
+    } catch (error) {
+      console.error(
+        "Delete quote error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to delete quote",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   CUSTOMER QUOTE SHARING
+========================================================= */
+
+function customerQuoteView(quote) {
+  const fields = [
+    "quoteNumber",
+    "customerName",
+    "company",
+    "email",
+    "phone",
+    "subtotal",
+    "discountType",
+    "discountValue",
+    "discountAmount",
+    "taxableAmount",
+    "taxRate",
+    "taxAmount",
+    "total",
+    "notes",
+    "terms",
+    "validUntil",
+    "status",
+    "createdAt",
+    "customerRespondedAt",
+  ];
+
+  const result = Object.fromEntries(
+    fields.map((key) => [
+      key,
+      quote[key],
+    ])
+  );
+
+  result.items = (quote.items || []).map(
+    (item) => ({
+      type: item.type,
+      description: item.description,
+      partNumber: item.partNumber,
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+      total: item.total,
+    })
+  );
+
+  return result;
+}
+
+function validQuoteToken(token) {
+  return (
+    typeof token === "string" &&
+    /^[a-f0-9]{64}$/.test(token)
+  );
+}
+
+/* =========================================================
+   QUOTES — CREATE CUSTOMER LINK
+========================================================= */
+
+app.post(
+  "/quotes/:id/share",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      if (
+        !mongoose.Types.ObjectId.isValid(
+          req.params.id
+        )
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote ID",
+        });
+      }
+
+      const now = new Date();
+
+      let quote =
+        await Quote.findById(req.params.id);
+
+      if (!quote) {
+        return res.status(404).json({
+          error: "Quote not found",
+        });
+      }
+
+      if (
+        quote.status === "Expired" ||
+        (
+          quote.validUntil &&
+          new Date(quote.validUntil) <= now
+        )
+      ) {
+        return res.status(410).json({
+          error:
+            "This quotation has expired",
+        });
+      }
+
+      if (!quote.shareToken) {
+        await Quote.findOneAndUpdate(
+          {
+            _id: quote._id,
+            shareToken: null,
+          },
+          {
+            $set: {
+              shareToken:
+                crypto
+                  .randomBytes(32)
+                  .toString("hex"),
+              sharedAt: now,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+
+      await Quote.findOneAndUpdate(
+        {
+          _id: quote._id,
+          status: "Draft",
+        },
+        {
+          $set: {
+            status: "Sent",
+          },
+        },
+        {
+          runValidators: true,
+        }
+      );
+
+      quote =
+        await Quote.findById(req.params.id);
+
+      if (
+        !quote ||
+        !quote.shareToken
+      ) {
+        return res.status(404).json({
+          error:
+            "Quote no longer available",
+        });
+      }
+
+      const base =
+        process.env.PUBLIC_BASE_URL ||
+        `http://localhost:${PORT}`;
+
+      const url = new URL(
+        "/customer-quote.html",
+        base
+      );
+
+      url.searchParams.set(
+        "token",
+        quote.shareToken
+      );
+
+      res.set(
+        "Cache-Control",
+        "no-store"
+      );
+
+      res.json({
+        message:
+          "Customer link ready",
+        url: url.href,
+        shareUrl: url.href,
+        customerUrl: url.href,
+        quoteNumber:
+          quote.quoteNumber,
+      });
+    } catch (error) {
+      console.error(
+        "Create customer link error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Unable to create customer link",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   PUBLIC QUOTE — VIEW
+========================================================= */
+
+app.get(
+  "/public/quotes/:token",
+  async (req, res) => {
+    res.set(
+      "Cache-Control",
+      "no-store"
+    );
+
+    try {
+      if (
+        !validQuoteToken(
+          req.params.token
+        )
+      ) {
+        return res.status(404).json({
+          error:
+            "Quote link not found",
+        });
+      }
+
+      const quote =
+        await Quote.findOne({
+          shareToken:
+            req.params.token,
+        }).lean();
+
+      if (
+        !quote ||
+        quote.status === "Draft"
+      ) {
+        return res.status(404).json({
+          error:
+            "Quote link not found",
+        });
+      }
+
+      if (
+        quote.status === "Expired" ||
+        (
+          quote.status === "Sent" &&
+          quote.validUntil &&
+          new Date(
+            quote.validUntil
+          ) <= new Date()
+        )
+      ) {
+        return res.status(410).json({
+          error:
+            "This quotation has expired",
+        });
+      }
+
+      res.json({
+        quote:
+          customerQuoteView(quote),
+      });
+    } catch (error) {
+      console.error(
+        "Public quote error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Unable to load quotation",
+      });
+    }
+  }
+);
+
+/* =========================================================
+   PUBLIC QUOTE — ACCEPT / DECLINE
+========================================================= */
+
+app.post(
+  "/public/quotes/:token/respond",
+  async (req, res) => {
+    res.set(
+      "Cache-Control",
+      "no-store"
+    );
+
+    try {
+      if (
+        !validQuoteToken(
+          req.params.token
+        )
+      ) {
+        return res.status(404).json({
+          error:
+            "Quote link not found",
+        });
+      }
+
+      const decision =
+        req.body &&
+        req.body.decision;
+
+      if (
+        ![
+          "Accepted",
+          "Declined",
+        ].includes(decision)
+      ) {
+        return res.status(400).json({
+          error:
+            "Decision must be Accepted or Declined",
+        });
+      }
+
+      const now = new Date();
+
+      const quote =
+        await Quote.findOneAndUpdate(
+          {
+            shareToken:
+              req.params.token,
+            status: "Sent",
+            customerRespondedAt: null,
+            $or: [
+              {
+                validUntil: null,
+              },
+              {
+                validUntil: {
+                  $gt: now,
+                },
+              },
+            ],
+          },
+          {
+            $set: {
+              status: decision,
+              customerRespondedAt:
+                now,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+      if (quote) {
+        return res.json({
+          message:
+            `Quotation ${decision.toLowerCase()}`,
+          quote:
+            customerQuoteView(
+              quote
+            ),
+        });
+      }
+
+      const existing =
+        await Quote.findOne({
+          shareToken:
+            req.params.token,
+        }).lean();
+
+      if (
+        !existing ||
+        existing.status === "Draft"
+      ) {
+        return res.status(404).json({
+          error:
+            "Quote link not found",
+        });
+      }
+
+      if (
+        existing.status === decision
+      ) {
+        return res.json({
+          message:
+            "Response already recorded",
+          quote:
+            customerQuoteView(
+              existing
+            ),
+        });
+      }
+
+      if (
+        existing.status === "Expired" ||
+        (
+          existing.status === "Sent" &&
+          existing.validUntil &&
+          new Date(
+            existing.validUntil
+          ) <= now
+        )
+      ) {
+        return res.status(410).json({
+          error:
+            "This quotation has expired",
+        });
+      }
+
+      return res.status(409).json({
+        error:
+          "This quotation already has a response or is unavailable",
+      });
+    } catch (error) {
+      console.error(
+        "Quote response error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Unable to save quote response",
       });
     }
   }

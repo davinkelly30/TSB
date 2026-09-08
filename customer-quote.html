@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Total Services Bahamas | Customer Quote</title>
+
+  <style>
+    :root {
+      --navy: #0b1f3b;
+      --navy2: #163a5f;
+      --gold: #f4c430;
+      --bg: #eef2f6;
+      --white: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #dce3ea;
+      --green: #198754;
+      --red: #dc3545;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 18px 22px;
+    }
+
+    .topbar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .brand p {
+      margin: 5px 0 0;
+      opacity: .75;
+      font-size: 13px;
+    }
+
+    .wrapper {
+      max-width: 1080px;
+      margin: 30px auto;
+      padding: 0 18px 40px;
+    }
+
+    .quote {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(11,31,59,.08);
+      overflow: hidden;
+    }
+
+    .quote-head {
+      padding: 26px;
+      border-bottom: 5px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .quote-title {
+      color: var(--navy);
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .quote-number {
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 7px;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 10px;
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: #e8eef5;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .body {
+      padding: 26px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .info-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .value {
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: var(--navy);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .right { text-align: right; }
+
+    .summary {
+      max-width: 430px;
+      margin: 22px 0 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .summary-row:last-child { border-bottom: 0; }
+
+    .summary-total {
+      background: #f8fafc;
+      color: var(--navy);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-top: 25px;
+    }
+
+    .section h3 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .section p {
+      margin: 0;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .response-panel {
+      margin-top: 30px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .response-panel h2 {
+      margin: 0 0 8px;
+      color: var(--navy);
+    }
+
+    .response-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 9px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .accept { background: var(--green); color: white; }
+    .decline { background: var(--red); color: white; }
+    .print { background: var(--navy); color: white; }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 17px;
+      font-weight: 700;
+    }
+
+    .loading,
+    .error {
+      max-width: 720px;
+      margin: 80px auto;
+      text-align: center;
+      padding: 25px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .error { color: var(--red); }
+
+    .footer {
+      padding: 18px 26px 26px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .quote-head, .body { padding: 18px; }
+      .quote-title { font-size: 25px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .topbar, .response-panel { display: none !important; }
+      .wrapper { margin: 0; padding: 0; max-width: none; }
+      .quote { border: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <h1>Total Services Bahamas</h1>
+        <p>Generator • Electrical • Mechanical • Technical Services</p>
+      </div>
+      <button class="print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </div>
+
+  <div id="loading" class="loading">
+    Loading quotation...
+  </div>
+
+  <div id="errorBox" class="error" style="display:none;"></div>
+
+  <main id="content" class="wrapper" style="display:none;">
+    <article class="quote">
+
+      <div class="quote-head">
+        <div>
+          <h1 class="quote-title">Quotation</h1>
+          <div id="quoteNumber" class="quote-number"></div>
+          <span id="quoteStatus" class="status"></span>
+        </div>
+
+        <div style="text-align:right;">
+          <strong>Total Services Bahamas</strong><br>
+          #98 Thompson Blvd, Nassau, Bahamas<br>
+          (242) 323-0400/1<br>
+          info@totalservicesbahamas.com
+        </div>
+      </div>
+
+      <div class="body">
+
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="label">Prepared For</div>
+            <div id="customerInfo" class="value"></div>
+          </div>
+
+          <div class="info-box">
+            <div class="label">Quote Dates</div>
+            <div id="dateInfo" class="value"></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Part #</th>
+                <th class="right">Qty</th>
+                <th class="right">Unit Price</th>
+                <th class="right">Total</th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+          </table>
+        </div>
+
+        <div class="summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotal"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Discount</span>
+            <strong id="discount"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Taxable Amount</span>
+            <strong id="taxable"></strong>
+          </div>
+          <div class="summary-row">
+            <span>VAT</span>
+            <strong id="tax"></strong>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <strong id="total"></strong>
+          </div>
+        </div>
+
+        <div id="notesSection" class="section" style="display:none;">
+          <h3>Notes</h3>
+          <p id="notes"></p>
+        </div>
+
+        <div id="termsSection" class="section" style="display:none;">
+          <h3>Terms & Conditions</h3>
+          <p id="terms"></p>
+        </div>
+
+        <div id="responsePanel" class="response-panel">
+          <h2>Respond to this quotation</h2>
+          <p>Please confirm whether you accept or decline this quotation.</p>
+
+          <div class="buttons">
+            <button id="acceptBtn" class="accept" onclick="respondToQuote('Accepted')">
+              Accept Quote
+            </button>
+            <button id="declineBtn" class="decline" onclick="respondToQuote('Declined')">
+              Decline Quote
+            </button>
+          </div>
+
+          <div id="responseMessage" class="message"></div>
+        </div>
+
+      </div>
+
+      <div class="footer">
+        Thank you for choosing Total Services Bahamas.
+      </div>
+
+    </article>
+  </main>
+
+  <script>
+    const API = window.location.origin;
+
+    function getToken() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("token") || "";
+    }
+
+    function escapeHtml(value) {
+      if (value === null || value === undefined) return "";
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function formatMoney(value) {
+      return new Intl.NumberFormat("en-BS", {
+        style: "currency",
+        currency: "BSD"
+      }).format(Number(value || 0));
+    }
+
+    function formatDate(value) {
+      if (!value) return "—";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "—";
+      return date.toLocaleDateString("en-BS", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    async function loadQuote() {
+      const token = getToken();
+
+      if (!token) {
+        showError("This quote link is invalid or incomplete.");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${API}/public/quotes/${encodeURIComponent(token)}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || data.message || "Unable to load quotation.");
+        }
+
+        renderQuote(data.quote || data);
+
+      } catch (error) {
+        showError(error.message);
+      }
+    }
+
+    function renderQuote(quote) {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("content").style.display = "block";
+
+      document.getElementById("quoteNumber").textContent =
+        quote.quoteNumber || "Quotation";
+
+      document.getElementById("quoteStatus").textContent =
+        quote.status || "Sent";
+
+      const customer = [
+        escapeHtml(quote.customerName || ""),
+        escapeHtml(quote.company || ""),
+        escapeHtml(quote.email || ""),
+        escapeHtml(quote.phone || "")
+      ].filter(Boolean).join("<br>");
+
+      document.getElementById("customerInfo").innerHTML =
+        customer || "Customer";
+
+      document.getElementById("dateInfo").innerHTML =
+        `Issued: ${escapeHtml(formatDate(quote.createdAt))}<br>` +
+        `Valid Until: ${escapeHtml(formatDate(quote.validUntil))}`;
+
+      const items = Array.isArray(quote.items) ? quote.items : [];
+
+      document.getElementById("itemsBody").innerHTML =
+        items.map(item => `
+          <tr>
+            <td>${escapeHtml(item.type || "")}</td>
+            <td>${escapeHtml(item.description || "")}</td>
+            <td>${escapeHtml(item.partNumber || "—")}</td>
+            <td class="right">${escapeHtml(item.quantity ?? 0)}</td>
+            <td class="right">${formatMoney(item.unitPrice)}</td>
+            <td class="right">${formatMoney(item.total)}</td>
+          </tr>
+        `).join("");
+
+      document.getElementById("subtotal").textContent =
+        formatMoney(quote.subtotal);
+
+      document.getElementById("discount").textContent =
+        formatMoney(quote.discountAmount);
+
+      document.getElementById("taxable").textContent =
+        formatMoney(quote.taxableAmount);
+
+      document.getElementById("tax").textContent =
+        formatMoney(quote.taxAmount);
+
+      document.getElementById("total").textContent =
+        formatMoney(quote.total);
+
+      if (quote.notes) {
+        document.getElementById("notesSection").style.display = "block";
+        document.getElementById("notes").textContent = quote.notes;
+      }
+
+      if (quote.terms) {
+        document.getElementById("termsSection").style.display = "block";
+        document.getElementById("terms").textContent = quote.terms;
+      }
+
+      if (quote.status === "Accepted" || quote.status === "Declined") {
+        lockResponse(quote.status);
+      }
+    }
+
+    async function respondToQuote(decision) {
+      const token = getToken();
+
+      if (!token) return;
+
+      const label = decision === "Accepted" ? "accept" : "decline";
+
+      if (!confirm(`Are you sure you want to ${label} this quotation?`)) {
+        return;
+      }
+
+      const acceptBtn = document.getElementById("acceptBtn");
+      const declineBtn = document.getElementById("declineBtn");
+
+      acceptBtn.disabled = true;
+      declineBtn.disabled = true;
+
+      try {
+        const response = await fetch(
+          `${API}/public/quotes/${encodeURIComponent(token)}/respond`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              decision
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || data.message || "Unable to save response.");
+        }
+
+        document.getElementById("quoteStatus").textContent = decision;
+        lockResponse(decision);
+
+      } catch (error) {
+        acceptBtn.disabled = false;
+        declineBtn.disabled = false;
+        document.getElementById("responseMessage").textContent =
+          error.message;
+      }
+    }
+
+    function lockResponse(status) {
+      document.getElementById("acceptBtn").style.display = "none";
+      document.getElementById("declineBtn").style.display = "none";
+
+      document.getElementById("responseMessage").textContent =
+        status === "Accepted"
+          ? "Thank you. This quotation has been accepted."
+          : "This quotation has been declined.";
+    }
+
+    function showError(message) {
+      document.getElementById("loading").style.display = "none";
+      const errorBox = document.getElementById("errorBox");
+      errorBox.style.display = "block";
+      errorBox.textContent = message;
+    }
+
+    loadQuote();
+  </script>
+
+</body>
+</html>
