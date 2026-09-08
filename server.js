@@ -137,51 +137,52 @@ function authenticateToken(req, res, next) {
 ========================= */
 
 app.post("/login", async (req, res) => {
-
   try {
+    const { username, password } = req.body;
 
-    const { user, pass } = req.body;
-
-    if (!user || !pass) {
+    if (!username || !password) {
       return res.status(400).json({
-        error: "Username and password required"
+        error: "Username and password are required",
       });
     }
 
-    if (user !== process.env.ADMIN_USER) {
+    if (username !== process.env.ADMIN_USER) {
       return res.status(401).json({
-        error: "Invalid credentials"
+        error: "Invalid credentials",
       });
     }
 
-    const validPassword = await bcrypt.compare(
-      pass,
+    const passwordMatch = await bcrypt.compare(
+      password,
       process.env.ADMIN_PASSWORD_HASH
     );
 
-    if (!validPassword) {
+    if (!passwordMatch) {
       return res.status(401).json({
-        error: "Invalid credentials"
+        error: "Invalid credentials",
       });
     }
 
     const token = jwt.sign(
-      { user },
+      {
+        username,
+        role: "admin",
+      },
       process.env.JWT_SECRET,
-      { expiresIn: "8h" }
+      {
+        expiresIn: "8h",
+      }
     );
 
     res.json({
       message: "Login successful",
-      token
+      token,
     });
-
-  } catch (err) {
-
-    console.error(err);
+  } catch (error) {
+    console.error("Login error:", error);
 
     res.status(500).json({
-      error: "Server error"
+      error: "Login failed",
     });
   }
 });
