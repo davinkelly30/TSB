@@ -443,6 +443,88 @@ async function generateQuoteNumber() {
   return `TSB-${year}-${sequence}`;
 }
 
+/* =========================================================
+   QUOTE TOTAL CALCULATOR
+========================================================= */
+
+function calculateQuoteTotals(quoteData) {
+  const items = Array.isArray(quoteData.items)
+    ? quoteData.items
+    : [];
+
+  let subtotal = 0;
+
+  const calculatedItems = items.map((item) => {
+    const quantity = Number(item.quantity) || 0;
+    const unitPrice = Number(item.unitPrice) || 0;
+
+    const total = Number(
+      (quantity * unitPrice).toFixed(2)
+    );
+
+    subtotal += total;
+
+    return {
+      ...item,
+      quantity,
+      unitPrice,
+      total,
+    };
+  });
+
+  subtotal = Number(subtotal.toFixed(2));
+
+  const discountType =
+    quoteData.discountType || "None";
+
+  const discountValue =
+    Number(quoteData.discountValue) || 0;
+
+  let discountAmount = 0;
+
+  if (discountType === "Fixed") {
+    discountAmount = discountValue;
+  }
+
+  if (discountType === "Percent") {
+    discountAmount =
+      subtotal * (discountValue / 100);
+  }
+
+  discountAmount = Math.min(
+    Math.max(discountAmount, 0),
+    subtotal
+  );
+
+  discountAmount = Number(
+    discountAmount.toFixed(2)
+  );
+
+  const taxableAmount = Number(
+    (subtotal - discountAmount).toFixed(2)
+  );
+
+  const taxRate =
+    Number(quoteData.taxRate) || 0;
+
+  const taxAmount = Number(
+    (taxableAmount * (taxRate / 100)).toFixed(2)
+  );
+
+  const total = Number(
+    (taxableAmount + taxAmount).toFixed(2)
+  );
+
+  return {
+    items: calculatedItems,
+    subtotal,
+    discountAmount,
+    taxableAmount,
+    taxAmount,
+    total,
+  };
+}
+
 /* =========================
    AUTH MIDDLEWARE
 ========================= */
@@ -1072,6 +1154,235 @@ app.post("/ai", async (req, res) => {
     res.status(500).json({ error: "AI assistant failed" });
   }
 });
+
+/* =========================================================
+   QUOTES — CREATE
+========================================================= */
+
+app.post(
+  "/quotes",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const {
+        customerName,
+        company,
+        email,
+        phone,
+        sourceType,
+        sourceId,
+        items,
+        discountType,
+        discountValue,
+        taxRate,
+        notes,
+        terms,
+        validUntil,
+        status,
+      } = req.body;
+
+      if (!customerName || !email) {
+        return res.status(400).json({
+          error:
+            "Customer name and email are required",
+        });
+      }
+
+      const allowedSourceTypes = [
+        "Manual",
+        "RFQ",
+        "SiteAssessment",
+      ];
+
+      const selectedSourceType =
+        sourceType || "Manual";
+
+      if (
+        !allowedSourceTypes.includes(
+          selectedSourceType
+        )
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote source type",
+        });
+      }
+
+      const allowedStatuses = [
+        "Draft",
+        "Sent",
+        "Accepted",
+        "Declined",
+        "Expired",
+      ];
+
+      const selectedStatus =
+        status || "Draft";
+
+      if (
+        !allowedStatuses.includes(
+          selectedStatus
+        )
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote status",
+        });
+      }
+
+      const allowedDiscountTypes = [
+        "None",
+        "Fixed",
+        "Percent",
+      ];
+
+      const selectedDiscountType =
+        discountType || "None";
+
+      if (
+        !allowedDiscountTypes.includes(
+          selectedDiscountType
+        )
+      ) {
+        return res.status(400).json({
+          error:
+            "Invalid discount type",
+        });
+      }
+
+      if (
+        selectedSourceType === "RFQ" &&
+        sourceId
+      ) {
+        if (
+          !mongoose.Types.ObjectId.isValid(
+            sourceId
+          )
+        ) {
+          return res.status(400).json({
+            error: "Invalid RFQ source ID",
+          });
+        }
+
+        const rfq = await RFQ.findById(sourceId);
+
+        if (!rfq) {
+          return res.status(404).json({
+            error: "Source RFQ not found",
+          });
+        }
+      }
+
+      if (
+        selectedSourceType ===
+          "SiteAssessment" &&
+        sourceId
+      ) {
+        if (
+          !mongoose.Types.ObjectId.isValid(
+            sourceId
+          )
+        ) {
+          return res.status(400).json({
+            error:
+              "Invalid site assessment source ID",
+          });
+        }
+
+        const assessment =
+          await SiteAssessment.findById(
+            sourceId
+          );
+
+        if (!assessment) {
+          return res.status(404).json({
+            error:
+              "Source site assessment not found",
+          });
+        }
+      }
+
+      const totals = calculateQuoteTotals({
+        items,
+        discountType:
+          selectedDiscountType,
+        discountValue,
+        taxRate:
+          taxRate !== undefined
+            ? taxRate
+            : 10,
+      });
+
+      const quoteNumber =
+        await generateQuoteNumber();
+
+      const quote = new Quote({
+        quoteNumber,
+
+        customerName,
+        company,
+        email,
+        phone,
+
+        sourceType:
+          selectedSourceType,
+
+        sourceId:
+          sourceId || null,
+
+        items: totals.items,
+
+        subtotal:
+          totals.subtotal,
+
+        discountType:
+          selectedDiscountType,
+
+        discountValue:
+          Number(discountValue) || 0,
+
+        discountAmount:
+          totals.discountAmount,
+
+        taxableAmount:
+          totals.taxableAmount,
+
+        taxRate:
+          Number(taxRate) || 0,
+
+        taxAmount:
+          totals.taxAmount,
+
+        total:
+          totals.total,
+
+        notes,
+        terms,
+        validUntil:
+          validUntil || null,
+
+        status:
+          selectedStatus,
+      });
+
+      await quote.save();
+
+      res.status(201).json({
+        message:
+          "Quote created successfully",
+        quote,
+      });
+    } catch (error) {
+      console.error(
+        "Create quote error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to create quote",
+      });
+    }
+  }
+);
 
 /* =========================================================
    QUOTES — GET ALL
