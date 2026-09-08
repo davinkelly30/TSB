@@ -1,348 +1,5269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Total Services Admin</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Total Services Bahamas | Admin Dashboard</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  color: #111827;
-}
+  <style>
+    :root {
+      --primary: #0b1f3b;
+      --secondary: #163a5f;
+      --accent: #f4c430;
+      --bg: #f5f7fa;
+      --white: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e3e8ef;
+      --dark: #071625;
+      --success: #198754;
+      --danger: #dc3545;
+      --warning: #f59e0b;
+      --info: #0d6efd;
+      --shadow: 0 10px 30px rgba(7, 22, 37, 0.08);
+    }
 
-.header {
-  background: #0b1f3b;
-  color: white;
-  padding: 18px 30px;
-  font-size: 22px;
-  font-weight: bold;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 20px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-.card {
-  background: white;
-  padding: 24px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-}
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
 
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
+    button {
+      cursor: pointer;
+    }
 
-button {
-  background: #0b1f3b;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
+    /* LOGIN */
 
-button:hover {
-  background: #163a5f;
-}
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(rgba(7, 22, 37, 0.92), rgba(7, 22, 37, 0.96)),
+        url("https://totalservicesbahamas.com/wp-content/uploads/2021/10/IMG_6934-scaled.jpg")
+        center / cover;
+      padding: 20px;
+    }
 
-.hidden {
-  display: none;
-}
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      border-radius: 18px;
+      padding: 35px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    }
 
-.status {
-  margin-top: 12px;
-  font-weight: bold;
-}
+    .login-logo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
-.product {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-}
-</style>
+    .login-logo img {
+      max-width: 240px;
+      max-height: 90px;
+      object-fit: contain;
+    }
+
+    .login-logo h1 {
+      color: var(--primary);
+      margin: 10px 0 5px;
+      font-size: 26px;
+    }
+
+    .login-logo p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* DASHBOARD */
+
+    .dashboard {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: var(--primary);
+      color: white;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,.15);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      background: white;
+      border-radius: 5px;
+      padding: 4px 8px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      opacity: .7;
+      margin-top: 3px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 9px 15px;
+      border-radius: 7px;
+    }
+
+    .logout-btn:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      min-height: calc(100vh - 72px);
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      background: var(--dark);
+      padding: 20px 12px;
+    }
+
+    .sidebar-section {
+      color: #94a3b8;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin: 15px 12px 8px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #dbe4ef;
+      padding: 12px 13px;
+      border-radius: 8px;
+      text-align: left;
+      margin-bottom: 4px;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: rgba(244,196,48,.12);
+      color: var(--accent);
+    }
+
+    /* MAIN */
+
+    .main {
+      padding: 25px;
+      min-width: 0;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .page-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .page-heading h1 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 28px;
+    }
+
+    .page-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    /* FORMS */
+
+    .form-card,
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-card {
+      padding: 22px;
+    }
+
+    .panel-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 19px;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: var(--text);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 12px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(22,58,95,.08);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e9eef4;
+      color: var(--primary);
+    }
+
+    .btn-small {
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap: 14px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .item-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .item-card h3 {
+      margin: 0 0 7px;
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .item-card p {
+      margin: 5px 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #edf2f7;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-new {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .badge-success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .empty {
+      background: white;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* QUOTE BUILDER */
+
+    .source-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .source-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--primary);
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-weight: 700;
+    }
+
+    .source-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .quote-items-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .quote-items {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    .quote-items th {
+      background: #f1f5f9;
+      color: var(--primary);
+      text-align: left;
+      padding: 11px;
+      font-size: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quote-items td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .quote-items tr:last-child td {
+      border-bottom: none;
+    }
+
+    .quote-items input,
+    .quote-items select {
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    .remove-line {
+      border: none;
+      background: #fee2e2;
+      color: var(--danger);
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .quote-summary {
+      margin-left: auto;
+      max-width: 390px;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 13px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-total {
+      font-size: 18px;
+      font-weight: 800;
+      background: #f8fafc;
+      color: var(--primary);
+    }
+
+    .quote-preview-box {
+      margin-top: 20px;
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    /* PRODUCT CATALOG */
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .product-image {
+      height: 160px;
+      background: #eef2f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-placeholder {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .product-body {
+      padding: 15px;
+    }
+
+    .product-body h3 {
+      font-size: 16px;
+      margin: 0 0 8px;
+      color: var(--primary);
+    }
+
+    .product-body p {
+      font-size: 12px;
+      margin: 5px 0;
+      line-height: 1.4;
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,22,37,.65);
+      z-index: 999;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .modal.open {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      border-radius: 15px;
+      margin: 20px auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+    }
+
+    .modal-header {
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 25px;
+      color: var(--muted);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    /* TOAST */
+
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 2000;
+      background: var(--dark);
+      color: white;
+      padding: 13px 17px;
+      border-radius: 9px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.2);
+      display: none;
+      max-width: 350px;
+      font-size: 13px;
+    }
+
+    #toast.show {
+      display: block;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1200px) {
+      .stats {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+        padding: 8px;
+      }
+
+      .sidebar-section {
+        display: none;
+      }
+
+      .nav-btn {
+        min-width: max-content;
+        margin: 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .grid,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        height: auto;
+        min-height: 68px;
+        padding: 10px 15px;
+      }
+
+      .brand-title {
+        font-size: 15px;
+      }
+
+      .brand-subtitle {
+        display: none;
+      }
+
+      .brand img {
+        height: 35px;
+      }
+
+      .main {
+        padding: 15px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-heading h1 {
+        font-size: 23px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="header">Total Services Admin Dashboard</div>
+<!-- LOGIN -->
 
-<div class="container">
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
 
-  <div class="card" id="loginBox">
-    <h2>Admin Login</h2>
+    <div class="login-logo">
+      <img
+        src="https://totalservicesbahamas.com/wp-content/uploads/2021/10/Total-Services-Logo.png"
+        alt="Total Services Bahamas"
+        onerror="this.style.display='none';"
+      />
 
-    <input id="loginUser" placeholder="Username" />
-    <input id="loginPass" type="password" placeholder="Password" />
+      <h1>Admin Dashboard</h1>
+      <p>Total Services Bahamas</p>
+    </div>
 
-    <button onclick="login()">Login</button>
+    <form id="loginForm">
 
-    <div class="status" id="loginStatus"></div>
+      <div style="margin-bottom:15px;">
+        <label for="loginUsername">Username</label>
+        <input id="loginUsername" autocomplete="username" required />
+      </div>
+
+      <div style="margin-bottom:15px;">
+        <label for="loginPassword">Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" type="submit">
+        Login
+      </button>
+
+    </form>
+
   </div>
+</div>
 
-  <div id="adminPanel" class="hidden">
 
-    <div class="card">
-      <h2>Add Product</h2>
+<!-- DASHBOARD -->
 
-      <input id="name" placeholder="Product Name" />
-      <input id="category" placeholder="Category" />
-      <textarea id="desc" placeholder="Description"></textarea>
+<div id="dashboard" class="dashboard">
 
-      <button onclick="addProduct()">Add Product</button>
+  <!-- TOP BAR -->
 
-      <div class="status" id="productStatus"></div>
+  <header class="topbar">
+
+    <div class="brand">
+
+      <img
+        src="https://totalservicesbahamas.com/wp-content/uploads/2021/10/Total-Services-Logo.png"
+        alt="Total Services"
+        onerror="this.style.display='none';"
+      />
+
+      <div>
+        <div class="brand-title">Total Services Bahamas</div>
+        <div class="brand-subtitle">Administration Portal</div>
+      </div>
+
     </div>
 
-    <div class="card">
-      <h2>Current Products</h2>
-      <div id="productList">Loading products...</div>
-    </div>
+    <button class="logout-btn" onclick="logout()">
+      Logout
+    </button>
 
-    <div class="card">
-      <h2>Customer RFQs</h2>
-      <div id="rfqList">Loading RFQs...</div>
-    </div>
+  </header>
+
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        Management
+      </div>
+
+      <button class="nav-btn active" data-section="overview">
+        Dashboard
+      </button>
+
+      <button class="nav-btn" data-section="rfqs">
+        RFQs
+      </button>
+
+      <button class="nav-btn" data-section="assessments">
+        Site Assessments
+      </button>
+
+      <button class="nav-btn" data-section="quotes">
+        Quotes
+      </button>
+
+      <button
+        class="nav-btn"
+        data-section="invoices"
+        onclick="loadInvoices()"
+      >
+        Invoices
+      </button>
+
+      <button class="nav-btn" data-section="products">
+        Product Catalog
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <!-- OVERVIEW -->
+
+      <section id="overview" class="section active">
+
+        <div class="page-heading">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Manage Total Services customer requests and operations.</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="loadEverything()">
+            Refresh
+          </button>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-label">Total RFQs</div>
+            <div id="statRFQs" class="stat-value">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">New RFQs</div>
+            <div id="statNewRFQs" class="stat-value">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Site Assessments</div>
+            <div id="statAssessments" class="stat-value">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Quotes</div>
+            <div id="statQuotes" class="stat-value">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Accepted Quotes</div>
+            <div id="statAcceptedQuotes" class="stat-value">0</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Products</div>
+            <div id="statProducts" class="stat-value">0</div>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h2>Business Workflow</h2>
+          </div>
+
+          <div class="panel-body">
+
+            <div class="grid-3">
+
+              <div class="item-card">
+                <h3>Customer Request</h3>
+                <p class="muted">
+                  Customers submit RFQs, rental requests, parts requests,
+                  and site assessments.
+                </p>
+              </div>
+
+              <div class="item-card">
+                <h3>Quote</h3>
+                <p class="muted">
+                  Convert RFQs and site assessments into professional
+                  quotations.
+                </p>
+              </div>
+
+              <div class="item-card">
+                <h3>Payment</h3>
+                <p class="muted">
+                  Future customer portal will connect quotes to invoices,
+                  payments and receipts.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- RFQS -->
+
+      <section id="rfqs" class="section">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Request For Quotes</h1>
+            <p>Review and manage customer quote requests.</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="loadRFQs()">
+            Refresh
+          </button>
+
+        </div>
+
+        <div id="rfqList" class="cards"></div>
+
+      </section>
+
+
+      <!-- SITE ASSESSMENTS -->
+
+      <section id="assessments" class="section">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Site Assessments</h1>
+            <p>Manage customer site assessment requests.</p>
+          </div>
+
+          <button class="btn btn-primary" onclick="loadAssessments()">
+            Refresh
+          </button>
+
+        </div>
+
+        <div id="assessmentList" class="cards"></div>
+
+      </section>
+
+
+      <!-- QUOTES -->
+
+      <section id="quotes" class="section">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Quotes</h1>
+            <p>Create and manage Total Services quotations.</p>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+
+            <button
+              class="btn btn-accent"
+              onclick="openNewQuote()"
+            >
+              + New Quote
+            </button>
+
+            <button
+              class="btn btn-primary"
+              onclick="loadQuotes()"
+            >
+              Refresh
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUOTE BUILDER -->
+
+        <div id="quoteBuilder" class="panel" style="display:none;margin-bottom:25px;">
+
+          <div class="panel-header">
+
+            <h2 id="quoteBuilderTitle">
+              Create Quote
+            </h2>
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="closeQuoteBuilder()"
+            >
+              Close
+            </button>
+
+          </div>
+
+
+          <div class="panel-body">
+
+            <!-- SOURCE -->
+
+            <label>
+              Quote Source
+            </label>
+
+            <div class="source-buttons">
+
+              <button
+                type="button"
+                class="source-btn active"
+                data-source="Manual"
+                onclick="setQuoteSource('Manual')"
+              >
+                Manual
+              </button>
+
+              <button
+                type="button"
+                class="source-btn"
+                data-source="RFQ"
+                onclick="setQuoteSource('RFQ')"
+              >
+                From RFQ
+              </button>
+
+              <button
+                type="button"
+                class="source-btn"
+                data-source="SiteAssessment"
+                onclick="setQuoteSource('SiteAssessment')"
+              >
+                From Site Assessment
+              </button>
+
+            </div>
+
+
+            <div
+              id="quoteSourceSelector"
+              style="display:none;margin-bottom:20px;"
+            >
+
+              <label id="quoteSourceSelectorLabel">
+                Select Source
+              </label>
+
+              <select id="quoteSourceId">
+                <option value="">
+                  Select source...
+                </option>
+              </select>
+
+            </div>
+
+
+            <!-- CUSTOMER -->
+
+            <div class="grid">
+
+              <div>
+                <label>Customer Name</label>
+                <input id="quoteCustomerName" />
+              </div>
+
+              <div>
+                <label>Company</label>
+                <input id="quoteCompany" />
+              </div>
+
+              <div>
+                <label>Email</label>
+                <input id="quoteEmail" type="email" />
+              </div>
+
+              <div>
+                <label>Phone</label>
+                <input id="quotePhone" />
+              </div>
+
+            </div>
+
+
+            <!-- ITEMS -->
+
+            <div style="margin-top:25px;">
+
+              <div
+                style="
+                  display:flex;
+                  justify-content:space-between;
+                  align-items:center;
+                  gap:10px;
+                  margin-bottom:10px;
+                  flex-wrap:wrap;
+                "
+              >
+
+                <h3 style="margin:0;color:var(--primary);">
+                  Quote Items
+                </h3>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-small"
+                  onclick="addQuoteLine()"
+                >
+                  + Add Item
+                </button>
+
+              </div>
+
+
+              <div class="quote-items-wrapper">
+
+                <table class="quote-items">
+
+                  <thead>
+                    <tr>
+                      <th style="width:125px;">Type</th>
+                      <th>Description / Catalog Product</th>
+                      <th style="width:90px;">Qty</th>
+                      <th style="width:130px;">Unit Price</th>
+                      <th style="width:120px;">Total</th>
+                      <th style="width:50px;"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="quoteItemsBody"></tbody>
+
+                </table>
+
+              </div>
+
+            </div>
+
+
+            <!-- DISCOUNT / TAX -->
+
+            <div class="grid-3" style="margin-top:20px;">
+
+              <div>
+
+                <label>Discount Type</label>
+
+                <select id="quoteDiscountType" onchange="calculateQuote()">
+                  <option value="None">None</option>
+                  <option value="Fixed">Fixed Amount</option>
+                  <option value="Percent">Percentage</option>
+                </select>
+
+              </div>
+
+
+              <div>
+
+                <label>Discount Value</label>
+
+                <input
+                  id="quoteDiscountValue"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value="0"
+                  oninput="calculateQuote()"
+                />
+
+              </div>
+
+
+              <div>
+
+                <label>VAT Rate (%)</label>
+
+                <input
+                  id="quoteTaxRate"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.01"
+                  value="10"
+                  oninput="calculateQuote()"
+                />
+
+              </div>
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div
+              style="
+                max-width:300px;
+                margin-top:15px;
+              "
+            >
+
+              <label>
+                Valid Until
+              </label>
+
+              <input
+                id="quoteValidUntil"
+                type="date"
+              />
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div class="grid" style="margin-top:20px;">
+
+              <div>
+
+                <label>
+                  Notes
+                </label>
+
+                <textarea
+                  id="quoteNotes"
+                  placeholder="Additional notes for the customer..."
+                ></textarea>
+
+              </div>
+
+              <div>
+
+                <label>
+                  Terms & Conditions
+                </label>
+
+                <textarea
+                  id="quoteTerms"
+                  placeholder="Quote terms and conditions..."
+                >This quotation is valid until the date specified above. Prices are subject to the terms stated in this quotation.</textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="quote-summary">
+
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="quoteSubtotal">$0.00</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Discount</span>
+                <strong id="quoteDiscountAmount">$0.00</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Taxable Amount</span>
+                <strong id="quoteTaxableAmount">$0.00</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>VAT</span>
+                <strong id="quoteTaxAmount">$0.00</strong>
+              </div>
+
+              <div class="summary-row summary-total">
+                <span>Total</span>
+                <strong id="quoteTotal">$0.00</strong>
+              </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="form-actions">
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="closeQuoteBuilder()"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-success"
+                onclick="saveQuote()"
+              >
+                Save Quote
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUOTE LIST -->
+
+        <div id="quoteList" class="cards"></div>
+
+      </section>
+
+
+      <section id="invoices" class="section">
+        <div class="page-heading">
+          <div>
+            <h1>Invoices</h1>
+            <p>Manage balances, payments and receipts.</p>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="loadInvoices()"
+          >
+            Refresh
+          </button>
+        </div>
+
+        <div class="item-card" style="margin-bottom:20px">
+          <h3>Total outstanding — all invoices</h3>
+          <h2 id="invoiceOutstanding">—</h2>
+
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <div style="flex:2;min-width:200px">
+              <label for="invoiceSearch">
+                Search invoice or customer
+              </label>
+
+              <input
+                id="invoiceSearch"
+                type="search"
+                oninput="renderInvoices()"
+                placeholder="Invoice number, customer or company"
+              >
+            </div>
+
+            <div style="flex:1;min-width:160px">
+              <label for="invoiceFilter">Payment status</label>
+
+              <select
+                id="invoiceFilter"
+                onchange="renderInvoices()"
+              >
+                <option value="All">All</option>
+                <option value="Unpaid">Unpaid</option>
+                <option value="Partially Paid">Partially Paid</option>
+                <option value="Paid">Paid</option>
+              </select>
+            </div>
+          </div>
+
+          <p
+            id="invoiceListMessage"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+
+        <div id="invoiceList" class="cards"></div>
+      </section>
+
+
+      <!-- PRODUCTS -->
+
+      <section id="products" class="section">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Product Catalog</h1>
+            <p>Manage parts and products available on the website.</p>
+          </div>
+
+          <button
+            class="btn btn-accent"
+            onclick="openProductForm()"
+          >
+            + Add Product
+          </button>
+
+        </div>
+
+
+        <div
+          id="productFormCard"
+          class="form-card"
+          style="display:none;margin-bottom:25px;"
+        >
+
+          <div class="panel-header" style="padding:0 0 18px;border:none;">
+
+            <h2 id="productFormTitle">
+              Add Product
+            </h2>
+
+          </div>
+
+
+          <div class="grid">
+
+            <div>
+              <label>Product Name</label>
+              <input id="productName" required />
+            </div>
+
+            <div>
+              <label>Category</label>
+              <input id="productCategory" placeholder="Filters, Batteries, Controllers..." />
+            </div>
+
+            <div>
+              <label>Manufacturer / Brand</label>
+              <input id="productManufacturer" placeholder="Rehlko, Kohler, etc." />
+            </div>
+
+            <div>
+              <label>Part Number</label>
+              <input id="productPartNumber" />
+            </div>
+
+            <div class="full">
+              <label>Compatible Generator Models</label>
+              <input id="productCompatibleModels" />
+            </div>
+
+            <div class="full">
+              <label>Image URL</label>
+              <input id="productImage" />
+            </div>
+
+            <div class="full">
+              <label>Description</label>
+              <textarea id="productDescription"></textarea>
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="btn btn-secondary"
+              onclick="closeProductForm()"
+              type="button"
+            >
+              Cancel
+            </button>
+
+            <button
+              class="btn btn-success"
+              onclick="saveProduct()"
+              type="button"
+            >
+              Save Product
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div id="productList"></div>
+
+      </section>
+
+    </main>
 
   </div>
 
 </div>
 
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+  <div class="modal-card">
+
+    <div class="modal-header">
+
+      <h2 id="modalTitle">
+        Details
+      </h2>
+
+      <button
+        class="modal-close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalBody" class="modal-body"></div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
 <script>
-const API = "http://localhost:3000";
 
-function getToken() {
-  return localStorage.getItem("tsb_admin_token");
-}
+  const API = window.location.origin;
 
-async function login() {
-  const user = document.getElementById("loginUser").value.trim();
-  const pass = document.getElementById("loginPass").value.trim();
-  const status = document.getElementById("loginStatus");
+  let token = localStorage.getItem("tsb_admin_token");
 
-  status.textContent = "Logging in...";
+  let rfqs = [];
+  let assessments = [];
+  let quotes = [];
+  let products = [];
 
-  try {
-    const res = await fetch(`${API}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ user, pass })
+  let quoteSourceType = "Manual";
+  let editingQuoteId = null;
+
+
+  /* =========================
+     HELPERS
+  ========================= */
+
+  function escapeHtml(value) {
+
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  function escapeAttribute(value) {
+    return escapeHtml(value);
+  }
+
+
+  function formatMoney(value) {
+
+    const number = Number(value || 0);
+
+    return new Intl.NumberFormat("en-BS", {
+      style: "currency",
+      currency: "BSD"
+    }).format(number);
+
+  }
+
+
+  function formatDate(value) {
+
+    if (!value) return "";
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return value;
+    }
+
+    return date.toLocaleDateString("en-BS", {
+      year: "numeric",
+      month: "short",
+      day: "numeric"
     });
 
-    const data = await res.json();
+  }
 
-    if (!res.ok) {
-      status.textContent = data.error || "Login failed";
-      return;
+
+  function todayPlusDays(days) {
+
+    const date = new Date();
+
+    date.setDate(date.getDate() + days);
+
+    return date.toISOString().split("T")[0];
+
+  }
+
+
+  function showToast(message, type = "normal") {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.style.background =
+      type === "error"
+        ? "#dc3545"
+        : type === "success"
+          ? "#198754"
+          : "#071625";
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3500);
+
+  }
+
+
+  function openModal(title, body) {
+
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalBody").innerHTML = body;
+    document.getElementById("modal").classList.add("open");
+
+  }
+
+
+  function closeModal() {
+
+    document.getElementById("modal").classList.remove("open");
+
+  }
+
+
+  /* =========================
+     AUTH
+  ========================= */
+
+  async function apiFetch(url, options = {}) {
+
+    options.headers = {
+      ...(options.headers || {}),
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    };
+
+    const response = await fetch(API + url, options);
+
+    let data = {};
+
+    try {
+      data = await response.json();
+    } catch {
+      data = {};
     }
 
-    localStorage.setItem("tsb_admin_token", data.token);
+    if (response.status === 401 || response.status === 403) {
 
-    status.textContent = "Login successful";
+      logout();
 
-    document.getElementById("loginBox").classList.add("hidden");
-    document.getElementById("adminPanel").classList.remove("hidden");
+      throw new Error("Your session has expired.");
 
-    loadProducts();
-    loadRFQs();
-
-  } catch (err) {
-    status.textContent = "Server connection failed";
-    console.error(err);
-  }
-}
-
-async function addProduct() {
-  const token = getToken();
-  const status = document.getElementById("productStatus");
-
-  const product = {
-    name: document.getElementById("name").value.trim(),
-    category: document.getElementById("category").value.trim(),
-    description: document.getElementById("desc").value.trim()
-  };
-
-  if (!product.name || !product.category || !product.description) {
-    status.textContent = "All product fields are required";
-    return;
-  }
-
-  status.textContent = "Adding product...";
-
-  try {
-    const res = await fetch(`${API}/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify(product)
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      status.textContent = data.error || "Product was not added";
-      return;
     }
 
-    status.textContent = "Product added successfully";
+    if (!response.ok) {
 
-    document.getElementById("name").value = "";
-    document.getElementById("category").value = "";
-    document.getElementById("desc").value = "";
+      throw new Error(
+        data.message ||
+        data.error ||
+        "Request failed."
+      );
 
-    loadProducts();
-    loadRFQs();
-
-  } catch (err) {
-    status.textContent = "Server connection failed";
-    console.error(err);
-  }
-}
-
-async function loadProducts() {
-  const list = document.getElementById("productList");
-  const token = getToken();
-
-  try {
-    const res = await fetch(`${API}/products`);
-    const products = await res.json();
-
-    if (!products.length) {
-      list.innerHTML = "No products added yet.";
-      return;
     }
 
-    list.innerHTML = products.map(p => `
-      <div class="product">
-        <strong>${p.name}</strong><br>
-        Category: ${p.category}<br>
-        ${p.description}<br><br>
-        <button onclick="deleteProduct('${p._id}')">Delete Product</button>
-      </div>
-    `).join("");
+    return data;
 
-  } catch (err) {
-    list.innerHTML = "Failed to load products.";
-    console.error(err);
   }
-}
 
-if (getToken()) {
-  document.getElementById("loginBox").classList.add("hidden");
-  document.getElementById("adminPanel").classList.remove("hidden");
-  loadProducts();
-  loadRFQs();
-}
 
-async function loadRFQs() {
-  const token = getToken();
-  const list = document.getElementById("rfqList");
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
 
-  try {
-    const res = await fetch(`${API}/rfq`, {
-      headers: {
-        "Authorization": `Bearer ${token}`
+      event.preventDefault();
+
+      const username =
+        document.getElementById("loginUsername").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+      try {
+
+        const response = await fetch(API + "/login", {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            username,
+            password
+          })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.message ||
+            data.error ||
+            "Login failed."
+          );
+
+        }
+
+        token = data.token;
+
+        localStorage.setItem(
+          "tsb_admin_token",
+          token
+        );
+
+        showDashboard();
+
+      } catch (error) {
+
+        showToast(error.message, "error");
+
       }
+
     });
 
-    const rfqs = await res.json();
 
-    if (!res.ok) {
-      list.innerHTML = rfqs.error || "Failed to load RFQs.";
-      return;
+  function showDashboard() {
+
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    loadEverything();
+
+  }
+
+
+  function logout() {
+
+    localStorage.removeItem("tsb_admin_token");
+
+    token = null;
+
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+
+  }
+
+
+  /* =========================
+     NAVIGATION
+  ========================= */
+
+  document.querySelectorAll(".nav-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const section = button.dataset.section;
+
+      document.querySelectorAll(".nav-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+      document.querySelectorAll(".section")
+        .forEach(item => item.classList.remove("active"));
+
+      button.classList.add("active");
+
+      document
+        .getElementById(section)
+        .classList.add("active");
+
+    });
+
+  });
+
+
+  /* =========================
+     LOAD EVERYTHING
+  ========================= */
+
+  async function loadEverything() {
+
+    if (!token) return;
+
+    try {
+
+      await Promise.all([
+        loadRFQs(),
+        loadAssessments(),
+        loadQuotes(),
+        loadProducts()
+      ]);
+
+      updateStats();
+
+    } catch (error) {
+
+      showToast(error.message, "error");
+
     }
+
+  }
+
+
+  /* =========================
+     RFQS
+  ========================= */
+
+  async function loadRFQs() {
+
+    const data = await apiFetch("/rfq");
+
+    rfqs = Array.isArray(data)
+      ? data
+      : data.rfqs || [];
+
+    renderRFQs();
+
+    updateStats();
+
+  }
+
+
+  function renderRFQs() {
+
+    const container =
+      document.getElementById("rfqList");
 
     if (!rfqs.length) {
-      list.innerHTML = "No RFQs submitted yet.";
+
+      container.innerHTML = `
+        <div class="empty">
+          No RFQs found.
+        </div>
+      `;
+
       return;
     }
 
-    list.innerHTML = rfqs.map(r => `
-      <div class="product">
-        <strong>${r.name}</strong><br>
-        Company: ${r.company || "N/A"}<br>
-        Email: ${r.email}<br>
-        Message: ${r.message}<br>
-        Date: ${new Date(r.createdAt).toLocaleString()}<br><br>
-        <button onclick="deleteRFQ('${r._id}')">Delete RFQ</button>
+
+    container.innerHTML = rfqs.map(rfq => {
+
+      const productInfo = rfq.productName
+        ? `
+          <div class="meta">
+            <span class="badge">
+              ${escapeHtml(rfq.productName)}
+            </span>
+
+            ${
+              rfq.productPartNumber
+                ? `
+                  <span class="badge">
+                    Part # ${escapeHtml(rfq.productPartNumber)}
+                  </span>
+                `
+                : ""
+            }
+          </div>
+        `
+        : "";
+
+
+      return `
+        <div class="item-card">
+
+          <h3>
+            ${escapeHtml(rfq.name)}
+          </h3>
+
+          <p>
+            <strong>Email:</strong>
+            ${escapeHtml(rfq.email)}
+          </p>
+
+          <p>
+            <strong>Company:</strong>
+            ${escapeHtml(rfq.company || "—")}
+          </p>
+
+          ${productInfo}
+
+          <p>
+            <strong>Request:</strong><br>
+            ${escapeHtml(rfq.message)}
+          </p>
+
+          <div class="meta">
+
+            <span class="badge">
+              ${escapeHtml(rfq.status || "New")}
+            </span>
+
+            <span class="badge">
+              ${formatDate(rfq.createdAt)}
+            </span>
+
+          </div>
+
+
+          <div class="card-actions">
+
+            <button
+              class="btn btn-primary btn-small"
+              onclick="viewRFQ('${rfq._id}')"
+            >
+              View
+            </button>
+
+            <button
+              class="btn btn-accent btn-small"
+              onclick="createQuoteFromRFQ('${rfq._id}')"
+            >
+              Create Quote
+            </button>
+
+            <select
+              class="btn-small"
+              onchange="updateRFQStatus('${rfq._id}', this.value)"
+            >
+              ${[
+                "New",
+                "Quoted",
+                "In Progress",
+                "Completed",
+                "Archived"
+              ].map(status => `
+                <option
+                  value="${escapeAttribute(status)}"
+                  ${rfq.status === status ? "selected" : ""}
+                >
+                  ${escapeHtml(status)}
+                </option>
+              `).join("")}
+            </select>
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="deleteRFQ('${rfq._id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  async function updateRFQStatus(id, status) {
+
+    try {
+
+      await apiFetch(`/rfq/${id}/status`, {
+        method: "PATCH",
+        body: JSON.stringify({ status })
+      });
+
+      showToast("RFQ status updated.", "success");
+
+      await loadRFQs();
+
+    } catch (error) {
+
+      showToast(error.message, "error");
+
+    }
+
+  }
+
+
+  async function deleteRFQ(id) {
+
+    if (!confirm("Delete this RFQ permanently?")) {
+      return;
+    }
+
+    try {
+
+      await apiFetch(`/rfq/${id}`, {
+        method: "DELETE"
+      });
+
+      showToast("RFQ deleted.", "success");
+
+      await loadRFQs();
+
+    } catch (error) {
+
+      showToast(error.message, "error");
+
+    }
+
+  }
+
+
+  function viewRFQ(id) {
+
+    const rfq = rfqs.find(item => item._id === id);
+
+    if (!rfq) return;
+
+
+    openModal(
+      "RFQ Details",
+      `
+        <div class="grid">
+
+          <div>
+            <label>Name</label>
+            <p>${escapeHtml(rfq.name)}</p>
+          </div>
+
+          <div>
+            <label>Company</label>
+            <p>${escapeHtml(rfq.company || "—")}</p>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <p>${escapeHtml(rfq.email)}</p>
+          </div>
+
+          <div>
+            <label>Status</label>
+            <p>${escapeHtml(rfq.status || "New")}</p>
+          </div>
+
+          <div class="full">
+            <label>Product</label>
+            <p>
+              ${escapeHtml(rfq.productName || "General Request")}
+            </p>
+          </div>
+
+          <div class="full">
+            <label>Message</label>
+            <p style="white-space:pre-wrap;">
+              ${escapeHtml(rfq.message)}
+            </p>
+          </div>
+
+        </div>
+      `
+    );
+
+  }
+
+
+  /* =========================
+     SITE ASSESSMENTS
+  ========================= */
+
+  async function loadAssessments() {
+
+    const data =
+      await apiFetch("/site-assessments");
+
+    assessments = Array.isArray(data)
+      ? data
+      : data.assessments || [];
+
+    renderAssessments();
+
+    updateStats();
+
+  }
+
+
+  function renderAssessments() {
+
+    const container =
+      document.getElementById("assessmentList");
+
+    if (!assessments.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+          No site assessments found.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML = assessments.map(item => {
+
+      const assessmentTypes =
+        Array.isArray(item.assessmentType)
+          ? item.assessmentType.join(", ")
+          : item.assessmentType || "—";
+
+
+      return `
+        <div class="item-card">
+
+          <h3>
+            ${escapeHtml(item.name)}
+          </h3>
+
+          <p>
+            <strong>Company:</strong>
+            ${escapeHtml(item.company || "—")}
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            ${escapeHtml(item.email)}
+          </p>
+
+          <p>
+            <strong>Phone:</strong>
+            ${escapeHtml(item.phone)}
+          </p>
+
+          <p>
+            <strong>Location:</strong>
+            ${escapeHtml(item.location)}
+          </p>
+
+          <div class="meta">
+
+            <span class="badge">
+              ${escapeHtml(item.status || "New")}
+            </span>
+
+            <span class="badge">
+              ${escapeHtml(assessmentTypes)}
+            </span>
+
+          </div>
+
+          <p>
+            <strong>Requirements:</strong><br>
+            ${escapeHtml(item.requirements)}
+          </p>
+
+
+          <div class="card-actions">
+
+            <button
+              class="btn btn-primary btn-small"
+              onclick="viewAssessment('${item._id}')"
+            >
+              View
+            </button>
+
+            <button
+              class="btn btn-accent btn-small"
+              onclick="createQuoteFromAssessment('${item._id}')"
+            >
+              Create Quote
+            </button>
+
+            <select
+              class="btn-small"
+              onchange="updateAssessmentStatus('${item._id}', this.value)"
+            >
+
+              ${[
+                "New",
+                "Contacted",
+                "Scheduled",
+                "Assessment Complete",
+                "Quoted",
+                "Completed",
+                "Archived"
+              ].map(status => `
+                <option
+                  value="${escapeAttribute(status)}"
+                  ${item.status === status ? "selected" : ""}
+                >
+                  ${escapeHtml(status)}
+                </option>
+              `).join("")}
+
+            </select>
+
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="deleteAssessment('${item._id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  async function updateAssessmentStatus(id, status) {
+
+    try {
+
+      await apiFetch(
+        `/site-assessments/${id}/status`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ status })
+        }
+      );
+
+      showToast(
+        "Assessment status updated.",
+        "success"
+      );
+
+      await loadAssessments();
+
+    } catch (error) {
+
+      showToast(error.message, "error");
+
+    }
+
+  }
+
+
+  async function deleteAssessment(id) {
+
+    if (!confirm("Delete this site assessment permanently?")) {
+      return;
+    }
+
+    try {
+
+      await apiFetch(
+        `/site-assessments/${id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      showToast(
+        "Site assessment deleted.",
+        "success"
+      );
+
+      await loadAssessments();
+
+    } catch (error) {
+
+      showToast(error.message, "error");
+
+    }
+
+  }
+
+
+  function viewAssessment(id) {
+
+    const item =
+      assessments.find(
+        assessment => assessment._id === id
+      );
+
+    if (!item) return;
+
+
+    const types =
+      Array.isArray(item.assessmentType)
+        ? item.assessmentType.join(", ")
+        : item.assessmentType || "—";
+
+
+    openModal(
+      "Site Assessment",
+      `
+        <div class="grid">
+
+          <div>
+            <label>Customer</label>
+            <p>${escapeHtml(item.name)}</p>
+          </div>
+
+          <div>
+            <label>Company</label>
+            <p>${escapeHtml(item.company || "—")}</p>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <p>${escapeHtml(item.email)}</p>
+          </div>
+
+          <div>
+            <label>Phone</label>
+            <p>${escapeHtml(item.phone)}</p>
+          </div>
+
+          <div>
+            <label>Location</label>
+            <p>${escapeHtml(item.location)}</p>
+          </div>
+
+          <div>
+            <label>Property Type</label>
+            <p>${escapeHtml(item.propertyType || "—")}</p>
+          </div>
+
+          <div>
+            <label>Generator Brand</label>
+            <p>${escapeHtml(item.generatorBrand || "—")}</p>
+          </div>
+
+          <div>
+            <label>Generator Model</label>
+            <p>${escapeHtml(item.generatorModel || "—")}</p>
+          </div>
+
+          <div>
+            <label>Generator Rating</label>
+            <p>${escapeHtml(item.generatorRating || "—")}</p>
+          </div>
+
+          <div>
+            <label>Voltage</label>
+            <p>${escapeHtml(item.voltage || "—")}</p>
+          </div>
+
+          <div>
+            <label>Phase</label>
+            <p>${escapeHtml(item.phase || "—")}</p>
+          </div>
+
+          <div>
+            <label>Fuel</label>
+            <p>${escapeHtml(item.fuel || "—")}</p>
+          </div>
+
+          <div class="full">
+            <label>Assessment Type</label>
+            <p>${escapeHtml(types)}</p>
+          </div>
+
+          <div class="full">
+            <label>Customer Requirements</label>
+            <p style="white-space:pre-wrap;">
+              ${escapeHtml(item.requirements)}
+            </p>
+          </div>
+
+        </div>
+      `
+    );
+
+  }
+
+
+  /* =========================
+     QUOTES
+  ========================= */
+
+  async function loadQuotes() {
+
+    const data =
+      await apiFetch("/quotes");
+
+    quotes = Array.isArray(data)
+      ? data
+      : data.quotes || [];
+
+    renderQuotes();
+
+    updateStats();
+
+  }
+
+
+  function renderQuotes() {
+
+    const container =
+      document.getElementById("quoteList");
+
+    if (!quotes.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+          No quotes found.
+          <br><br>
+          Click <strong>+ New Quote</strong> to create one.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML = quotes.map(quote => {
+
+      return `
+        <div class="item-card">
+
+          <h3>
+            ${escapeHtml(
+              quote.quoteNumber || "Quote"
+            )}
+          </h3>
+
+          <p>
+            <strong>Customer:</strong>
+            ${escapeHtml(quote.customerName)}
+          </p>
+
+          <p>
+            <strong>Company:</strong>
+            ${escapeHtml(quote.company || "—")}
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            ${escapeHtml(quote.email)}
+          </p>
+
+          <p>
+            <strong>Total:</strong>
+            <strong>
+              ${formatMoney(quote.total)}
+            </strong>
+          </p>
+
+          <div class="meta">
+
+            <span class="badge">
+              ${escapeHtml(quote.status || "Draft")}
+            </span>
+
+            <span class="badge">
+              ${escapeHtml(quote.sourceType || "Manual")}
+            </span>
+
+            <span class="badge">
+              ${formatDate(quote.createdAt)}
+            </span>
+
+          </div>
+
+
+          <div class="card-actions">
+
+            <button
+              class="btn btn-primary btn-small"
+              onclick="viewQuote('${quote._id}')"
+            >
+              View
+            </button>
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="previewQuote('${quote._id}')"
+            >
+              Preview / Print
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary btn-small"
+              onclick="shareQuote('${quote._id}', this)"
+            >
+              Customer Link
+            </button>
+
+            ${quote.status === "Accepted" ? `
+              <button
+                type="button"
+                class="btn btn-primary btn-small"
+                onclick="createInvoice('${quote._id}', this)"
+              >
+                Create / View Invoice
+              </button>
+            ` : ""}
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="editQuote('${quote._id}')"
+            >
+              Edit
+            </button>
+
+            <select
+              class="btn-small"
+              onchange="updateQuoteStatus('${quote._id}', this.value)"
+            >
+
+              ${[
+                "Draft",
+                "Sent",
+                "Accepted",
+                "Declined",
+                "Expired"
+              ].map(status => `
+                <option
+                  value="${escapeAttribute(status)}"
+                  ${quote.status === status ? "selected" : ""}
+                >
+                  ${escapeHtml(status)}
+                </option>
+              `).join("")}
+
+            </select>
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="deleteQuote('${quote._id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  function openNewQuote() {
+
+    editingQuoteId = null;
+
+    document.getElementById(
+      "quoteBuilderTitle"
+    ).textContent = "Create Quote";
+
+
+    document.getElementById(
+      "quoteBuilder"
+    ).style.display = "block";
+
+
+    clearQuoteForm();
+
+
+    setQuoteSource("Manual");
+
+
+    addQuoteLine();
+
+
+    document.getElementById(
+      "quoteValidUntil"
+    ).value = todayPlusDays(30);
+
+
+    calculateQuote();
+
+    window.scrollTo({
+      top: document.getElementById("quotes").offsetTop,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function closeQuoteBuilder() {
+
+    document.getElementById(
+      "quoteBuilder"
+    ).style.display = "none";
+
+    editingQuoteId = null;
+
+  }
+
+
+  function clearQuoteForm() {
+
+    document.getElementById("quoteCustomerName").value = "";
+    document.getElementById("quoteCompany").value = "";
+    document.getElementById("quoteEmail").value = "";
+    document.getElementById("quotePhone").value = "";
+
+    document.getElementById("quoteDiscountType").value = "None";
+    document.getElementById("quoteDiscountValue").value = "0";
+    document.getElementById("quoteTaxRate").value = "10";
+
+    document.getElementById("quoteValidUntil").value =
+      todayPlusDays(30);
+
+    document.getElementById("quoteNotes").value = "";
+
+    document.getElementById("quoteTerms").value =
+      "This quotation is valid until the date specified above. Prices are subject to the terms stated in this quotation.";
+
+    document.getElementById("quoteItemsBody").innerHTML = "";
+
+    document.getElementById("quoteSourceId").innerHTML =
+      `<option value="">Select source...</option>`;
+
+  }
+
+
+  function setQuoteSource(source) {
+
+    quoteSourceType = source;
+
+
+    document.querySelectorAll(".source-btn")
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.source === source
+        );
+
+      });
+
+
+    const selector =
+      document.getElementById("quoteSourceSelector");
+
+
+    if (source === "Manual") {
+
+      selector.style.display = "none";
+
+      return;
+
+    }
+
+
+    selector.style.display = "block";
+
+
+    const select =
+      document.getElementById("quoteSourceId");
+
+
+    if (source === "RFQ") {
+
+      document.getElementById(
+        "quoteSourceSelectorLabel"
+      ).textContent = "Select RFQ";
+
+
+      select.innerHTML = `
+        <option value="">
+          Select RFQ...
+        </option>
+
+        ${rfqs.map(rfq => `
+          <option value="${escapeAttribute(rfq._id)}">
+            ${escapeHtml(
+              rfq.name +
+              " — " +
+              (rfq.productName || "General Request") +
+              " — " +
+              formatDate(rfq.createdAt)
+            )}
+          </option>
+        `).join("")}
+      `;
+
+    }
+
+
+    if (source === "SiteAssessment") {
+
+      document.getElementById(
+        "quoteSourceSelectorLabel"
+      ).textContent = "Select Site Assessment";
+
+
+      select.innerHTML = `
+        <option value="">
+          Select Site Assessment...
+        </option>
+
+        ${assessments.map(item => `
+          <option value="${escapeAttribute(item._id)}">
+            ${escapeHtml(
+              item.name +
+              " — " +
+              item.location +
+              " — " +
+              formatDate(item.createdAt)
+            )}
+          </option>
+        `).join("")}
+      `;
+
+    }
+
+
+    select.onchange = loadQuoteSource;
+
+  }
+
+
+  async function loadQuoteSource() {
+
+    const sourceId =
+      document.getElementById(
+        "quoteSourceId"
+      ).value;
+
+
+    if (!sourceId) {
+      return;
+    }
+
+
+    try {
+
+      if (quoteSourceType === "RFQ") {
+
+        const data =
+          await apiFetch(
+            `/quotes/source/rfq/${sourceId}`
+          );
+
+
+        const source =
+          data.rfq || data;
+
+
+        document.getElementById(
+          "quoteCustomerName"
+        ).value =
+          source.name || "";
+
+
+        document.getElementById(
+          "quoteCompany"
+        ).value =
+          source.company || "";
+
+
+        document.getElementById(
+          "quoteEmail"
+        ).value =
+          source.email || "";
+
+
+        const body =
+          document.getElementById(
+            "quoteItemsBody"
+          );
+
+
+        body.innerHTML = "";
+
+
+        if (source.productId || source.productName) {
+
+          addQuoteLine({
+
+            type: "Part",
+
+            productId: source.productId || "",
+
+            partNumber:
+              source.productPartNumber || "",
+
+            description:
+              source.productName
+                ? source.productName +
+                  (
+                    source.productPartNumber
+                      ? ` — ${source.productPartNumber}`
+                      : ""
+                  )
+                : source.message || "",
+
+            quantity: 1,
+
+            unitPrice: 0
+
+          });
+
+        } else {
+
+          addQuoteLine({
+            type: "Service",
+            description: "RFQ Request",
+            quantity: 1,
+            unitPrice: 0
+          });
+
+        }
+
+
+        document.getElementById(
+          "quoteNotes"
+        ).value =
+          source.message || "";
+
+      }
+
+
+      if (quoteSourceType === "SiteAssessment") {
+
+        const data =
+          await apiFetch(
+            `/quotes/source/site-assessment/${sourceId}`
+          );
+
+
+        const source =
+          data.assessment || data;
+
+
+        document.getElementById(
+          "quoteCustomerName"
+        ).value =
+          source.name || "";
+
+
+        document.getElementById(
+          "quoteCompany"
+        ).value =
+          source.company || "";
+
+
+        document.getElementById(
+          "quoteEmail"
+        ).value =
+          source.email || "";
+
+
+        document.getElementById(
+          "quotePhone"
+        ).value =
+          source.phone || "";
+
+
+        const body =
+          document.getElementById(
+            "quoteItemsBody"
+          );
+
+
+        body.innerHTML = "";
+
+
+        addQuoteLine({
+
+          type: "Service",
+
+          description:
+            `Site Assessment — ${source.location || ""}`,
+
+          quantity: 1,
+
+          unitPrice: 0
+
+        });
+
+
+        const assessmentTypes =
+          Array.isArray(source.assessmentType)
+            ? source.assessmentType.join(", ")
+            : source.assessmentType || "";
+
+
+        const generatorInfo = [
+
+          source.generatorBrand
+            ? `Brand: ${source.generatorBrand}`
+            : "",
+
+          source.generatorModel
+            ? `Model: ${source.generatorModel}`
+            : "",
+
+          source.generatorRating
+            ? `Rating: ${source.generatorRating}`
+            : "",
+
+          source.generatorSerial
+            ? `Serial: ${source.generatorSerial}`
+            : "",
+
+          source.voltage
+            ? `Voltage: ${source.voltage}`
+            : "",
+
+          source.phase
+            ? `Phase: ${source.phase}`
+            : "",
+
+          source.breaker
+            ? `Breaker: ${source.breaker}`
+            : "",
+
+          source.fuel
+            ? `Fuel: ${source.fuel}`
+            : ""
+
+        ].filter(Boolean).join("\n");
+
+
+        document.getElementById(
+          "quoteNotes"
+        ).value = [
+
+          `Site Location: ${source.location || ""}`,
+
+          source.propertyType
+            ? `Property Type: ${source.propertyType}`
+            : "",
+
+          assessmentTypes
+            ? `Assessment Type: ${assessmentTypes}`
+            : "",
+
+          generatorInfo
+            ? `Generator Information:\n${generatorInfo}`
+            : "",
+
+          source.requirements
+            ? `Customer Requirements:\n${source.requirements}`
+            : ""
+
+        ].filter(Boolean).join("\n\n");
+
+      }
+
+
+      calculateQuote();
+
+    } catch (error) {
+
+      showToast(
+        "Unable to load source information: " +
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* =========================
+     QUOTE LINE ITEMS
+  ========================= */
+
+  function addQuoteLine(data = {}) {
+
+    const tbody =
+      document.getElementById(
+        "quoteItemsBody"
+      );
+
+
+    const row =
+      document.createElement("tr");
+
+
+    row.dataset.productId =
+      data.productId || "";
+
+
+    row.dataset.partNumber =
+      data.partNumber || "";
+
+
+    row.innerHTML = `
+
+      <td>
+
+        <select
+          class="item-type"
+          onchange="calculateQuote()"
+        >
+
+          <option value="Part">
+            Part
+          </option>
+
+          <option value="Labor">
+            Labor
+          </option>
+
+          <option value="Rental">
+            Rental
+          </option>
+
+          <option value="Service">
+            Service
+          </option>
+
+          <option value="Miscellaneous">
+            Miscellaneous
+          </option>
+
+        </select>
+
+      </td>
+
+
+      <td>
+
+        <select
+          class="item-product"
+          onchange="selectQuoteProduct(this)"
+          style="margin-bottom:6px;"
+        >
+
+          <option value="">
+            Select catalog product...
+          </option>
+
+          ${products.map(product => `
+
+            <option
+              value="${escapeAttribute(product._id)}"
+              ${product._id === data.productId ? "selected" : ""}
+            >
+              ${escapeHtml(
+                product.name +
+                (
+                  product.partNumber
+                    ? " — " + product.partNumber
+                    : ""
+                )
+              )}
+            </option>
+
+          `).join("")}
+
+        </select>
+
+
+        <input
+          class="item-description"
+          placeholder="Description"
+          value="${escapeAttribute(data.description || "")}"
+          oninput="calculateQuote()"
+        />
+
+      </td>
+
+
+      <td>
+
+        <input
+          class="item-quantity"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${data.quantity ?? 1}"
+          oninput="calculateQuote()"
+        />
+
+      </td>
+
+
+      <td>
+
+        <input
+          class="item-price"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${data.unitPrice ?? 0}"
+          oninput="calculateQuote()"
+        />
+
+      </td>
+
+
+      <td class="line-total">
+        $0.00
+      </td>
+
+
+      <td>
+
+        <button
+          type="button"
+          class="remove-line"
+          onclick="
+            this.closest('tr').remove();
+            calculateQuote();
+          "
+          title="Remove item"
+        >
+          ×
+        </button>
+
+      </td>
+
+    `;
+
+
+    tbody.appendChild(row);
+
+
+    if (data.type) {
+
+      row.querySelector(
+        ".item-type"
+      ).value = data.type;
+
+    }
+
+
+    calculateQuote();
+
+  }
+
+
+  function selectQuoteProduct(select) {
+
+    const row =
+      select.closest("tr");
+
+
+    const productId =
+      select.value;
+
+
+    if (!productId) {
+
+      row.dataset.productId = "";
+      row.dataset.partNumber = "";
+
+      return;
+
+    }
+
+
+    const product =
+      products.find(
+        item => item._id === productId
+      );
+
+
+    if (!product) {
+      return;
+    }
+
+
+    row.dataset.productId =
+      product._id || "";
+
+
+    row.dataset.partNumber =
+      product.partNumber || "";
+
+
+    const type =
+      row.querySelector(".item-type");
+
+
+    const description =
+      row.querySelector(".item-description");
+
+
+    type.value = "Part";
+
+
+    description.value =
+      product.name +
+      (
+        product.partNumber
+          ? ` — ${product.partNumber}`
+          : ""
+      );
+
+
+    calculateQuote();
+
+  }
+
+
+  function calculateQuote() {
+
+    let subtotal = 0;
+
+
+    document
+      .querySelectorAll("#quoteItemsBody tr")
+      .forEach(row => {
+
+        const quantity =
+          Number(
+            row.querySelector(
+              ".item-quantity"
+            )?.value || 0
+          );
+
+
+        const unitPrice =
+          Number(
+            row.querySelector(
+              ".item-price"
+            )?.value || 0
+          );
+
+
+        const total =
+          quantity * unitPrice;
+
+
+        subtotal += total;
+
+
+        const lineTotal =
+          row.querySelector(
+            ".line-total"
+          );
+
+
+        if (lineTotal) {
+
+          lineTotal.textContent =
+            formatMoney(total);
+
+        }
+
+      });
+
+
+    const discountType =
+      document.getElementById(
+        "quoteDiscountType"
+      ).value;
+
+
+    const discountValue =
+      Number(
+        document.getElementById(
+          "quoteDiscountValue"
+        ).value || 0
+      );
+
+
+    let discountAmount = 0;
+
+
+    if (discountType === "Fixed") {
+
+      discountAmount =
+        Math.min(
+          Math.max(discountValue, 0),
+          subtotal
+        );
+
+    }
+
+
+    if (discountType === "Percent") {
+
+      discountAmount =
+        subtotal *
+        Math.min(
+          Math.max(discountValue, 0),
+          100
+        ) /
+        100;
+
+    }
+
+
+    const taxableAmount =
+      Math.max(
+        subtotal - discountAmount,
+        0
+      );
+
+
+    const taxRate =
+      Number(
+        document.getElementById(
+          "quoteTaxRate"
+        ).value || 0
+      );
+
+
+    const taxAmount =
+      taxableAmount *
+      Math.max(taxRate, 0) /
+      100;
+
+
+    const total =
+      taxableAmount +
+      taxAmount;
+
+
+    document.getElementById(
+      "quoteSubtotal"
+    ).textContent =
+      formatMoney(subtotal);
+
+
+    document.getElementById(
+      "quoteDiscountAmount"
+    ).textContent =
+      formatMoney(discountAmount);
+
+
+    document.getElementById(
+      "quoteTaxableAmount"
+    ).textContent =
+      formatMoney(taxableAmount);
+
+
+    document.getElementById(
+      "quoteTaxAmount"
+    ).textContent =
+      formatMoney(taxAmount);
+
+
+    document.getElementById(
+      "quoteTotal"
+    ).textContent =
+      formatMoney(total);
+
+  }
+
+
+  async function saveQuote() {
+
+    const customerName =
+      document.getElementById(
+        "quoteCustomerName"
+      ).value.trim();
+
+
+    const company =
+      document.getElementById(
+        "quoteCompany"
+      ).value.trim();
+
+
+    const email =
+      document.getElementById(
+        "quoteEmail"
+      ).value.trim();
+
+
+    const phone =
+      document.getElementById(
+        "quotePhone"
+      ).value.trim();
+
+
+    if (!customerName) {
+
+      showToast(
+        "Customer name is required.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (!email) {
+
+      showToast(
+        "Customer email is required.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const items = [];
+
+
+    document
+      .querySelectorAll("#quoteItemsBody tr")
+      .forEach(row => {
+
+        const type =
+          row.querySelector(
+            ".item-type"
+          ).value;
+
+
+        const description =
+          row.querySelector(
+            ".item-description"
+          ).value.trim();
+
+
+        const quantity =
+          Number(
+            row.querySelector(
+              ".item-quantity"
+            ).value || 0
+          );
+
+
+        const unitPrice =
+          Number(
+            row.querySelector(
+              ".item-price"
+            ).value || 0
+          );
+
+
+        if (!description) {
+          return;
+        }
+
+
+        items.push({
+
+          type,
+
+          description,
+
+          quantity,
+
+          unitPrice,
+
+          productId:
+            row.dataset.productId || null,
+
+          partNumber:
+            row.dataset.partNumber || ""
+
+        });
+
+      });
+
+
+    if (!items.length) {
+
+      showToast(
+        "Add at least one quote item.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const payload = {
+
+      customerName,
+
+      company,
+
+      email,
+
+      phone,
+
+      sourceType:
+        quoteSourceType === "SiteAssessment"
+          ? "SiteAssessment"
+          : quoteSourceType,
+
+      sourceId:
+        document.getElementById(
+          "quoteSourceId"
+        ).value || null,
+
+      items,
+
+      discountType:
+        document.getElementById(
+          "quoteDiscountType"
+        ).value,
+
+      discountValue:
+        Number(
+          document.getElementById(
+            "quoteDiscountValue"
+          ).value || 0
+        ),
+
+      taxRate:
+        Number(
+          document.getElementById(
+            "quoteTaxRate"
+          ).value || 0
+        ),
+
+      notes:
+        document.getElementById(
+          "quoteNotes"
+        ).value.trim(),
+
+      terms:
+        document.getElementById(
+          "quoteTerms"
+        ).value.trim(),
+
+      validUntil:
+        document.getElementById(
+          "quoteValidUntil"
+        ).value || null,
+
+      status: "Draft"
+
+    };
+
+
+    try {
+
+      if (editingQuoteId) {
+
+        await apiFetch(
+          `/quotes/${editingQuoteId}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(payload)
+          }
+        );
+
+        showToast(
+          "Quote updated successfully.",
+          "success"
+        );
+
+      } else {
+
+        await apiFetch(
+          "/quotes",
+          {
+            method: "POST",
+            body: JSON.stringify(payload)
+          }
+        );
+
+        showToast(
+          "Quote created successfully.",
+          "success"
+        );
+
+      }
+
+
+      closeQuoteBuilder();
+
+      await loadQuotes();
+
+      updateStats();
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  async function editQuote(id) {
+
+    try {
+
+      const quote =
+        await apiFetch(
+          `/quotes/${id}`
+        );
+
+
+      editingQuoteId = id;
+
+
+      document.getElementById(
+        "quoteBuilderTitle"
+      ).textContent =
+        `Edit Quote ${quote.quoteNumber || ""}`;
+
+
+      document.getElementById(
+        "quoteBuilder"
+      ).style.display = "block";
+
+
+      clearQuoteForm();
+
+
+      setQuoteSource(
+        quote.sourceType || "Manual"
+      );
+
+
+      if (quote.sourceId) {
+
+        document.getElementById(
+          "quoteSourceId"
+        ).value =
+          quote.sourceId;
+
+      }
+
+
+      document.getElementById(
+        "quoteCustomerName"
+      ).value =
+        quote.customerName || "";
+
+
+      document.getElementById(
+        "quoteCompany"
+      ).value =
+        quote.company || "";
+
+
+      document.getElementById(
+        "quoteEmail"
+      ).value =
+        quote.email || "";
+
+
+      document.getElementById(
+        "quotePhone"
+      ).value =
+        quote.phone || "";
+
+
+      document.getElementById(
+        "quoteDiscountType"
+      ).value =
+        quote.discountType || "None";
+
+
+      document.getElementById(
+        "quoteDiscountValue"
+      ).value =
+        quote.discountValue || 0;
+
+
+      document.getElementById(
+        "quoteTaxRate"
+      ).value =
+        quote.taxRate ?? 10;
+
+
+      document.getElementById(
+        "quoteNotes"
+      ).value =
+        quote.notes || "";
+
+
+      document.getElementById(
+        "quoteTerms"
+      ).value =
+        quote.terms || "";
+
+
+      document.getElementById(
+        "quoteValidUntil"
+      ).value =
+        quote.validUntil
+          ? String(quote.validUntil).split("T")[0]
+          : todayPlusDays(30);
+
+
+      const tbody =
+        document.getElementById(
+          "quoteItemsBody"
+        );
+
+
+      tbody.innerHTML = "";
+
+
+      if (
+        Array.isArray(quote.items) &&
+        quote.items.length
+      ) {
+
+        quote.items.forEach(item => {
+
+          addQuoteLine({
+
+            type:
+              item.type || "Miscellaneous",
+
+            description:
+              item.description || "",
+
+            quantity:
+              item.quantity ?? 1,
+
+            unitPrice:
+              item.unitPrice ?? 0,
+
+            productId:
+              item.productId || "",
+
+            partNumber:
+              item.partNumber || ""
+
+          });
+
+        });
+
+      } else {
+
+        addQuoteLine();
+
+      }
+
+
+      calculateQuote();
+
+
+      window.scrollTo({
+        top: document.getElementById("quotes").offsetTop,
+        behavior: "smooth"
+      });
+
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  async function createQuoteFromRFQ(id) {
+
+    openNewQuote();
+
+    setQuoteSource("RFQ");
+
+    document.getElementById(
+      "quoteSourceId"
+    ).value = id;
+
+    await loadQuoteSource();
+
+  }
+
+
+  async function createQuoteFromAssessment(id) {
+
+    openNewQuote();
+
+    setQuoteSource("SiteAssessment");
+
+    document.getElementById(
+      "quoteSourceId"
+    ).value = id;
+
+    await loadQuoteSource();
+
+  }
+
+
+  async function shareQuote(id, button) {
+    if (button && button.disabled) return;
+
+    const originalText = button
+      ? button.textContent
+      : "Customer Link";
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Creating link...";
+    }
+
+    try {
+      const data = await apiFetch(
+        `/quotes/${encodeURIComponent(id)}/share`,
+        { method: "POST" }
+      );
+
+      if (!data.shareUrl) {
+        throw new Error(
+          "The server did not return a customer link."
+        );
+      }
+
+      const link = new URL(data.shareUrl);
+
+      if (!["http:", "https:"].includes(link.protocol)) {
+        throw new Error(
+          "The server returned an invalid customer link."
+        );
+      }
+
+      let copied = false;
+
+      try {
+        if (
+          navigator.clipboard &&
+          navigator.clipboard.writeText
+        ) {
+          await navigator.clipboard.writeText(link.href);
+          copied = true;
+        }
+      } catch {
+        // Fall back to manual copying.
+      }
+
+      if (copied) {
+        alert(
+          "Customer link copied. Anyone with this link " +
+          "can view and respond to this quote."
+        );
+      } else {
+        window.prompt(
+          "Copy this customer link. Anyone with it " +
+          "can view and respond to this quote:",
+          link.href
+        );
+      }
+
+      try {
+        await loadQuotes();
+      } catch {
+        alert(
+          "The customer link is ready, but the quote " +
+          "list could not refresh. Use Refresh to update it."
+        );
+      }
+    } catch (error) {
+      alert(
+        `Unable to create customer link: ${error.message}`
+      );
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+  }
+
+
+  let currentInvoiceHtml = "";
+
+  let invoiceRows = [];
+  let invoiceListReady = false;
+  let invoiceLoadSequence = 0;
+
+  async function loadInvoices() {
+    const sequence = ++invoiceLoadSequence;
+
+    invoiceListReady = false;
+    invoiceRows = [];
+
+    document.getElementById("invoiceList").innerHTML = "";
+
+    document.getElementById(
+      "invoiceOutstanding"
+    ).textContent = "—";
+
+    document.getElementById(
+      "invoiceListMessage"
+    ).textContent = "Loading invoices...";
+
+    try {
+      const data = await apiFetch("/invoices");
+
+      if (sequence !== invoiceLoadSequence) return;
+
+      if (!Array.isArray(data.invoices)) {
+        throw new Error("Invalid invoice list response");
+      }
+
+      invoiceRows = data.invoices;
+      invoiceListReady = true;
+
+      document.getElementById(
+        "invoiceOutstanding"
+      ).textContent = formatMoney(
+        invoiceRows.reduce(
+          (sum, invoice) => sum + invoice.balanceCents,
+          0
+        ) / 100
+      );
+
+      renderInvoices();
+
+    } catch (error) {
+      if (sequence !== invoiceLoadSequence) return;
+
+      document.getElementById(
+        "invoiceListMessage"
+      ).textContent =
+        error.message + " Click Refresh to retry.";
+    }
+  }
+
+  function renderInvoices() {
+    if (!invoiceListReady) return;
+
+    const search = document.getElementById(
+      "invoiceSearch"
+    ).value.trim().toLowerCase();
+
+    const filter = document.getElementById(
+      "invoiceFilter"
+    ).value;
+
+    const visible = invoiceRows.filter(invoice => {
+      const text = [
+        invoice.invoiceNumber,
+        invoice.customerName,
+        invoice.company
+      ].join(" ").toLowerCase();
+
+      return (
+        text.includes(search) &&
+        (
+          filter === "All" ||
+          invoice.paymentStatus === filter
+        )
+      );
+    });
+
+    const safe = value =>
+      escapeHtml(String(value ?? ""));
+
+    const money = cents =>
+      safe(formatMoney(cents / 100));
+
+    document.getElementById(
+      "invoiceListMessage"
+    ).textContent =
+      `${visible.length} of ${invoiceRows.length} invoices shown`;
+
+    document.getElementById(
+      "invoiceList"
+    ).innerHTML = visible.map(invoice => `
+      <div class="item-card">
+        <h3>${safe(invoice.invoiceNumber)}</h3>
+
+        <p>
+          <strong>Customer:</strong>
+          ${safe(invoice.customerName)}
+        </p>
+
+        <p>
+          <strong>Company:</strong>
+          ${safe(invoice.company || "—")}
+        </p>
+
+        <p>
+          <strong>Issued:</strong>
+          ${safe(formatDate(invoice.issuedAt))}
+        </p>
+
+        <span class="badge">
+          ${safe(invoice.paymentStatus)}
+        </span>
+
+        <p>
+          Total: ${money(invoice.totalCents)}
+          · Received: ${money(invoice.paidCents)}
+        </p>
+
+        <h3>
+          Balance: ${money(invoice.balanceCents)}
+        </h3>
+
+        <div class="card-actions">
+          <button
+            type="button"
+            class="btn btn-primary btn-small"
+            onclick="createInvoice(null, this, '${safe(invoice._id)}')"
+          >
+            View Invoice
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary btn-small"
+            onclick="openPayments('${safe(invoice._id)}')"
+          >
+            ${invoice.balanceCents > 0
+              ? "Record Payment / Receipts"
+              : "View / Print Receipts"}
+          </button>
+        </div>
       </div>
-    `).join("");
-
-  } catch (err) {
-    list.innerHTML = "Server connection failed.";
-    console.error(err);
+    `).join("") || `
+      <div class="empty">
+        No invoices match your search and filter.
+      </div>
+    `;
   }
-}
 
-async function deleteRFQ(id) {
-  const token = getToken();
+  async function createInvoice(id, button, invoiceId = null) {
+    if (button.disabled) return;
 
-  if (!confirm("Delete this RFQ?")) return;
+    const label = button.textContent;
+    button.disabled = true;
+    button.textContent = "Loading invoice...";
 
-  try {
-    const res = await fetch(`${API}/rfq/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`
+    try {
+      const data = await apiFetch(
+        invoiceId
+          ? `/invoices/${encodeURIComponent(invoiceId)}/payments`
+          : `/quotes/${encodeURIComponent(id)}/invoice`,
+        { method: invoiceId ? "GET" : "POST" }
+      );
+
+      const invoice = data.invoice;
+
+      if (!invoice || !invoice.quote) {
+        throw new Error("Invoice data is missing");
       }
-    });
 
-    const data = await res.json();
+      const q = invoice.quote;
+      const safe = value => escapeHtml(String(value ?? ""));
+      const money = value => safe(formatMoney(value));
+      const rows = (q.items || []).map(item => `
+        <tr>
+          <td>
+            ${safe(item.description)}
+            <br>
+            ${safe(item.partNumber)}
+          </td>
+          <td>${safe(item.quantity)}</td>
+          <td>${money(item.unitPrice)}</td>
+          <td>${money(item.total)}</td>
+        </tr>
+      `).join("");
 
-    if (!res.ok) {
-      alert(data.error || "Delete failed");
+      currentInvoiceHtml = `
+        <article class="invoice-document">
+          <h1>Total Services Bahamas</h1>
+          <h2>INVOICE ${safe(invoice.invoiceNumber)}</h2>
+          <p>Status: <strong>${safe(invoice.status)}</strong></p>
+          <p>Issued: ${safe(formatDate(invoice.issuedAt))}<br>Quote reference: ${safe(q.quoteNumber)}</p>
+          <h3>Bill to</h3>
+          <p>${safe(q.customerName)}<br>${safe(q.company)}<br>${safe(q.email)}<br>${safe(q.phone)}</p>
+          <table style="width:100%;border-collapse:collapse" border="1" cellpadding="8">
+            <thead><tr><th>Description / Part</th><th>Qty</th><th>Unit price</th><th>Total</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <div style="text-align:right">
+            <p>Subtotal: ${money(q.subtotal)}</p>
+            <p>Discount: ${money(q.discountAmount)}</p>
+            <p>Taxable amount: ${money(q.taxableAmount)}</p>
+            <p>VAT (${safe(q.taxRate)}%): ${money(q.taxAmount)}</p>
+            <h2>Total (BSD): ${money(q.total)}</h2>
+          </div>
+          ${q.notes ? `<h3>Notes</h3><p style="white-space:pre-wrap">${safe(q.notes)}</p>` : ""}
+          ${q.terms ? `<h3>Terms</h3><p style="white-space:pre-wrap">${safe(q.terms)}</p>` : ""}
+        </article>
+      `;
+
+      openModal(
+        invoice.invoiceNumber,
+        currentInvoiceHtml + `
+          <button type="button" class="btn btn-primary" onclick="printCurrentInvoice()">
+            Print / Save PDF
+          </button>
+          <button
+            class="btn btn-secondary"
+            onclick="emailInvoiceDocument('${invoice._id}', this)"
+          >
+            Email Invoice
+          </button>
+
+          <p>
+            Last emailed:
+            ${safe(
+              invoice.lastEmailedAt
+                ? new Date(invoice.lastEmailedAt).toLocaleString()
+                : "Never"
+            )}
+          </p>
+          <button type="button" class="btn btn-secondary" onclick="openPayments('${invoice._id}')">
+            Payments / Receipts
+          </button>
+        `
+      );
+    } catch (error) {
+      alert(`Unable to open invoice: ${error.message}`);
+    } finally {
+      button.disabled = false;
+      button.textContent = label;
+    }
+  }
+
+  let paymentInvoice = null;
+  let paymentBusy = false;
+
+  async function openPayments(id) {
+    try {
+      const data = await apiFetch(`/invoices/${encodeURIComponent(id)}/payments`);
+      paymentInvoice = data.invoice;
+      if (
+        document.getElementById("invoices")
+          .classList.contains("active")
+      ) {
+        loadInvoices();
+      }
+      const safe = value => escapeHtml(String(value ?? ""));
+      const money = cents => safe(formatMoney(cents / 100));
+      const pending = sessionStorage.getItem(`payment:${id}`);
+
+      openModal("Payments / Receipts", `
+        <h3>${safe(paymentInvoice.invoiceNumber)}</h3>
+        <p>Total: ${money(data.totalCents)}</p>
+        <p>Received: ${money(data.paidCents)}</p>
+        <h3>Balance: ${money(data.balanceCents)}</h3>
+        <p>${data.balanceCents === 0 ? "Paid in full" : data.paidCents > 0 ? "Partially paid" : "Unpaid"}</p>
+        <p>Record money already received. This does not charge a card or transfer money.</p>
+        ${data.balanceCents > 0 || pending ? `<button class="btn btn-primary" onclick="recordInvoicePayment(this)">${pending ? "Retry pending payment" : "Record Payment"}</button>` : ""}
+        <h3>Receipts</h3>
+        ${(paymentInvoice.payments || []).map((payment, index) => `
+          <p>${safe(payment.receiptNumber)} — ${money(payment.amountCents)} — ${safe(payment.method)}
+            <button class="btn btn-secondary" onclick="printPaymentReceipt(${index})">Print Receipt</button>
+            <button
+              class="btn btn-secondary"
+              onclick="emailInvoiceDocument('${paymentInvoice._id}', this, '${payment._id}')"
+            >
+              Email Receipt
+            </button>
+
+            <span>
+              Last emailed:
+              ${safe(
+                payment.lastEmailedAt
+                  ? new Date(payment.lastEmailedAt).toLocaleString()
+                  : "Never"
+              )}
+            </span>
+          </p>
+        `).join("") || "<p>No payments recorded.</p>"}
+      `);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  async function recordInvoicePayment(button) {
+    if (paymentBusy || !paymentInvoice) return;
+
+    const id = paymentInvoice._id;
+    const key = `payment:${id}`;
+    paymentBusy = true;
+    button.disabled = true;
+    let saved = false;
+
+    try {
+      let payment = JSON.parse(sessionStorage.getItem(key) || "null");
+
+      if (!payment) {
+        const amount = prompt("Amount received in BSD (example: 50.00):");
+        if (amount === null) return;
+        if (!/^\d{1,9}(\.\d{1,2})?$/.test(amount.trim()) || Number(amount) <= 0) {
+          throw new Error("Enter a positive amount with no more than two decimal places.");
+        }
+
+        const method = prompt("Payment method: Cash, Bank transfer, Card, Cheque, or Other", "Cash");
+        if (method === null) return;
+        const methods = ["Cash", "Bank transfer", "Card", "Cheque", "Other"];
+        if (!methods.includes(method.trim())) throw new Error("Enter one of the listed payment methods exactly.");
+
+        const reference = prompt("Payment reference (optional; no card or bank account numbers):", "");
+        if (reference === null) return;
+        if (reference.length > 200) throw new Error("Reference must be 200 characters or less.");
+        if (!confirm(`Record BSD ${amount.trim()} received by ${method.trim()}?`)) return;
+
+        payment = { amount: amount.trim(), method: method.trim(), reference: reference.trim(), requestId: crypto.randomUUID() };
+        sessionStorage.setItem(key, JSON.stringify(payment));
+      }
+
+      const response = await fetch(`${API}/invoices/${encodeURIComponent(id)}/payments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify(payment)
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        if (response.status >= 400 && response.status < 500) sessionStorage.removeItem(key);
+        throw new Error(result.error || "Payment request failed. Retry the pending request.");
+      }
+      if (!result.payment) throw new Error("Payment confirmation is missing. Retry the pending payment.");
+      sessionStorage.removeItem(key);
+      saved = true;
+      alert(`Payment recorded. Receipt: ${result.payment.receiptNumber}`);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      paymentBusy = false;
+      button.disabled = false;
+      if (saved || sessionStorage.getItem(key)) await openPayments(id);
+    }
+  }
+
+  function printPaymentReceipt(index) {
+    const payment = paymentInvoice && paymentInvoice.payments[index];
+    if (!payment) return;
+
+    const safe = value => escapeHtml(String(value ?? ""));
+    const popup = window.open("", "_blank");
+    if (!popup) {
+      alert("Allow pop-ups to print the receipt.");
       return;
     }
 
-    loadRFQs();
-
-  } catch (err) {
-    alert("Server connection failed");
-    console.error(err);
+    popup.document.write(`
+      <!DOCTYPE html><html><head><meta charset="utf-8"><title>Payment Receipt</title>
+      <style>body{font-family:Arial,sans-serif;margin:40px;color:#172033}h1,h2{color:#0b1f3b}@media print{button{display:none}}</style>
+      </head><body>
+        <h1>Total Services Bahamas</h1><h2>PAYMENT RECEIPT</h2>
+        <p>${safe(payment.receiptNumber)}</p>
+        <p>Invoice: ${safe(paymentInvoice.invoiceNumber)}</p>
+        <p>Customer: ${safe(paymentInvoice.quote.customerName)}</p>
+        <p>Company: ${safe(paymentInvoice.quote.company)}</p>
+        <p>Recorded: ${safe(new Date(payment.recordedAt).toLocaleString())}</p>
+        <h2>Received: BSD ${safe(formatMoney(payment.amountCents / 100))}</h2>
+        <p>Method: ${safe(payment.method)}</p><p>Reference: ${safe(payment.reference || "-")}</p>
+        <p>Balance after this payment: ${safe(formatMoney(payment.balanceAfterCents / 100))}</p>
+        <button onclick="window.print()">Print / Save PDF</button>
+      </body></html>
+    `);
+    popup.document.close();
   }
-}
 
-async function deleteProduct(id) {
-  const token = getToken();
 
-  if (!confirm("Delete this product?")) return;
+  function printCurrentInvoice() {
+    if (!currentInvoiceHtml) return;
 
-  try {
-    const res = await fetch(`${API}/products/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    });
+    const popup = window.open("", "_blank");
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.error || "Delete failed");
+    if (!popup) {
+      alert("Allow pop-ups for this site to print the invoice.");
       return;
     }
 
-    loadProducts();
+    popup.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Invoice</title>
+        <style>
+          body { font-family: Arial, sans-serif; color: #172033; margin: 32px; }
+          h1, h2 { color: #0b1f3b; }
+          th { text-align: left; background: #eef1f5; }
+          td, th { border: 1px solid #cbd5e1; overflow-wrap: anywhere; }
+          tr { break-inside: avoid; }
+          thead { display: table-header-group; }
+          @media print { body { margin: 0; } button { display: none; } }
+        </style>
+      </head>
+      <body>
+        ${currentInvoiceHtml}
+        <button onclick="window.print()">Print / Save PDF</button>
+      </body>
+      </html>
+    `);
 
-  } catch (err) {
-    alert("Server connection failed");
-    console.error(err);
+    popup.document.close();
   }
-}
+
+
+  let invoiceEmailBusy = false;
+
+  async function emailInvoiceDocument(
+    invoiceId,
+    button,
+    paymentId = null
+  ) {
+    if (invoiceEmailBusy) return;
+
+    invoiceEmailBusy = true;
+
+    const label = button.textContent;
+    button.disabled = true;
+
+    try {
+      const data = await apiFetch(
+        `/invoices/${encodeURIComponent(invoiceId)}/payments`
+      );
+
+      const invoice = data.invoice;
+
+      const recipient = String(
+        invoice.quote.email || ""
+      ).trim();
+
+      const payment = paymentId
+        ? (invoice.payments || []).find(
+            item => item._id === paymentId
+          )
+        : null;
+
+      if (paymentId && !payment) {
+        throw new Error("Payment not found");
+      }
+
+      const title = payment
+        ? payment.receiptNumber
+        : invoice.invoiceNumber;
+
+      const last = payment
+        ? payment.lastEmailedAt
+        : invoice.lastEmailedAt;
+
+      const confirmed = confirm(
+        `Email ${title} to ${recipient}?\n\n` +
+        `Last emailed: ${
+          last
+            ? new Date(last).toLocaleString()
+            : "Never"
+        }`
+      );
+
+      if (!confirmed) return;
+
+      button.textContent = "Sending...";
+
+      const body = { recipient };
+
+      if (paymentId) {
+        body.paymentId = paymentId;
+      }
+
+      const result = await apiFetch(
+        `/invoices/${encodeURIComponent(invoiceId)}/email`,
+        {
+          method: "POST",
+          body: JSON.stringify(body)
+        }
+      );
+
+      alert(result.message);
+
+      if (paymentId) {
+        await openPayments(invoiceId);
+      } else {
+        await createInvoice(
+          null,
+          {
+            disabled: false,
+            textContent: "View Invoice"
+          },
+          invoiceId
+        );
+      }
+
+    } catch (error) {
+      alert(
+        `${error.message}\n` +
+        "If sending was interrupted, check your Sent folder before retrying."
+      );
+
+    } finally {
+      button.disabled = false;
+      button.textContent = label;
+      invoiceEmailBusy = false;
+    }
+  }
+
+
+  function previewQuote(id) {
+    window.open(
+      `quote.html?id=${encodeURIComponent(id)}`,
+      "_blank"
+    );
+  }
+
+
+  function viewQuote(id) {
+
+    const quote =
+      quotes.find(
+        item => item._id === id
+      );
+
+
+    if (!quote) return;
+
+
+    const items =
+      Array.isArray(quote.items)
+        ? quote.items
+        : [];
+
+
+    openModal(
+
+      quote.quoteNumber || "Quote",
+
+      `
+
+        <div style="margin-bottom:20px;">
+
+          <div class="grid">
+
+            <div>
+              <label>Customer</label>
+              <p>
+                ${escapeHtml(quote.customerName)}
+              </p>
+            </div>
+
+            <div>
+              <label>Company</label>
+              <p>
+                ${escapeHtml(quote.company || "—")}
+              </p>
+            </div>
+
+            <div>
+              <label>Email</label>
+              <p>
+                ${escapeHtml(quote.email)}
+              </p>
+            </div>
+
+            <div>
+              <label>Phone</label>
+              <p>
+                ${escapeHtml(quote.phone || "—")}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="quote-items-wrapper">
+
+          <table class="quote-items">
+
+            <thead>
+
+              <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${items.map(item => `
+
+                <tr>
+
+                  <td>
+                    ${escapeHtml(item.type)}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(item.description)}
+                  </td>
+
+                  <td>
+                    ${Number(item.quantity || 0)}
+                  </td>
+
+                  <td>
+                    ${formatMoney(item.unitPrice)}
+                  </td>
+
+                  <td>
+                    ${formatMoney(item.total)}
+                  </td>
+
+                </tr>
+
+              `).join("")}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <div class="quote-summary">
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>
+              ${formatMoney(quote.subtotal)}
+            </strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount</span>
+            <strong>
+              ${formatMoney(quote.discountAmount)}
+            </strong>
+          </div>
+
+          <div class="summary-row">
+            <span>VAT</span>
+            <strong>
+              ${formatMoney(quote.taxAmount)}
+            </strong>
+          </div>
+
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <strong>
+              ${formatMoney(quote.total)}
+            </strong>
+          </div>
+
+        </div>
+
+
+        ${
+          quote.notes
+            ? `
+              <div style="margin-top:20px;">
+                <label>Notes</label>
+                <p style="white-space:pre-wrap;">
+                  ${escapeHtml(quote.notes)}
+                </p>
+              </div>
+            `
+            : ""
+        }
+
+
+        ${
+          quote.terms
+            ? `
+              <div style="margin-top:20px;">
+                <label>Terms</label>
+                <p style="white-space:pre-wrap;">
+                  ${escapeHtml(quote.terms)}
+                </p>
+              </div>
+            `
+            : ""
+        }
+
+      `
+    );
+
+  }
+
+
+  async function updateQuoteStatus(id, status) {
+
+    try {
+
+      await apiFetch(
+        `/quotes/${id}/status`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ status })
+        }
+      );
+
+      showToast(
+        "Quote status updated.",
+        "success"
+      );
+
+      await loadQuotes();
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  async function deleteQuote(id) {
+
+    if (!confirm("Delete this quote permanently?")) {
+      return;
+    }
+
+
+    try {
+
+      await apiFetch(
+        `/quotes/${id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      showToast(
+        "Quote deleted.",
+        "success"
+      );
+
+      await loadQuotes();
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* =========================
+     PRODUCTS
+  ========================= */
+
+  async function loadProducts() {
+
+    const data =
+      await fetch(API + "/products")
+        .then(response => response.json());
+
+
+    products = Array.isArray(data)
+      ? data
+      : data.products || [];
+
+
+    renderProducts();
+
+    updateStats();
+
+  }
+
+
+  function renderProducts() {
+
+    const container =
+      document.getElementById(
+        "productList"
+      );
+
+
+    if (!products.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+          No products in the catalog.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    container.innerHTML = `
+
+      <div class="product-grid">
+
+        ${products.map(product => `
+
+          <div class="product-card">
+
+            <div class="product-image">
+
+              ${
+                product.image
+                  ? `
+                    <img
+                      src="${escapeAttribute(product.image)}"
+                      alt="${escapeAttribute(product.name)}"
+                      onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+                    />
+                    <div
+                      class="product-placeholder"
+                      style="display:none;"
+                    >
+                      No Image
+                    </div>
+                  `
+                  : `
+                    <div class="product-placeholder">
+                      No Image
+                    </div>
+                  `
+              }
+
+            </div>
+
+
+            <div class="product-body">
+
+              <h3>
+                ${escapeHtml(product.name)}
+              </h3>
+
+              <p>
+                <strong>Category:</strong>
+                ${escapeHtml(product.category || "—")}
+              </p>
+
+              <p>
+                <strong>Brand:</strong>
+                ${escapeHtml(product.manufacturer || "—")}
+              </p>
+
+              <p>
+                <strong>Part #:</strong>
+                ${escapeHtml(product.partNumber || "—")}
+              </p>
+
+              <p>
+                <strong>Models:</strong>
+                ${escapeHtml(product.compatibleModels || "—")}
+              </p>
+
+              <p class="muted">
+                ${escapeHtml(product.description || "")}
+              </p>
+
+
+              <div class="card-actions">
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="editProduct('${product._id}')"
+                >
+                  Edit
+                </button>
+
+                <button
+                  class="btn btn-danger btn-small"
+                  onclick="deleteProduct('${product._id}')"
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    `;
+
+  }
+
+
+  function openProductForm() {
+
+    document.getElementById(
+      "productFormCard"
+    ).style.display = "block";
+
+
+    document.getElementById(
+      "productFormTitle"
+    ).textContent = "Add Product";
+
+
+    clearProductForm();
+
+
+    document
+      .getElementById("products")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  function closeProductForm() {
+
+    document.getElementById(
+      "productFormCard"
+    ).style.display = "none";
+
+  }
+
+
+  function clearProductForm() {
+
+    document.getElementById(
+      "productName"
+    ).value = "";
+
+
+    document.getElementById(
+      "productCategory"
+    ).value = "";
+
+
+    document.getElementById(
+      "productManufacturer"
+    ).value = "";
+
+
+    document.getElementById(
+      "productPartNumber"
+    ).value = "";
+
+
+    document.getElementById(
+      "productCompatibleModels"
+    ).value = "";
+
+
+    document.getElementById(
+      "productImage"
+    ).value = "";
+
+
+    document.getElementById(
+      "productDescription"
+    ).value = "";
+
+
+    document.getElementById(
+      "productFormCard"
+    ).dataset.editingId = "";
+
+  }
+
+
+  function editProduct(id) {
+
+    const product =
+      products.find(
+        item => item._id === id
+      );
+
+
+    if (!product) return;
+
+
+    document.getElementById(
+      "productFormCard"
+    ).style.display = "block";
+
+
+    document.getElementById(
+      "productFormTitle"
+    ).textContent =
+      "Edit Product";
+
+
+    document.getElementById(
+      "productFormCard"
+    ).dataset.editingId = id;
+
+
+    document.getElementById(
+      "productName"
+    ).value =
+      product.name || "";
+
+
+    document.getElementById(
+      "productCategory"
+    ).value =
+      product.category || "";
+
+
+    document.getElementById(
+      "productManufacturer"
+    ).value =
+      product.manufacturer || "";
+
+
+    document.getElementById(
+      "productPartNumber"
+    ).value =
+      product.partNumber || "";
+
+
+    document.getElementById(
+      "productCompatibleModels"
+    ).value =
+      product.compatibleModels || "";
+
+
+    document.getElementById(
+      "productImage"
+    ).value =
+      product.image || "";
+
+
+    document.getElementById(
+      "productDescription"
+    ).value =
+      product.description || "";
+
+
+    document
+      .getElementById("products")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  async function saveProduct() {
+
+    const form =
+      document.getElementById(
+        "productFormCard"
+      );
+
+
+    const editingId =
+      form.dataset.editingId;
+
+
+    const payload = {
+
+      name:
+        document.getElementById(
+          "productName"
+        ).value.trim(),
+
+      category:
+        document.getElementById(
+          "productCategory"
+        ).value.trim(),
+
+      manufacturer:
+        document.getElementById(
+          "productManufacturer"
+        ).value.trim(),
+
+      partNumber:
+        document.getElementById(
+          "productPartNumber"
+        ).value.trim(),
+
+      compatibleModels:
+        document.getElementById(
+          "productCompatibleModels"
+        ).value.trim(),
+
+      image:
+        document.getElementById(
+          "productImage"
+        ).value.trim(),
+
+      description:
+        document.getElementById(
+          "productDescription"
+        ).value.trim()
+
+    };
+
+
+    if (!payload.name) {
+
+      showToast(
+        "Product name is required.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      if (editingId) {
+
+        await apiFetch(
+          `/products/${editingId}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(payload)
+          }
+        );
+
+        showToast(
+          "Product updated.",
+          "success"
+        );
+
+      } else {
+
+        await apiFetch(
+          "/products",
+          {
+            method: "POST",
+            body: JSON.stringify(payload)
+          }
+        );
+
+        showToast(
+          "Product added.",
+          "success"
+        );
+
+      }
+
+
+      closeProductForm();
+
+      await loadProducts();
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  async function deleteProduct(id) {
+
+    if (!confirm("Delete this product permanently?")) {
+      return;
+    }
+
+
+    try {
+
+      await apiFetch(
+        `/products/${id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      showToast(
+        "Product deleted.",
+        "success"
+      );
+
+      await loadProducts();
+
+    } catch (error) {
+
+      showToast(
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* =========================
+     STATS
+  ========================= */
+
+  function updateStats() {
+
+    document.getElementById(
+      "statRFQs"
+    ).textContent =
+      rfqs.length;
+
+
+    document.getElementById(
+      "statNewRFQs"
+    ).textContent =
+      rfqs.filter(
+        item => !item.status ||
+        item.status === "New"
+      ).length;
+
+
+    document.getElementById(
+      "statAssessments"
+    ).textContent =
+      assessments.length;
+
+
+    document.getElementById(
+      "statQuotes"
+    ).textContent =
+      quotes.length;
+
+
+    document.getElementById(
+      "statAcceptedQuotes"
+    ).textContent =
+      quotes.filter(
+        quote => quote.status === "Accepted"
+      ).length;
+
+
+    document.getElementById(
+      "statProducts"
+    ).textContent =
+      products.length;
+
+  }
+
+
+  /* =========================
+     INITIALIZE
+  ========================= */
+
+  if (token) {
+
+    showDashboard();
+
+  } else {
+
+    document.getElementById(
+      "loginScreen"
+    ).style.display = "flex";
+
+    document.getElementById(
+      "dashboard"
+    ).style.display = "none";
+
+  }
+
+
+  window.addEventListener(
+    "click",
+    event => {
+
+      const modal =
+        document.getElementById("modal");
+
+      if (event.target === modal) {
+        closeModal();
+      }
+
+    }
+  );
+
 </script>
 
 </body>
