@@ -213,6 +213,236 @@ const SiteAssessment = mongoose.model(
   siteAssessmentSchema
 );
 
+/* =========================================================
+   QUOTE MANAGEMENT SYSTEM
+========================================================= */
+
+const quoteItemSchema = new mongoose.Schema(
+  {
+    type: {
+      type: String,
+      enum: [
+        "Part",
+        "Labor",
+        "Rental",
+        "Service",
+        "Miscellaneous",
+      ],
+      default: "Service",
+    },
+
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    quantity: {
+      type: Number,
+      default: 1,
+      min: 0,
+    },
+
+    unitPrice: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    total: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      default: null,
+    },
+
+    partNumber: {
+      type: String,
+      default: "",
+    },
+  },
+  { _id: true }
+);
+
+/* =========================================================
+   QUOTE SCHEMA
+========================================================= */
+
+const quoteSchema = new mongoose.Schema(
+  {
+    shareToken: { type: String, unique: true, sparse: true, index: true },
+    sharedAt: { type: Date, default: null },
+    customerRespondedAt: { type: Date, default: null },
+    quoteNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    customerName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    company: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    phone: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    sourceType: {
+      type: String,
+      enum: ["Manual", "RFQ", "SiteAssessment"],
+      default: "Manual",
+    },
+
+    sourceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null,
+    },
+
+    items: {
+      type: [quoteItemSchema],
+      default: [],
+    },
+
+    subtotal: {
+      type: Number,
+      default: 0,
+    },
+
+    discountType: {
+      type: String,
+      enum: ["None", "Fixed", "Percent"],
+      default: "None",
+    },
+
+    discountValue: {
+      type: Number,
+      default: 0,
+    },
+
+    discountAmount: {
+      type: Number,
+      default: 0,
+    },
+
+    taxableAmount: {
+      type: Number,
+      default: 0,
+    },
+
+    taxRate: {
+      type: Number,
+      default: 10,
+    },
+
+    taxAmount: {
+      type: Number,
+      default: 0,
+    },
+
+    total: {
+      type: Number,
+      default: 0,
+    },
+
+    notes: {
+      type: String,
+      default: "",
+    },
+
+    terms: {
+      type: String,
+      default: "",
+    },
+
+    validUntil: {
+      type: Date,
+      default: null,
+    },
+
+    status: {
+      type: String,
+      enum: [
+        "Draft",
+        "Sent",
+        "Accepted",
+        "Declined",
+        "Expired",
+      ],
+      default: "Draft",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Quote = mongoose.model("Quote", quoteSchema);
+
+/* =========================================================
+   QUOTE NUMBER COUNTER
+========================================================= */
+
+const quoteCounterSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
+  sequence: {
+    type: Number,
+    default: 0,
+  },
+});
+
+const QuoteCounter = mongoose.model(
+  "QuoteCounter",
+  quoteCounterSchema
+);
+
+/* =========================================================
+   QUOTE NUMBER GENERATOR
+========================================================= */
+
+async function generateQuoteNumber() {
+  const year = new Date().getFullYear();
+
+  const counter = await QuoteCounter.findOneAndUpdate(
+    { name: `quote-${year}` },
+    { $inc: { sequence: 1 } },
+    {
+      new: true,
+      upsert: true,
+      setDefaultsOnInsert: true,
+    }
+  );
+
+  const sequence = String(counter.sequence).padStart(4, "0");
+
+  return `TSB-${year}-${sequence}`;
+}
+
 /* =========================
    AUTH MIDDLEWARE
 ========================= */
@@ -842,6 +1072,35 @@ app.post("/ai", async (req, res) => {
     res.status(500).json({ error: "AI assistant failed" });
   }
 });
+
+/* =========================================================
+   QUOTES — GET ALL
+========================================================= */
+
+app.get(
+  "/quotes",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const quotes =
+        await Quote.find()
+          .sort({ createdAt: -1 })
+          .lean();
+
+      res.json(quotes);
+    } catch (error) {
+      console.error(
+        "Get quotes error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to retrieve quotes",
+      });
+    }
+  }
+);
 
 /* =========================
    HEALTH CHECK
