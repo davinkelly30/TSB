@@ -1631,6 +1631,190 @@ app.get(
   }
 );
 
+/* =========================================================
+   QUOTES — UPDATE
+========================================================= */
+
+app.put(
+  "/quotes/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      if (
+        !mongoose.Types.ObjectId.isValid(id)
+      ) {
+        return res.status(400).json({
+          error: "Invalid quote ID",
+        });
+      }
+
+      const existingQuote =
+        await Quote.findById(id);
+
+      if (!existingQuote) {
+        return res.status(404).json({
+          error: "Quote not found",
+        });
+      }
+
+      const data = req.body;
+
+      const customerName =
+        data.customerName ??
+        existingQuote.customerName;
+
+      const company =
+        data.company ??
+        existingQuote.company;
+
+      const email =
+        data.email ??
+        existingQuote.email;
+
+      const phone =
+        data.phone ??
+        existingQuote.phone;
+
+      const sourceType =
+        data.sourceType ??
+        existingQuote.sourceType;
+
+      const sourceId =
+        data.sourceId ??
+        existingQuote.sourceId;
+
+      const items =
+        data.items ??
+        existingQuote.items;
+
+      const discountType =
+        data.discountType ??
+        existingQuote.discountType;
+
+      const discountValue =
+        data.discountValue ??
+        existingQuote.discountValue;
+
+      const taxRate =
+        data.taxRate !== undefined
+          ? data.taxRate
+          : existingQuote.taxRate;
+
+      const totals =
+        calculateQuoteTotals({
+          items,
+          discountType,
+          discountValue,
+          taxRate,
+        });
+
+      existingQuote.customerName =
+        customerName;
+
+      existingQuote.company =
+        company;
+
+      existingQuote.email =
+        email;
+
+      existingQuote.phone =
+        phone;
+
+      existingQuote.sourceType =
+        sourceType;
+
+      existingQuote.sourceId =
+        sourceId || null;
+
+      existingQuote.items =
+        totals.items;
+
+      existingQuote.subtotal =
+        totals.subtotal;
+
+      existingQuote.discountType =
+        discountType;
+
+      existingQuote.discountValue =
+        Number(discountValue) || 0;
+
+      existingQuote.discountAmount =
+        totals.discountAmount;
+
+      existingQuote.taxableAmount =
+        totals.taxableAmount;
+
+      existingQuote.taxRate =
+        Number(taxRate) || 0;
+
+      existingQuote.taxAmount =
+        totals.taxAmount;
+
+      existingQuote.total =
+        totals.total;
+
+      if (data.notes !== undefined) {
+        existingQuote.notes =
+          data.notes;
+      }
+
+      if (data.terms !== undefined) {
+        existingQuote.terms =
+          data.terms;
+      }
+
+      if (data.validUntil !== undefined) {
+        existingQuote.validUntil =
+          data.validUntil || null;
+      }
+
+      if (data.status !== undefined) {
+        const allowedStatuses = [
+          "Draft",
+          "Sent",
+          "Accepted",
+          "Declined",
+          "Expired",
+        ];
+
+        if (
+          !allowedStatuses.includes(
+            data.status
+          )
+        ) {
+          return res.status(400).json({
+            error:
+              "Invalid quote status",
+          });
+        }
+
+        existingQuote.status =
+          data.status;
+      }
+
+      await existingQuote.save();
+
+      res.json({
+        message:
+          "Quote updated successfully",
+        quote: existingQuote,
+      });
+    } catch (error) {
+      console.error(
+        "Update quote error:",
+        error
+      );
+
+      res.status(500).json({
+        error:
+          "Failed to update quote",
+      });
+    }
+  }
+);
+
 /* =========================
    HEALTH CHECK
 ========================= */
