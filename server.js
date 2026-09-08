@@ -7,10 +7,12 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const crypto = require("crypto");
 const { buildDocumentPdf } = require("./document-pdf");
 
 const app = express();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
    MIDDLEWARE
@@ -2708,10 +2710,7 @@ app.post(
         });
       }
 
-      if (
-        !process.env.EMAIL_USER ||
-        !process.env.EMAIL_PASS
-      ) {
+      if (!process.env.RESEND_API_KEY) {
         return res.status(503).json({
           error: "Email service is not configured"
         });
@@ -2791,20 +2790,10 @@ app.post(
       const attachmentName =
         title.replace(/[^a-zA-Z0-9_-]/g, "_") + ".pdf";
 
-      const result = await mailer.sendMail({
-        attachments: [
-          {
-            filename: attachmentName,
-            content: pdfBuffer,
-            contentType: "application/pdf"
-          }
-        ],
-        from: {
-          name: "Total Services Bahamas",
-          address: process.env.EMAIL_USER
-        },
-        to: email,
-        subject: `${title} â€” Total Services Bahamas`,
+      const { data, error: resendError } = await resend.emails.send({
+        from: "Total Services Bahamas <onboarding@resend.dev>",
+        to: [email],
+        subject: `${title} — Total Services Bahamas`,
         text,
         html: `
           <div style="
@@ -2819,14 +2808,23 @@ app.post(
               line-height:1.6;
             ">${escaped}</pre>
           </div>
-        `
+        `,
+        attachments: [
+          {
+            filename: attachmentName,
+            content: Buffer.from(pdfBuffer)
+          }
+        ]
       });
 
-      if (
-        !result.accepted ||
-        !result.accepted.length
-      ) {
-        throw new Error("Mail was not accepted");
+      if (resendError) {
+        throw new Error(
+          resendError.message || "Resend rejected the email"
+        );
+      }
+
+      if (!data || !data.id) {
+        throw new Error("Resend did not confirm the email");
       }
 
       submitted = true;
