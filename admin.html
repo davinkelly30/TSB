@@ -2575,6 +2575,10 @@
               Preview / Print
             </button>
 
+            <button type="button" class="btn btn-secondary btn-small"
+              onclick="emailQuote('${quote._id}', this)">Email Quote</button>
+            ${quote.lastEmailedAt ? `<span class="badge">Last emailed: ${escapeHtml(new Date(quote.lastEmailedAt).toLocaleString())}</span>` : ""}
+
             <button
               type="button"
               class="btn btn-secondary btn-small"
@@ -2624,7 +2628,7 @@
 
             <button
               class="btn btn-danger btn-small"
-              onclick="deleteQuote('${quote._id}')"
+              onclick="deleteQuote('${quote._id}', this)"
             >
               Delete
             </button>
@@ -4481,11 +4485,70 @@
   }
 
 
+  const quoteEmailPending = new Set();
+
+  async function emailQuote(id, button) {
+    if (quoteEmailPending.has(id)) return;
+    const quote = quotes.find(item => item._id === id);
+    if (!quote) return;
+    quoteEmailPending.add(id);
+    button.disabled = true;
+    button.textContent = "Sending...";
+    try {
+      const result = await apiFetch(`/quotes/${encodeURIComponent(id)}/email`, {
+        method: "POST", body: JSON.stringify({ recipient: quote.email })
+      });
+      showToast(result.message, "success");
+      try { await loadQuotes(); }
+      catch (error) { showToast("Email submitted. Refresh to update Last emailed.", "error"); }
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      quoteEmailPending.delete(id);
+      button.disabled = false;
+      button.textContent = "Email Quote";
+    }
+  }
+
   function previewQuote(id) {
-    window.open(
-      `quote.html?id=${encodeURIComponent(id)}`,
-      "_blank"
-    );
+    const quote = quotes.find(item => item._id === id);
+    if (!quote) return;
+    const safe = value => escapeHtml(String(value ?? ""));
+    const money = value => `BSD ${Number(value || 0).toFixed(2)}`;
+    const date = value => value ? safe(formatDate(value)) : "—";
+    const popup = window.open("", "_blank");
+    if (!popup) { showToast("Allow pop-ups to preview and print the quote.", "error"); return; }
+    popup.document.write(`<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+      <title>Quote ${safe(quote.quoteNumber)} — Total Services Bahamas</title>
+      <style>
+        @page{size:letter;margin:16mm}
+        *{box-sizing:border-box}body{font:12px/1.5 Arial,sans-serif;color:#172033;max-width:960px;margin:32px auto;padding:24px}
+        h1,h2{color:#0b1f3b;margin:0 0 8px}header{border-bottom:3px solid #0b1f3b;padding-bottom:16px}
+        .details{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
+        p{margin:4px 0;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;table-layout:fixed}
+        th,td{padding:8px;border-bottom:1px solid #cbd5e1;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+        th{background:#eef1f5}th:nth-child(2){width:34%}.number{text-align:right}
+        thead{display:table-header-group}tr{break-inside:avoid}.totals{margin:20px 0 20px auto;width:320px;break-inside:avoid}
+        .totals p{display:flex;justify-content:space-between;gap:20px}.grand{font-size:16px;border-top:2px solid #0b1f3b;padding-top:8px}
+        .copy{white-space:pre-wrap;overflow-wrap:anywhere}h3{break-after:avoid}footer{margin-top:28px;border-top:1px solid #cbd5e1;padding-top:12px}
+        button{padding:10px 16px;margin-bottom:20px;cursor:pointer}@media print{body{margin:0;padding:0;max-width:none}button{display:none}}
+      </style></head><body><button onclick="window.print()">Print / Save as PDF</button>
+      <header><h1>Total Services Bahamas</h1><h2>QUOTE ${safe(quote.quoteNumber)}</h2></header>
+      <div class="details"><div><strong>Prepared for</strong><p>${safe(quote.customerName)}</p>
+        <p>Company: ${safe(quote.company || "—")}</p><p>Email: ${safe(quote.email)}</p><p>Phone: ${safe(quote.phone || "—")}</p></div>
+        <div><p>Status: ${safe(quote.status)}</p><p>Issued: ${date(quote.createdAt)}</p>
+        ${quote.validUntil ? `<p>Valid until: ${date(quote.validUntil)}</p>` : ""}</div></div>
+      <table><thead><tr><th>Type</th><th>Description / Part number</th><th class="number">Qty</th><th class="number">Unit price</th><th class="number">Line total</th></tr></thead>
+      <tbody>${(quote.items || []).map(item => `<tr><td>${safe(item.type)}</td><td><div class="copy">${safe(item.description)}</div>${item.partNumber ? `<p>Part: ${safe(item.partNumber)}</p>` : ""}</td>
+        <td class="number">${safe(item.quantity)}</td><td class="number">${money(item.unitPrice)}</td><td class="number">${money(item.total)}</td></tr>`).join("")}</tbody></table>
+      <div class="totals"><p><span>Subtotal</span><strong>${money(quote.subtotal)}</strong></p>
+        ${quote.discountAmount ? `<p><span>Discount</span><strong>−${money(quote.discountAmount)}</strong></p>` : ""}
+        <p><span>VAT (${safe(quote.taxRate)}%)</span><strong>${money(quote.taxAmount)}</strong></p>
+        <p class="grand"><span>Grand total</span><strong>${money(quote.total)}</strong></p></div>
+      ${quote.notes ? `<h3>Notes</h3><div class="copy">${safe(quote.notes)}</div>` : ""}
+      ${quote.terms ? `<h3>Terms</h3><div class="copy">${safe(quote.terms)}</div>` : ""}
+      <footer>Thank you for considering Total Services Bahamas.</footer></body></html>`);
+    popup.document.close();
   }
 
 
@@ -4699,38 +4762,43 @@
   }
 
 
-  async function deleteQuote(id) {
+  const quoteDeletePending = new Set();
 
-    if (!confirm("Delete this quote permanently?")) {
+  async function deleteQuote(id, button) {
+    if (quoteDeletePending.has(id)) return;
+    const quote = quotes.find(item => item._id === id);
+    if (!quote) return;
+    if (quote.status !== "Draft" || quote.shareToken || quote.sharedAt ||
+        quote.customerRespondedAt || quote.lastEmailedAt) {
+      showToast("Only unshared, unemailed draft quotes with no linked invoice can be deleted.", "error");
       return;
     }
-
-
-    try {
-
-      await apiFetch(
-        `/quotes/${id}`,
-        {
-          method: "DELETE"
-        }
-      );
-
-      showToast(
-        "Quote deleted.",
-        "success"
-      );
-
-      await loadQuotes();
-
-    } catch (error) {
-
-      showToast(
-        error.message,
-        "error"
-      );
-
+    const entered = prompt(
+      `Permanently delete ${quote.quoteNumber}?\nCustomer: ${quote.customerName}\n` +
+      `Total: ${formatMoney(quote.total)}\n\nThis cannot be undone.\n` +
+      `Type the exact quote number (${quote.quoteNumber}) to confirm:`
+    );
+    if (entered === null) return;
+    if (entered !== quote.quoteNumber) {
+      showToast("Quote number did not match. Nothing was deleted.", "error");
+      return;
     }
-
+    quoteDeletePending.add(id);
+    if (button) { button.disabled = true; button.textContent = "Deleting..."; }
+    try {
+      await apiFetch(`/quotes/${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        body: JSON.stringify({ quoteNumber: entered, updatedAt: quote.updatedAt })
+      });
+      showToast("Quote deleted.", "success");
+      try { await loadQuotes(); }
+      catch (error) { showToast("Quote deleted. Refresh to update the list.", "error"); }
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      quoteDeletePending.delete(id);
+      if (button) { button.disabled = false; button.textContent = "Delete"; }
+    }
   }
 
 

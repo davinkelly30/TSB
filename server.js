@@ -284,6 +284,7 @@ const quoteSchema = new mongoose.Schema(
   {
     shareToken: { type: String, unique: true, sparse: true, index: true },
     sharedAt: { type: Date, default: null },
+    lastEmailedAt: { type: Date, default: null },
     customerRespondedAt: { type: Date, default: null },
     quoteNumber: {
       type: String,
@@ -2188,13 +2189,31 @@ app.delete(
         });
       }
 
-      const deleted =
-        await Quote.findByIdAndDelete(id);
-
-      if (!deleted) {
+      const quote = await Quote.findById(id).lean();
+      if (!quote) {
         return res.status(404).json({
           error: "Quote not found",
         });
+      }
+
+      const { quoteNumber, updatedAt } = req.body || {};
+      if (quoteNumber !== quote.quoteNumber) {
+        return res.status(400).json({ error: "Type the exact quote number to confirm deletion." });
+      }
+      if (quote.status !== "Draft" || quote.shareToken || quote.sharedAt ||
+          quote.customerRespondedAt || quote.lastEmailedAt ||
+          await Invoice.exists({ quoteId: quote._id })) {
+        return res.status(409).json({ error: "Only unshared, unemailed draft quotes with no linked invoice can be deleted." });
+      }
+      if (!quote.updatedAt || updatedAt !== new Date(quote.updatedAt).toISOString()) {
+        return res.status(409).json({ error: "The quote changed. Refresh and review it before deleting." });
+      }
+      const deleted = await Quote.findOneAndDelete({
+        _id: quote._id, quoteNumber, updatedAt: quote.updatedAt, status: "Draft",
+        shareToken: null, sharedAt: null, customerRespondedAt: null, lastEmailedAt: null
+      });
+      if (!deleted) {
+        return res.status(409).json({ error: "The quote changed. Refresh and review it before deleting." });
       }
 
       res.json({
@@ -2650,6 +2669,81 @@ app.listen(PORT, () => {
 /* =========================
    INVOICE / RECEIPT EMAIL
 ========================= */
+
+app.post("/quotes/:id/email", authenticateToken, async (req, res) => {
+  let sentAt;
+  let sending = false;
+  try {
+    if (!/^[a-fA-F0-9]{24}$/.test(req.params.id) ||
+        !mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ error: "Invalid quote ID" });
+    }
+    const quote = await Quote.findById(req.params.id).lean();
+    if (!quote) return res.status(404).json({ error: "Quote not found" });
+    const email = quote.email || "";
+    if (typeof email !== "string" ||
+        !/^[^\s@<>;,]+@[^\s@<>;,]+\.[^\s@<>;,]+$/.test(email)) {
+      return res.status(400).json({ error: "The quote has no valid customer email address" });
+    }
+    const { recipient } = req.body || {};
+    if (recipient !== undefined && recipient !== email) {
+      return res.status(409).json({ error: "Recipient must exactly match the quote customer email. Refresh the quote and try again." });
+    }
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(503).json({ error: "Email service is not configured" });
+    }
+    const money = value => `BSD ${Number(value || 0).toFixed(2)}`;
+    const date = value => value ? new Date(value).toISOString().slice(0, 10) : "Not available";
+    const lines = [
+      "Total Services Bahamas", `Quote ${quote.quoteNumber}`,
+      `Status: ${quote.status}`, `Issued: ${date(quote.createdAt)}`,
+      ...(quote.validUntil ? [`Valid until: ${date(quote.validUntil)}`] : []),
+      "", `Customer: ${quote.customerName}`, `Company: ${quote.company || "-"}`,
+      `Email: ${email}`, `Phone: ${quote.phone || "-"}`, "", "Items:"
+    ];
+    for (const [index, item] of (quote.items || []).entries()) {
+      lines.push(`${index + 1}. ${item.type || "Item"}: ${item.description || ""}`);
+      if (item.partNumber) lines.push(`Part number: ${item.partNumber}`);
+      lines.push(`Quantity: ${item.quantity} | Unit price: ${money(item.unitPrice)} | Line total: ${money(item.total)}`, "");
+    }
+    lines.push(`Subtotal: ${money(quote.subtotal)}`);
+    if (quote.discountAmount) lines.push(`Discount: ${money(quote.discountAmount)}`);
+    lines.push(`VAT (${quote.taxRate}%): ${money(quote.taxAmount)}`, `Total: ${money(quote.total)}`);
+    if (quote.notes) lines.push("", "Notes:", quote.notes);
+    if (quote.terms) lines.push("", "Terms:", quote.terms);
+    const pdfBuffer = await buildDocumentPdf(lines);
+    const text = `Dear ${quote.customerName},\n\nPlease find attached quote ${quote.quoteNumber} from Total Services Bahamas.\n\n` +
+      `Quote total: ${money(quote.total)}\n` +
+      (quote.validUntil ? `Valid until: ${date(quote.validUntil)}\n` : "") +
+      "\nPlease review the attached quote, including its notes and terms. We look forward to assisting you.\n\nKind regards,\nTotal Services Bahamas";
+    const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    sending = true;
+    const { data, error } = await resend.emails.send({
+      from: "Total Services Bahamas <onboarding@resend.dev>",
+      to: [email],
+      subject: `Quote ${quote.quoteNumber} — Total Services Bahamas`,
+      text,
+      html: `<div style="font-family:Arial,sans-serif;max-width:680px;margin:auto;color:#0b1f3b"><h1>Total Services Bahamas</h1><p style="white-space:pre-wrap;line-height:1.6">${escaped}</p></div>`,
+      attachments: [{ filename: `Quote_${String(quote.quoteNumber).replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`, content: Buffer.from(pdfBuffer) }]
+    });
+    if (error || !data?.id) {
+      console.error("Quote email error:", error || new Error("Resend did not confirm acceptance"));
+      return res.status(502).json({ error: "Resend did not accept the quote email. Check the email service configuration and recipient restrictions before retrying." });
+    }
+    sentAt = new Date();
+    const updated = await Quote.updateOne({ _id: quote._id }, { $max: { lastEmailedAt: sentAt } });
+    if (!updated.matchedCount) throw new Error("Quote email timestamp was not saved");
+    return res.json({ message: `Quote email submitted to ${email}.`, sentAt });
+  } catch (error) {
+    console.error("Quote email error:", error);
+    if (sentAt) {
+      return res.json({ message: "Quote email submitted, but its timestamp could not be saved. Do not resend just to fix the timestamp.", sentAt });
+    }
+    return res.status(sending ? 502 : 500).json({ error: sending
+      ? "Email acceptance could not be confirmed. Check Resend email activity before retrying."
+      : "The quote email could not be prepared. Please try again later." });
+  }
+});
 
 app.post(
   "/invoices/:id/email",

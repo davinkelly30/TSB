@@ -1,0 +1,20 @@
+.tsb-home-logo{display:block;position:relative;width:180px;max-width:70vw;aspect-ratio:710/245;overflow:hidden;flex-shrink:0;background:#fff;}
+.tsb-home-logo img{position:absolute!important;width:104.0845%!important;max-width:none!important;height:auto!important;left:-2.1127%;top:-267.3469%;border-radius:0!important;}
+.tsb-home-logo:focus-visible{outline:3px solid #168640;outline-offset:4px;}
+.header,.site-header{position:sticky;top:0;z-index:100;background:#fff;}
+.header{gap:16px;}
+.header .nav{display:flex;flex-wrap:wrap;gap:12px;}
+.header .nav a{margin-left:0;}
+@media(max-width:850px){.header{padding:12px 16px;flex-direction:column;gap:10px;}.tsb-home-logo{width:150px;}.header .nav{justify-content:center;}.header-inner{display:flex;flex-wrap:wrap;gap:12px;}}
+@media print{.header,.site-header{position:static;}}
+
+/* Assemble the symbol and reveal the wordmark without scaling the logo. */
+.tsb-home-logo img{clip-path:inset(0 0 0 37%);animation:tsb-word-reveal 7s cubic-bezier(.22,1,.36,1) infinite;}
+.tsb-home-logo::before,.tsb-home-logo::after{content:"";position:absolute;inset:0;background-image:url("images/total-services-logo-source.jpeg");background-size:104.0845% auto;background-position:51.724% 48.3395%;background-repeat:no-repeat;pointer-events:none;}
+.tsb-home-logo::before{clip-path:polygon(0 0,36% 0,36% 48%,0 48%);animation:tsb-symbol-top 7s cubic-bezier(.22,1,.36,1) infinite;}
+.tsb-home-logo::after{clip-path:polygon(0 48%,36% 48%,36% 100%,0 100%);animation:tsb-symbol-bottom 7s cubic-bezier(.22,1,.36,1) infinite;}
+@keyframes tsb-symbol-top{0%{transform:translate(-36%,0);opacity:0;}14%,78%{transform:translate(0,0);opacity:1;}90%,100%{transform:translate(0,-100%);opacity:0;}}
+@keyframes tsb-symbol-bottom{0%,5%{transform:translate(0,100%);opacity:0;}21%,78%{transform:translate(0,0);opacity:1;}94%,100%{transform:translate(-36%,0);opacity:0;}}
+@keyframes tsb-word-reveal{0%,14%{clip-path:inset(0 63% 0 37%);opacity:0;}34%,78%{clip-path:inset(0 0 0 37%);opacity:1;}94%,100%{clip-path:inset(0 0 0 100%);opacity:0;}}
+@media(prefers-reduced-motion:reduce){.tsb-home-logo img,.tsb-home-logo::before,.tsb-home-logo::after{animation:none;}}
+@media print{.tsb-home-logo img,.tsb-home-logo::before,.tsb-home-logo::after{animation:none;}}
