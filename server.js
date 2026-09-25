@@ -1598,15 +1598,28 @@ app.post(
         }
       }
 
+      const normalizedTaxRate =
+        taxRate === undefined ||
+        taxRate === null ||
+        taxRate === ""
+          ? 10
+          : Number(taxRate);
+
+      if (
+        !Number.isFinite(normalizedTaxRate) ||
+        normalizedTaxRate < 0
+      ) {
+        return res.status(400).json({
+          error: "Invalid tax rate",
+        });
+      }
+
       const totals = calculateQuoteTotals({
         items,
         discountType:
           selectedDiscountType,
         discountValue,
-        taxRate:
-          taxRate !== undefined
-            ? taxRate
-            : 10,
+        taxRate: normalizedTaxRate,
       });
 
       const quoteNumber =
@@ -1643,8 +1656,7 @@ app.post(
         taxableAmount:
           totals.taxableAmount,
 
-        taxRate:
-          Number(taxRate) || 0,
+        taxRate: normalizedTaxRate,
 
         taxAmount:
           totals.taxAmount,
