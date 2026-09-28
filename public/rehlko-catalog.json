@@ -1,0 +1,100 @@
+[
+  {
+    "id": "oil-filters",
+    "name": "Oil Filters",
+    "category": "Filters",
+    "description": "Oil filtration for Rehlko diesel engines.",
+    "manufacturer": "Rehlko",
+    "kind": "Product range",
+    "image": "/images/parts/oil-filters.webp",
+    "source": "https://www.engines.rehlko.com/oil-filters"
+  },
+  {
+    "id": "fuel-filters",
+    "name": "Fuel Filters",
+    "category": "Filters",
+    "description": "Fuel filtration and water separation for applicable diesel engines.",
+    "manufacturer": "Rehlko",
+    "kind": "Product range",
+    "image": "/images/parts/fuel-filters.webp",
+    "source": "https://www.engines.rehlko.com/fuel-filters"
+  },
+  {
+    "id": "air-filters",
+    "name": "Air Filters",
+    "category": "Filters",
+    "description": "Air filtration to help protect engines from dust and debris.",
+    "manufacturer": "Rehlko",
+    "kind": "Product range",
+    "image": "/images/parts/air-filters.webp",
+    "source": "https://www.engines.rehlko.com/air-filters"
+  },
+  {
+    "id": "starters",
+    "name": "Starters",
+    "category": "Starting systems",
+    "description": "Replacement starters for applicable Rehlko diesel engines.",
+    "manufacturer": "Rehlko",
+    "kind": "Product range",
+    "image": "/images/parts/starters.webp",
+    "source": "https://www.engines.rehlko.com/starters"
+  },
+  {
+    "id": "v-belts",
+    "name": "V-Belts",
+    "category": "Belts",
+    "description": "Engine drive belts; confirm the correct belt for your equipment.",
+    "manufacturer": "Rehlko",
+    "kind": "Product range",
+    "image": "/images/parts/v-belts.webp",
+    "source": "https://www.engines.rehlko.com/v-belts"
+  },
+  {
+    "id": "xtreme-5w40",
+    "name": "Xtreme Conditions 5W40 Oil",
+    "category": "Diesel Fluids",
+    "description": "Diesel engine oil.",
+    "size": "1 gallon, 5 gallon, 55 gallon drum",
+    "manufacturer": "Rehlko",
+    "kind": "Manufacturer-listed product",
+    "image": "/images/parts/xtreme-5w40.webp",
+    "source": "https://www.engines.rehlko.com/diesel-fluids-us",
+    "imageSource": "https://images.ctfassets.net/zlhl2y58oyef/6QBNN9syceDQHk4uZd969d/27af5c472520e0d280982f8400a70839/1600x1600_Oil.jpg?q=100&fm=webp&w=700"
+  },
+  {
+    "id": "xtended-coolant",
+    "name": "Xtended Life Coolant",
+    "category": "Diesel Fluids",
+    "description": "Premixed 50/50 coolant.",
+    "size": "1 gallon, 55 gallon",
+    "manufacturer": "Rehlko",
+    "kind": "Manufacturer-listed product",
+    "image": "/images/parts/xtended-coolant.webp",
+    "source": "https://www.engines.rehlko.com/diesel-fluids-us",
+    "imageSource": "https://images.ctfassets.net/zlhl2y58oyef/4YLt8wb9v7z4bvmV4LPpq1/c54da33a48ef2276c07e7326eba15852/1600x1600_Coolant.jpg?q=100&fm=webp&w=700"
+  },
+  {
+    "id": "xtra-fuel-additive",
+    "name": "Xtra Performance Fuel Additive",
+    "category": "Diesel Fluids",
+    "description": "Diesel fuel additive for injector care.",
+    "size": "8 oz (case of 6)",
+    "manufacturer": "Rehlko",
+    "kind": "Manufacturer-listed product",
+    "image": "/images/parts/xtra-fuel-additive.webp",
+    "source": "https://www.engines.rehlko.com/diesel-fluids-us",
+    "imageSource": "https://images.ctfassets.net/zlhl2y58oyef/1IIJlOkY9obYwIvriggiuh/665b6ed20cdd033dfbca0bce70eb60c5/1600x1600_Additives.jpg?q=100&fm=webp&w=700"
+  },
+  {
+    "id": "xtra-arctic",
+    "name": "Xtra Performance Fuel Additive Arctic Formula",
+    "category": "Diesel Fluids",
+    "description": "Cold-weather diesel fuel additive.",
+    "size": "16 oz (case of 12)",
+    "manufacturer": "Rehlko",
+    "kind": "Manufacturer-listed product",
+    "image": "/images/parts/xtra-arctic.webp",
+    "source": "https://www.engines.rehlko.com/diesel-fluids-us",
+    "imageSource": "https://images.ctfassets.net/zlhl2y58oyef/5hFrkeHvCpc1qa3GCjRSlu/e80c4876b48ebb009e5dcc32ba75d79c/1600x1600_Additives2.jpg?q=100&fm=webp&w=700"
+  }
+]

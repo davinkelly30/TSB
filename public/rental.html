@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Rentals | Total Services Bahamas</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+.rental-hero { min-height:470px; display:flex; align-items:center; position:relative; overflow:hidden; }
+.rental-hero::before { content:""; position:absolute; inset:0; background:linear-gradient(rgba(7,22,37,.87),rgba(11,31,59,.93)); }
+.rental-hero-content { position:relative; z-index:2; max-width:1180px; width:100%; margin:auto; padding:90px 24px; color:white; }
+.rental-hero-content h1 { max-width:850px; font-size:clamp(40px,6vw,64px); line-height:1.05; margin:0 0 22px; }
+.rental-hero-content p { max-width:720px; color:rgba(255,255,255,.82); font-size:18px; line-height:1.7; margin:0 0 30px; }
+.rental-hero-buttons { display:flex; flex-wrap:wrap; gap:12px; }
+.rental-trust { background:white; border-bottom:1px solid var(--border); }
+.rental-trust-container { max-width:1180px; margin:auto; padding:22px 24px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.rental-trust-item { text-align:center; font-size:13px; font-weight:800; color:var(--primary); }
+.rental-section,.application-section,.request-section { padding:80px 24px; background:var(--bg); }
+.rental-container,.request-container { max-width:1180px; margin:auto; }
+.rental-heading { max-width:720px; margin:0 auto 45px; text-align:center; }
+.rental-heading h2 { margin:0 0 14px; color:var(--primary); font-size:clamp(30px,4vw,44px); }
+.rental-heading p { margin:0; color:var(--muted); line-height:1.7; }
+.rental-grid,.application-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; max-width:1180px; margin:auto; }
+.rental-card,.application-card,.request-card,.side-card { background:white; border:1px solid var(--border); border-radius:18px; padding:30px; box-shadow:0 8px 25px rgba(7,22,37,.06); }
+.rental-card { transition:.2s ease; }
+.rental-card:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(7,22,37,.11); }
+.rental-card-number { font-size:13px; font-weight:900; color:var(--accent); margin-bottom:18px; }
+.rental-card h3,.application-card h3 { margin:0 0 12px; color:var(--primary); font-size:21px; }
+.rental-card p,.application-card p { margin:0; color:var(--muted); line-height:1.7; font-size:14px; }
+.application-section { background:white; }
+.application-card { padding:26px; border-radius:15px; box-shadow:none; }
+.request-layout { display:grid; grid-template-columns:minmax(0,1fr) 350px; gap:30px; align-items:start; }
+.request-card h2 { margin:0 0 8px; color:var(--primary); font-size:28px; }
+.request-card-intro { margin:0 0 30px; color:var(--muted); line-height:1.7; }
+.form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.form-group { display:flex; flex-direction:column; }
+.form-group.full { grid-column:1/-1; }
+.form-group label { font-size:13px; font-weight:800; color:var(--text); margin-bottom:8px; }
+.form-group label span { color:#b42318; }
+.form-group input,.form-group select,.form-group textarea { width:100%; padding:14px 15px; border:1px solid var(--border); border-radius:9px; background:white; color:var(--text); font:inherit; outline:none; }
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--secondary); box-shadow:0 0 0 3px rgba(22,58,95,.08); }
+.form-group textarea { min-height:125px; resize:vertical; line-height:1.6; }
+.form-help { margin-top:7px; color:var(--muted); font-size:12px; line-height:1.5; }
+.rental-submit { width:100%; margin-top:25px; padding:15px 20px; border:0; border-radius:9px; background:var(--primary); color:white; font-size:15px; font-weight:800; cursor:pointer; }
+.rental-submit:hover { background:var(--secondary); }
+.rental-submit:disabled { opacity:.65; cursor:not-allowed; }
+.rental-status { display:none; margin-top:20px; padding:15px 17px; border-radius:9px; font-size:14px; line-height:1.5; }
+.rental-status.success { display:block; background:#ecfdf3; border:1px solid #a6f4c5; color:#067647; }
+.rental-status.error { display:block; background:#fef3f2; border:1px solid #fecdca; color:#b42318; }
+.request-sidebar { display:grid; gap:20px; }
+.side-card { padding:28px; }
+.side-card h3 { margin:0 0 14px; color:var(--primary); font-size:20px; }
+.side-card p { margin:0; color:var(--muted); font-size:14px; line-height:1.7; }
+.side-list { list-style:none; padding:0; margin:18px 0 0; }
+.side-list li { position:relative; padding-left:25px; margin-bottom:13px; color:var(--text); font-size:14px; line-height:1.5; }
+.side-list li::before { content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:900; }
+.side-card.dark { background:var(--primary); color:white; }
+.side-card.dark h3 { color:white; }
+.side-card.dark p { color:rgba(255,255,255,.76); }
+.ai-assistant { position:fixed; right:22px; bottom:22px; z-index:999; }
+.ai-button { width:58px; height:58px; border:0; border-radius:50%; background:var(--primary); color:white; font-weight:900; cursor:pointer; box-shadow:0 10px 30px rgba(7,22,37,.25); }
+.ai-panel { position:absolute; right:0; bottom:72px; width:350px; max-width:calc(100vw - 30px); height:470px; background:white; border-radius:16px; overflow:hidden; box-shadow:0 20px 50px rgba(7,22,37,.25); display:none; flex-direction:column; }
+.ai-panel.open { display:flex; }
+.ai-header { display:flex; justify-content:space-between; align-items:center; padding:16px; background:var(--primary); color:white; }
+.ai-header strong,.ai-header span { display:block; }
+.ai-header span { margin-top:3px; font-size:11px; color:rgba(255,255,255,.7); }
+.ai-header button { border:0; background:transparent; color:white; font-size:25px; cursor:pointer; }
+.ai-messages { flex:1; overflow-y:auto; padding:16px; background:#f5f7fa; }
+.ai-message { max-width:85%; padding:10px 12px; border-radius:10px; margin-bottom:10px; font-size:13px; line-height:1.5; }
+.ai-bot { background:white; color:var(--text); border:1px solid var(--border); }
+.ai-user { margin-left:auto; background:var(--primary); color:white; }
+.ai-input-area { display:flex; gap:8px; padding:10px; border-top:1px solid var(--border); }
+.ai-input-area input { flex:1; min-width:0; border:1px solid var(--border); border-radius:8px; padding:10px; outline:none; }
+.ai-input-area button { border:0; border-radius:8px; padding:0 13px; background:var(--primary); color:white; font-weight:700; cursor:pointer; }
+@media(max-width:950px) { .rental-grid,.application-grid { grid-template-columns:repeat(2,1fr); } .request-layout { grid-template-columns:1fr; } }
+@media(max-width:650px) { .rental-hero { min-height:410px; } .rental-hero-content { padding:70px 20px; } .rental-hero-content h1 { font-size:40px; } .rental-hero-content p { font-size:16px; } .rental-trust-container { grid-template-columns:1fr; gap:12px; } .rental-section,.application-section,.request-section { padding:55px 18px; } .rental-grid,.application-grid { grid-template-columns:1fr; } .request-card { padding:24px 20px; } .form-grid { grid-template-columns:1fr; } .form-group.full { grid-column:auto; } .ai-assistant { right:15px; bottom:15px; } }
+</style>
+<link rel="stylesheet" href="/tsb-brand.css">
+<link rel="stylesheet" href="/site-layout.css"><link rel="stylesheet" href="/rental-market.css"></head>
+<body data-tsb-public>
+<header class="tsb-site-header"><div class="tsb-nav-inner"><a class="tsb-home-logo" href="/" aria-label="Total Services — Home"><img src="/images/total-services-logo-source.jpeg" alt="Total Services Group of Companies" width="739" height="1600"></a><nav class="tsb-main-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/services.html">Services</a><a href="/parts.html">Parts</a><a href="/catalog.html">Catalog</a><a href="/rfq.html">Request Quote</a><a href="/rental.html" aria-current="page">Rentals</a><a href="/site-assessment.html">Site Assessment</a></nav></div></header>
+<aside class="tsb-rehlko-partner" aria-label="Rehlko distributor"><a href="https://www.rehlko.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Rehlko official website"><img src="/images/rehlko-logo.png" alt="Rehlko" width="3430" height="1440"></a><div><strong>Rehlko Authorized Distributor</strong><p>Generator solutions, parts and service support from Total Services Bahamas.</p></div></aside>
+<section class="rental-hero"><div class="rental-hero-content"><div class="eyebrow">TEMPORARY POWER SOLUTIONS</div><h1>Generator Rentals</h1><p>Reliable temporary power for construction projects, commercial operations, events, emergency backup and residential requirements across The Bahamas.</p><div class="rental-hero-buttons"><a href="#rentalEquipment" class="button button-light">Browse Generators</a><a href="/services.html" class="button button-outline">Explore Services</a></div></div></section>
+<section class="rental-trust"><div class="rental-trust-container"><div class="rental-trust-item">Reliable Temporary Power</div><div class="rental-trust-item">Technical Support Available</div><div class="rental-trust-item">Commercial &amp; Residential Solutions</div></div></section>
+<section class="rental-market" id="rentalEquipment"><div class="rental-market-heading"><p class="eyebrow">REHLKO MOBILE POWER</p><h2>Find your generator</h2><p>Explore diesel mobile generators for your next project. Rental availability, configuration and rates are confirmed by our team.</p></div><div class="rental-market-layout"><aside class="rental-filters" aria-label="Generator filters"><h3>Filter equipment</h3><label for="rentalSearch">Search generators</label><input id="rentalSearch" type="search" placeholder="Search model or diesel"><label for="rentalPower">Prime power</label><select id="rentalPower"><option value="">All power ranges</option><option value="small">Up to 100 kW</option><option value="large">Above 100 kW</option></select><p><strong>Manufacturer</strong><br>Rehlko</p><p><strong>Equipment type</strong><br>Mobile diesel generators</p><button type="button" id="resetRentalFilters">Clear filters</button><div class="rental-sizing"><h3>Need help sizing?</h3><p>Tell us what you need to power.</p><a href="#rentalRequest">Ask our team</a></div></aside><div><div class="rental-results-bar"><p id="rentalResultCount" role="status">Loading generators...</p><label for="rentalSort">Sort by <select id="rentalSort"><option value="asc">Power: low to high</option><option value="desc">Power: high to low</option></select></label></div><div id="rentalEquipmentGrid" class="rental-equipment-grid"></div><p class="rental-rating-note">Prime ratings vary by electrical configuration. Final voltage, phase and capacity will be confirmed for your application. Product images are representative.</p></div></div></section>
+<section class="application-section"><div class="catalog-heading"><div class="eyebrow">RENTAL SUPPORT</div><h2>More Than Just a Generator</h2><p>Our rental team can help coordinate the technical requirements surrounding your temporary power needs.</p></div><div class="application-grid"><div class="application-card"><h3>Generator Sizing</h3><p>Help determining the generator capacity required for your expected electrical load.</p></div><div class="application-card"><h3>Delivery</h3><p>Let us know your project location and whether generator delivery is required.</p></div><div class="application-card"><h3>Installation</h3><p>Tell us if temporary installation, connection or technical assistance will be required.</p></div><div class="application-card"><h3>Fuel Requirements</h3><p>Provide expected operating hours and fuel requirements so the rental can be planned correctly.</p></div><div class="application-card"><h3>Electrical Requirements</h3><p>Voltage, phase and connection requirements help us determine the appropriate equipment.</p></div><div class="application-card"><h3>Technical Support</h3><p>Our team can help coordinate technical support requirements for your rental.</p></div></div></section>
+<section id="rentalRequest" class="request-section"><div class="request-container"><div class="request-layout"><div class="request-card"><h2>Request a Generator Rental</h2><p class="request-card-intro">Complete the form below and our team will review your requirements and contact you with the appropriate rental solution.</p><form id="rentalForm"><div class="form-grid"><div class="form-group full"><label for="rentalModel">Selected Generator</label><input id="rentalModel" readonly placeholder="Let our team recommend a generator"></div><div class="form-group"><label for="name">Full Name <span>*</span></label><input id="name" type="text" required placeholder="Your full name"></div><div class="form-group"><label for="company">Company</label><input id="company" type="text" placeholder="Company name"></div><div class="form-group"><label for="email">Email Address <span>*</span></label><input id="email" type="email" required placeholder="you@example.com"></div><div class="form-group"><label for="phone">Phone Number <span>*</span></label><input id="phone" type="tel" required placeholder="242-xxx-xxxx"></div><div class="form-group"><label for="startDate">Rental Start Date <span>*</span></label><input id="startDate" type="date" required></div><div class="form-group"><label for="endDate">Rental End Date <span>*</span></label><input id="endDate" type="date" required></div><div class="form-group full"><label for="location">Delivery / Project Location <span>*</span></label><input id="location" type="text" required placeholder="Project, event or delivery location"></div><div class="form-group"><label for="application">Application <span>*</span></label><select id="application" required><option value="">Select application</option><option>Construction</option><option>Event</option><option>Commercial</option><option>Residential</option><option>Industrial</option><option>Emergency / Backup</option><option>Other</option></select></div><div class="form-group"><label for="generatorSize">Generator Size</label><select id="generatorSize"><option value="">Not sure / Need assistance</option><option>Small / Residential</option><option>20–50 kW</option><option>50–100 kW</option><option>100–250 kW</option><option>250–500 kW</option><option>500 kW+</option></select></div><div class="form-group"><label for="phase">Phase</label><select id="phase"><option value="">Not sure</option><option>Single Phase</option><option>Three Phase</option></select></div><div class="form-group"><label for="voltage">Voltage</label><input id="voltage" type="text" placeholder="Example: 120/208V"></div><div class="form-group"><label for="fuel">Fuel Requirement</label><select id="fuel"><option value="">Select</option><option>Diesel</option><option>Customer Supplied</option><option>Need Fuel Assistance</option><option>Not Sure</option></select></div><div class="form-group"><label for="delivery">Delivery Required?</label><select id="delivery"><option>Yes</option><option>No</option><option>Not Sure</option></select></div><div class="form-group"><label for="installation">Installation Required?</label><select id="installation"><option>Yes</option><option>No</option><option>Not Sure</option></select></div><div class="form-group"><label for="hours">Estimated Running Hours</label><input id="hours" type="text" placeholder="Example: 8 hours/day"></div><div class="form-group full"><label for="requirements">Additional Requirements</label><textarea id="requirements" placeholder="Tell us about your equipment, electrical load, project requirements, timing or anything else we should know."></textarea></div></div><button id="rentalSubmit" type="submit" class="rental-submit">Submit Rental Request</button><div id="rentalStatus" class="rental-status"></div></form></div><aside class="request-sidebar"><div class="side-card"><h3>How It Works</h3><ul class="side-list"><li>Tell us about your project</li><li>Provide your power requirements</li><li>Our team reviews the request</li><li>Generator solution is recommended</li><li>Rental quote is prepared</li></ul></div><div class="side-card"><h3>Not Sure What Size?</h3><p>That's okay. You don't need to know the exact generator size. Tell us what equipment you need to operate and our team can help determine the appropriate capacity.</p></div><div class="side-card dark"><h3>Total Services Bahamas</h3><p>Generator rentals supported by technical, electrical and maintenance services.</p></div></aside></div></div></section>
+<section class="cta-section"><div class="section-container"><div class="cta-content"><div><div class="eyebrow">TOTAL SERVICES BAHAMAS</div><h2>Need Reliable Temporary Power?</h2><p>Tell us what you're powering and we'll help determine the right rental solution.</p></div><div class="cta-buttons"><a href="#rentalRequest" class="button button-primary">Request a Rental</a><a href="/rfq.html" class="button button-outline">General Quote</a></div></div></div></section>
+<section class="tsb-contact" aria-labelledby="tsbContactTitle"><div><p>LET'S TALK ABOUT YOUR PROJECT</p><h2 id="tsbContactTitle">Contact Total Services Bahamas</h2><span>#98 University Drive, Nassau, Bahamas</span><a href="https://www.google.com/maps/search/?api=1&amp;query=98%20University%20Drive%20Nassau%20Bahamas" target="_blank" rel="noopener noreferrer">Find us on Maps</a></div><div><h3>Call our team</h3><a href="tel:+12423230400">(242) 323-0400</a><a href="tel:+12423230401">(242) 323-0401</a></div><div><h3>Email us</h3><a href="mailto:info@totalservicesbahamas.com">info@totalservicesbahamas.com</a><a class="tsb-contact-quote" href="/rfq.html">Request a Quote →</a></div></section><footer class="site-footer"><div class="footer-container footer-inner"><div class="footer-brand"><div class="brand footer-brand-link"><div class="logo-core">TS</div><div class="brand-text"><strong>TOTAL SERVICES</strong><span>BAHAMAS</span></div></div><p>Generator systems, electrical services, technical support, parts and reliable power solutions across The Bahamas.</p></div><div class="footer-column"><h4>Company</h4><a href="/">Home</a><a href="/services.html">Services</a></div><div class="footer-column"><h4>Power Solutions</h4><a href="/rental.html">Generator Rentals</a><a href="/parts.html">Parts</a><a href="/catalog.html">Catalog</a></div><div class="footer-column"><h4>Contact</h4><span>#98 University Drive, Nassau, Bahamas</span><a href="https://www.google.com/maps/search/?api=1&amp;query=98%20University%20Drive%20Nassau%20Bahamas" target="_blank" rel="noopener noreferrer">Find us on Maps</a><span>(242) 323-0400/1</span><span>info@totalservicesbahamas.com</span></div></div><div class="footer-bottom"><span>&copy; 2026 Total Services Bahamas. All Rights Reserved.</span><span>Authorized Rehlko Distributor</span></div></footer>
+<div class="ai-assistant"><button id="aiToggle" class="ai-button" type="button">AI</button><div id="aiPanel" class="ai-panel"><div class="ai-header"><div><strong>Total Services AI</strong><span>Rental &amp; Technical Support</span></div><button id="aiClose" type="button">&times;</button></div><div id="aiMessages" class="ai-messages"><div class="ai-message ai-bot">Hi! I can help you understand our generator rental options or prepare a rental request.</div></div><div class="ai-input-area"><input id="aiInput" type="text" placeholder="Ask about generator rentals..."><button id="aiSend" type="button">Send</button></div></div></div>
+<script>
+const rentalForm = document.getElementById("rentalForm");
+const rentalSubmit = document.getElementById("rentalSubmit");
+const rentalStatus = document.getElementById("rentalStatus");
+rentalForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+  if (new Date(endDate) < new Date(startDate)) { rentalStatus.className = "rental-status error"; rentalStatus.textContent = "The rental end date cannot be before the start date."; return; }
+  const name = document.getElementById("name").value.trim();
+  const company = document.getElementById("company").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const location = document.getElementById("location").value.trim();
+  const application = document.getElementById("application").value;
+  const generatorSize = document.getElementById("generatorSize").value;
+  const phase = document.getElementById("phase").value;
+  const voltage = document.getElementById("voltage").value.trim();
+  const fuel = document.getElementById("fuel").value;
+  const delivery = document.getElementById("delivery").value;
+  const installation = document.getElementById("installation").value;
+  const hours = document.getElementById("hours").value.trim();
+  const requirements = document.getElementById("requirements").value.trim();
+  rentalSubmit.disabled = true; rentalSubmit.textContent = "Submitting Request..."; rentalStatus.className = "rental-status";
+  const rentalMessage = `GENERATOR RENTAL REQUEST\n\nRequested Model: ${document.getElementById("rentalModel").value || "Recommendation requested"}\nPhone: ${phone}\nRental Start Date: ${startDate}\nRental End Date: ${endDate}\nDelivery / Project Location: ${location}\nApplication: ${application}\nGenerator Size: ${generatorSize || "Not specified"}\nPhase: ${phase || "Not specified"}\nVoltage: ${voltage || "Not specified"}\nFuel Requirement: ${fuel || "Not specified"}\nDelivery Required: ${delivery}\nInstallation Required: ${installation}\nEstimated Running Hours: ${hours || "Not specified"}\nAdditional Requirements: ${requirements || "None provided"}`;
+  try { const response = await fetch("/rfq", { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({ name, company, email, message:rentalMessage }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || "Failed to submit rental request"); rentalStatus.className = "rental-status success"; rentalStatus.textContent = "Thank you. Your generator rental request has been submitted successfully. Our team will contact you."; rentalForm.reset(); } catch (error) { console.error(error); rentalStatus.className = "rental-status error"; rentalStatus.textContent = error.message || "Unable to submit your rental request. Please try again."; } finally { rentalSubmit.disabled = false; rentalSubmit.textContent = "Submit Rental Request"; }
+});
+const aiPanel = document.getElementById("aiPanel"); const aiMessages = document.getElementById("aiMessages"); const aiInput = document.getElementById("aiInput");
+function addAIMessage(text,type) { const message = document.createElement("div"); message.className = `ai-message ${type}`; message.textContent = text; aiMessages.appendChild(message); aiMessages.scrollTop = aiMessages.scrollHeight; }
+async function sendAIMessage() { const message = aiInput.value.trim(); if (!message) return; addAIMessage(message,"ai-user"); aiInput.value = ""; addAIMessage("Let me check that for you...","ai-bot"); try { const response = await fetch("/ai", { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({ question:message }) }); const data = await response.json(); const botMessages = aiMessages.querySelectorAll(".ai-bot"); botMessages[botMessages.length - 1].textContent = data.response || "I couldn't process that request."; } catch (error) { console.error(error); const botMessages = aiMessages.querySelectorAll(".ai-bot"); botMessages[botMessages.length - 1].textContent = "I'm currently unable to connect. Please submit the rental request and our team will assist you."; } }
+document.getElementById("aiToggle").addEventListener("click", () => aiPanel.classList.toggle("open")); document.getElementById("aiClose").addEventListener("click", () => aiPanel.classList.remove("open")); document.getElementById("aiSend").addEventListener("click", sendAIMessage); aiInput.addEventListener("keydown", event => { if (event.key === "Enter") sendAIMessage(); });
+</script>
+<script src="/rental-market.js"></script><script src="/site-layout.js"></script></body>
+</html>
+
+
+

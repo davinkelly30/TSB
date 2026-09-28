@@ -49,13 +49,7 @@ const mailer = nodemailer.createTransport({
    DATABASE CONNECTION
 ========================= */
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-  console.log("MongoDB Connected");
-})
-.catch((err) => {
-  console.error("MongoDB Connection Error:", err);
-});
+// Connect only after routes and models have been registered (see startup below).
 
 /* =========================
    RFQ SCHEMA
@@ -2006,10 +2000,22 @@ app.put(
         data.discountValue ??
         existingQuote.discountValue;
 
-      const taxRate =
-        data.taxRate !== undefined
-          ? data.taxRate
-          : existingQuote.taxRate;
+      // Omitted rates preserve the saved value; explicit zero is valid.
+      // Reject blank or nonnumeric input before mutating the quote.
+      const suppliedTaxRate = data.taxRate;
+      const taxRate = suppliedTaxRate === undefined
+        ? existingQuote.taxRate
+        : Number(suppliedTaxRate);
+
+      if (
+        (suppliedTaxRate !== undefined &&
+          (suppliedTaxRate === null ||
+            !["number", "string"].includes(typeof suppliedTaxRate) ||
+            (typeof suppliedTaxRate === "string" && suppliedTaxRate.trim() === ""))) ||
+        !Number.isFinite(taxRate) || taxRate < 0
+      ) {
+        return res.status(400).json({ error: "Invalid tax rate" });
+      }
 
       const totals =
         calculateQuoteTotals({
@@ -2055,8 +2061,7 @@ app.put(
       existingQuote.taxableAmount =
         totals.taxableAmount;
 
-      existingQuote.taxRate =
-        Number(taxRate) || 0;
+      existingQuote.taxRate = taxRate;
 
       existingQuote.taxAmount =
         totals.taxAmount;
@@ -2673,9 +2678,10 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-
-  console.log(`Server running on port ${PORT}`);
+app.get("/health", (req, res) => {
+  const ready = mongoose.connection.readyState === 1;
+  res.set("Cache-Control", "no-store");
+  res.status(ready ? 200 : 503).json({ status: ready ? "ok" : "unavailable" });
 });
 
 
@@ -2987,3 +2993,22 @@ app.post(
     }
   }
 );
+
+// Do not accept traffic until MongoDB and required indexes are ready.
+async function startServer() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 10000 });
+    await Promise.all(Object.values(mongoose.models).map(model => model.init()));
+    const server = app.listen(PORT, () => console.log('Server running on port ' + PORT));
+    server.on('error', async () => {
+      console.error('Server could not start listening.');
+      await mongoose.disconnect();
+      process.exitCode = 1;
+    });
+  } catch {
+    console.error('Startup failed: check database access and configuration.');
+    await mongoose.disconnect();
+    process.exitCode = 1;
+  }
+}
+startServer();

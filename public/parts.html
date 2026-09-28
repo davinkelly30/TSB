@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Parts Request | Total Services Bahamas</title>
+<title>Diesel Parts | Total Services Bahamas</title>
 <style>
 body { margin:0; font-family:Arial,sans-serif; background:#f5f7fa; color:#0b1f3b; }
 .header { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; background:white; box-shadow:0 2px 10px rgba(0,0,0,.08); }
@@ -20,67 +20,47 @@ button { margin-top:20px; padding:14px 22px; background:#0b1f3b; color:white; bo
 @media(max-width:800px){ .grid{grid-template-columns:1fr;} .header{flex-direction:column;gap:14px;} }
 </style>
 <link rel="stylesheet" href="tsb-brand.css">
-</head>
+<link rel="stylesheet" href="/site-layout.css"><link rel="stylesheet" href="/parts-layout.css"></head>
 
-<body>
+<body data-tsb-public>
 
-<div class="header">
-  <a class="tsb-home-logo" href="index.html" aria-label="Total Services — Home"><img src="images/total-services-logo-source.jpeg" alt="Total Services Group of Companies" width="739" height="1600"></a>
-  <div class="nav">
-    <a href="/">Home</a>
-    <a href="/parts.html">Parts</a>
-    <a href="/industries.html">Industries</a>
-    <a href="/catalog.html">Catalog</a>
-    <a href="/rfq.html">RFQ</a>
-  </div>
-</div>
+<header class="tsb-site-header"><div class="tsb-nav-inner"><a class="tsb-home-logo" href="/" aria-label="Total Services — Home"><img src="/images/total-services-logo-source.jpeg" alt="Total Services Group of Companies" width="739" height="1600"></a><nav class="tsb-main-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/services.html">Services</a><a href="/parts.html" aria-current="page">Parts</a><a href="/catalog.html">Catalog</a><a href="/rfq.html">Request Quote</a><a href="/rental.html">Rentals</a><a href="/site-assessment.html">Site Assessment</a></nav></div></header>
+<aside class="tsb-rehlko-partner" aria-label="Rehlko distributor"><a href="https://www.rehlko.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Rehlko official website"><img src="/images/rehlko-logo.png" alt="Rehlko" width="3430" height="1440"></a><div><strong>Rehlko Authorized Distributor</strong><p>Generator solutions, parts and service support from Total Services Bahamas.</p></div></aside>
 
-<div class="hero">
-  <h1>Parts Request</h1>
-  <p>Generator parts, filters, AVR systems, controllers, sensors, belts, breakers, and ATS components.</p>
-</div>
+<section class="parts-banner"><img src="/images/parts/diesel-parts-hero.webp" alt="Rehlko diesel engine parts and filters" fetchpriority="high"><div><p>REHLKO PARTS • TOTAL SERVICES BAHAMAS</p><h1>Diesel Parts</h1></div></section>
+<main><section class="parts-intro"><h2>The right parts. The right support.</h2><p>Explore genuine Rehlko diesel engine parts and maintenance essentials. Send Total Services your engine model, serial number and part requirements so we can help confirm the correct selection.</p><a href="#filter-reference">Need to identify a filter? ↓</a></section>
+<section class="parts-categories" aria-label="Parts categories"><article class="parts-category"><img src="/images/parts/diesel-fluids.webp" alt="Rehlko diesel fluids" loading="lazy" width="700" height="700"><div><h2>Diesel Fluids</h2><a href="/catalog.html?search=Diesel%20Fluids">Browse catalog →</a><button type="button" data-part="Diesel Fluids">Request diesel fluids →</button></div></article><article class="parts-category"><img src="/images/parts/oil-filters.webp" alt="Rehlko oil filters" loading="lazy" width="700" height="700"><div><h2>Oil Filters</h2><a href="/catalog.html?search=Oil%20Filters">Browse catalog →</a><button type="button" data-part="Oil Filters">Request oil filters →</button></div></article><article class="parts-category"><img src="/images/parts/fuel-filters.webp" alt="Rehlko fuel filters" loading="lazy" width="700" height="700"><div><h2>Fuel Filters</h2><a href="/catalog.html?search=Fuel%20Filters">Browse catalog →</a><button type="button" data-part="Fuel Filters">Request fuel filters →</button></div></article><article class="parts-category"><img src="/images/parts/air-filters.webp" alt="Rehlko air filters" loading="lazy" width="700" height="700"><div><h2>Air Filters</h2><a href="/catalog.html?search=Air%20Filters">Browse catalog →</a><button type="button" data-part="Air Filters">Request air filters →</button></div></article><article class="parts-category"><img src="/images/parts/starters.webp" alt="Rehlko starters" loading="lazy" width="700" height="700"><div><h2>Starters</h2><a href="/catalog.html?search=Starters">Browse catalog →</a><button type="button" data-part="Starters">Request starters →</button></div></article><article class="parts-category"><img src="/images/parts/v-belts.webp" alt="Rehlko v-belts" loading="lazy" width="700" height="700"><div><h2>V-Belts</h2><a href="/catalog.html?search=V-Belts">Browse catalog →</a><button type="button" data-part="V-Belts">Request v-belts →</button></div></article></section>
+<section id="filter-reference" class="parts-reference"><div><p class="eyebrow">FILTER CROSS-REFERENCE</p><h2>Have a filter number?</h2><p>Send the existing filter brand and number with your equipment details. Our team will review the replacement before quoting. No automatic compatibility match is provided.</p></div><div><label for="filterBrand">Existing filter manufacturer</label><input id="filterBrand" placeholder="Manufacturer on the filter"><label for="filterNumber">Existing filter part number</label><input id="filterNumber" placeholder="Enter the complete part number"><label for="filterType">Filter type</label><select id="filterType"><option value="">Select type</option><option>Oil filter</option><option>Fuel filter</option><option>Air filter</option><option>Other / Not sure</option></select><button type="button" id="referenceRequest">Use these details in my request →</button><p id="referenceStatus" role="status"></p></div></section>
+<section class="parts-tools"><h2>Find your engine parts</h2><p>Use the manufacturer catalog to identify a part, or ask our team for help.</p><a href="https://partnersportal.kohlerpower.it/customer/servicepartscatalogue/" target="_blank" rel="noopener noreferrer">Open Rehlko parts lookup ↗</a></section>
+<div class="container" id="parts-request">  <h2>Submit Parts Request</h2>
 
-<div class="container">
-  <h2>Common Parts We Support</h2>
-
-  <div class="grid">
-    <div class="card">Filters & Fluids</div>
-    <div class="card">AVR & Controllers</div>
-    <div class="card">Sensors & Switches</div>
-    <div class="card">Breakers & ATS Parts</div>
-    <div class="card">Fuel System Components</div>
-    <div class="card">Belts, Hoses & Service Kits</div>
-  </div>
-
-  <h2>Submit Parts Request</h2>
-
-  <label>Full Name *</label>
+  <label for="name">Full Name *</label>
   <input id="name" placeholder="Full name" />
 
-  <label>Company</label>
+  <label for="company">Company</label>
   <input id="company" placeholder="Company name" />
 
-  <label>Email *</label>
+  <label for="email">Email *</label>
   <input id="email" type="email" placeholder="Email address" />
 
-  <label>Generator Brand</label>
+  <label for="brand">Generator Brand</label>
   <input id="brand" placeholder="Example: Rehlko / Kohler / CAT / Cummins" />
 
-  <label>Model Number</label>
+  <label for="model">Model Number</label>
   <input id="model" placeholder="Generator model number" />
 
-  <label>Serial Number</label>
+  <label for="serial">Serial Number</label>
   <input id="serial" placeholder="Generator serial number" />
 
-  <label>Part Needed</label>
+  <label for="part">Part Needed</label>
   <input id="part" placeholder="Example: oil filter, AVR, controller, sensor" />
 
-  <label>Message *</label>
+  <label for="msg">Message *</label>
   <textarea id="msg" rows="6" placeholder="Describe the part, urgency, equipment condition, and any numbers visible on the component."></textarea>
 
-  <button onclick="submitPartsRequest()">Submit Parts Request</button>
+  <button id="partsSubmit" type="button" onclick="submitPartsRequest()">Submit Parts Request</button>
 
-  <div class="status" id="status"></div>
+  <div class="status" id="status" role="status"></div>
 </div>
 
 <script>
@@ -105,6 +85,10 @@ async function submitPartsRequest(){
     return;
   }
 
+  if (!document.getElementById("email").reportValidity()) return;
+  const submit = document.getElementById("partsSubmit");
+  if (submit.disabled) return;
+  submit.disabled = true;
   status.textContent = "Submitting parts request...";
 
   try {
@@ -132,5 +116,8 @@ async function submitPartsRequest(){
 }
 </script>
 
-</body>
+</main><script src="/parts-layout.js"></script><script src="/site-layout.js"></script><section class="tsb-contact" aria-labelledby="tsbContactTitle"><div><p>LET'S TALK ABOUT YOUR PROJECT</p><h2 id="tsbContactTitle">Contact Total Services Bahamas</h2><span>#98 University Drive, Nassau, Bahamas</span><a href="https://www.google.com/maps/search/?api=1&amp;query=98%20University%20Drive%20Nassau%20Bahamas" target="_blank" rel="noopener noreferrer">Find us on Maps</a></div><div><h3>Call our team</h3><a href="tel:+12423230400">(242) 323-0400</a><a href="tel:+12423230401">(242) 323-0401</a></div><div><h3>Email us</h3><a href="mailto:info@totalservicesbahamas.com">info@totalservicesbahamas.com</a><a class="tsb-contact-quote" href="/rfq.html">Request a Quote →</a></div></section></body>
 </html>
+
+
+

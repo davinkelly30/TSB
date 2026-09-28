@@ -21,77 +21,27 @@ body { margin:0; font-family:Arial,sans-serif; background:#f5f7fa; color:#0b1f3b
 @media(max-width:850px){ .grid{grid-template-columns:1fr;} .header{flex-direction:column;gap:14px;} }
 </style>
 <link rel="stylesheet" href="tsb-brand.css">
-</head>
+<link rel="stylesheet" href="/site-layout.css"><link rel="stylesheet" href="/catalog-layout.css"></head>
 
-<body>
+<body data-tsb-public>
 
-<div class="header">
-  <a class="tsb-home-logo" href="index.html" aria-label="Total Services — Home"><img src="images/total-services-logo-source.jpeg" alt="Total Services Group of Companies" width="739" height="1600"></a>
-  <div class="nav">
-    <a href="/">Home</a>
-    <a href="/parts.html">Parts</a>
-    <a href="/services.html">Services</a>
-    <a href="/catalog.html">Catalog</a>
-    <a href="/rfq.html">RFQ</a>
-  </div>
-</div>
+<header class="tsb-site-header"><div class="tsb-nav-inner"><a class="tsb-home-logo" href="/" aria-label="Total Services — Home"><img src="/images/total-services-logo-source.jpeg" alt="Total Services Group of Companies" width="739" height="1600"></a><nav class="tsb-main-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/services.html">Services</a><a href="/parts.html">Parts</a><a href="/catalog.html" aria-current="page">Catalog</a><a href="/rfq.html">Request Quote</a><a href="/rental.html">Rentals</a><a href="/site-assessment.html">Site Assessment</a></nav></div></header>
+<aside class="tsb-rehlko-partner" aria-label="Rehlko distributor"><a href="https://www.rehlko.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Rehlko official website"><img src="/images/rehlko-logo.png" alt="Rehlko" width="3430" height="1440"></a><div><strong>Rehlko Authorized Distributor</strong><p>Generator solutions, parts and service support from Total Services Bahamas.</p></div></aside>
 
-<div class="hero">
+<div class="hero"><div>
   <h1>Parts & Systems Catalog</h1>
   <p>Browse available parts, components, generator support items, and electrical equipment.</p>
-</div>
+</div></div>
 
 <div class="container">
-  <input class="search" id="search" placeholder="Search products by name, category, or description..." oninput="renderProducts()" />
+  <input class="search" id="search" placeholder="Search products by name, category, or description..." aria-label="Search catalog" />
 
-  <div id="catalogGrid" class="grid"></div>
+  <label for="categoryFilter">Category</label><select id="categoryFilter"><option value="">All categories</option></select><p id="catalogNotice" role="status"></p><p>Rehlko ranges and listed products. Confirm part number, equipment compatibility, local availability and pricing with our team.</p><div id="catalogGrid" class="grid"></div>
 </div>
 
-<script>
-let products = [];
+<script src="/catalog.js"></script>
 
-async function loadProducts(){
-  const grid = document.getElementById("catalogGrid");
-
-  try {
-    const res = await fetch("/products");
-    products = await res.json();
-
-    renderProducts();
-
-  } catch (err) {
-    grid.innerHTML = `<div class="empty">Failed to load catalog.</div>`;
-    console.error(err);
-  }
-}
-
-function renderProducts(){
-  const grid = document.getElementById("catalogGrid");
-  const search = document.getElementById("search").value.toLowerCase();
-
-  const filtered = products.filter(p =>
-    (p.name || "").toLowerCase().includes(search) ||
-    (p.category || "").toLowerCase().includes(search) ||
-    (p.description || "").toLowerCase().includes(search)
-  );
-
-  if (!filtered.length) {
-    grid.innerHTML = `<div class="empty">No matching products found.</div>`;
-    return;
-  }
-
-  grid.innerHTML = filtered.map(p => `
-    <div class="card">
-      <h3>${p.name || "Unnamed Product"}</h3>
-      <div class="category">${p.category || "General"}</div>
-      <p>${p.description || "No description available."}</p>
-      <a href="/rfq.html">Request Quote</a>
-    </div>
-  `).join("");
-}
-
-loadProducts();
-</script>
-
-</body>
+<script src="/site-layout.js"></script><section class="tsb-contact" aria-labelledby="tsbContactTitle"><div><p>LET'S TALK ABOUT YOUR PROJECT</p><h2 id="tsbContactTitle">Contact Total Services Bahamas</h2><span>#98 University Drive, Nassau, Bahamas</span><a href="https://www.google.com/maps/search/?api=1&amp;query=98%20University%20Drive%20Nassau%20Bahamas" target="_blank" rel="noopener noreferrer">Find us on Maps</a></div><div><h3>Call our team</h3><a href="tel:+12423230400">(242) 323-0400</a><a href="tel:+12423230401">(242) 323-0401</a></div><div><h3>Email us</h3><a href="mailto:info@totalservicesbahamas.com">info@totalservicesbahamas.com</a><a class="tsb-contact-quote" href="/rfq.html">Request a Quote →</a></div></section></body>
 </html>
+
+
