@@ -862,7 +862,7 @@
 
     <!-- SIDEBAR -->
 
-    <aside class="sidebar"><a href="/manuals-admin.html" style="display:block;padding:18px;color:inherit">Generator Manuals</a>
+    <aside class="sidebar"><a href="/generators-admin.html" style="display:block;padding:18px;color:inherit">Generators We Offer</a><a href="/manuals-admin.html" style="display:block;padding:18px;color:inherit">Generator Manuals</a>
 
       <div class="sidebar-section">
         Management
@@ -1968,7 +1968,7 @@
         <div class="item-card">
 
           <h3>
-            ${escapeHtml(rfq.name)}
+            ${escapeHtml(rfq.name)}<small style="display:block">${escapeHtml(rfq.reference || "Legacy request")}</small>
           </h3>
 
           <p>
@@ -1982,7 +1982,7 @@
           </p>
 
           ${productInfo}
-
+${Array.from({length:Math.min(3,rfq.photoCount||0)},(_,i)=>`<button class="btn btn-light btn-small" onclick="downloadRequestPhoto('${rfq._id}',${i})">Download photo ${i+1}</button>`).join("")}
           <p>
             <strong>Request:</strong><br>
             ${escapeHtml(rfq.message)}
@@ -2022,8 +2022,8 @@
               onchange="updateRFQStatus('${rfq._id}', this.value)"
             >
               ${[
-                "New",
-                "Quoted",
+                "New", "Reviewing",
+                "Quoted", "Scheduled",
                 "In Progress",
                 "Completed",
                 "Archived"
@@ -5325,5 +5325,9 @@
 
 </script>
 
-</body>
+<script>
+async function downloadRequestPhoto(id,index){
+ try{const r=await fetch('/rfq/'+encodeURIComponent(id)+'/photos/'+index,{headers:{Authorization:'Bearer '+token}});if(!r.ok)throw Error('Unable to download photo. Please sign in again if your session expired.');const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download='request-photo-'+(index+1);a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(e){showToast(e.message,'error');}
+}
+</script></body>
 </html>

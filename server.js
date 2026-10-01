@@ -14,13 +14,16 @@ const { buildDocumentPdf } = require("./document-pdf");
 const app = express();
 const initializeParts = require('./parts-api').setupMongoParts(app, mongoose);
 const initializeManuals = require('./manuals-api').setupMongoManuals(app, mongoose, authenticateToken);
+const initializeGenerators = require('./generators-api').setupMongoGenerators(app,mongoose,authenticateToken);
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
    MIDDLEWARE
 ========================= */
 
+app.use('/rfq', express.json({limit:'5mb'}));
 app.use(express.json());
+const {validatePhotos,newReference}=require('./request-photos');
 
 app.use(cors({
   origin: [
@@ -58,6 +61,9 @@ const mailer = nodemailer.createTransport({
 ========================= */
 
 const rfqSchema = new mongoose.Schema({
+  reference: {type:String,unique:true,sparse:true},
+  photoCount: {type:Number,default:0},
+  photos: {type:[{name:String,mime:String,data:Buffer}],select:false},
   name: {
     type: String,
     required: true
@@ -630,14 +636,17 @@ app.post("/rfq", async (req, res) => {
 
     /* VALIDATION */
 
-    if (!name || !email || !message) {
+    if (![name,email,message].every(v=>typeof v === "string" && v.trim()) || name.length>200 || email.length>320 || message.length>50000 || (company !== undefined && (typeof company !== "string" || company.length>300))) {
 
       return res.status(400).json({
         error: "Required fields missing"
       });
     }
 
+    let photos;
+    try { photos=validatePhotos(req.body.photos); } catch(error) { return res.status(400).json({error:error.message}); }
     const rfq = new RFQ({
+      reference:newReference(), photos, photoCount:photos.length,
       name,
       company,
       email,
@@ -652,14 +661,11 @@ app.post("/rfq", async (req, res) => {
         from: `"Total Services Website" <${process.env.EMAIL_USER}>`,
         to: process.env.ADMIN_EMAIL,
         subject: "New RFQ Submitted - Total Services Bahamas",
-        html: `
-          <h2>New RFQ Submitted</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Company:</strong> ${company || "N/A"}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message}</p>
-        `
+        text: `New request ${rfq.reference}
+Name: ${name}
+Company: ${company || "N/A"}
+Email: ${email}
+Message: ${message}`
       });
       console.log("Email notification sent successfully");
     } catch (emailError) {
@@ -667,10 +673,10 @@ app.post("/rfq", async (req, res) => {
       // Continue with RFQ submission even if email fails
     }
 
-    console.log("RFQ Saved:", rfq);
+    console.log("RFQ saved:", rfq.reference);
 
     res.status(201).json({
-      message: "RFQ submitted successfully"
+      message: "RFQ submitted successfully", reference:rfq.reference
     });
 
   } catch (err) {
@@ -706,6 +712,16 @@ app.get("/rfq", authenticateToken, async (req, res) => {
   }
 });
 
+app.get('/rfq/:id/photos/:index',authenticateToken,async(req,res)=>{
+  if(!mongoose.isValidObjectId(req.params.id)||!/^\d$/.test(req.params.index))return res.status(400).json({error:'Invalid photo request'});
+  try{
+    const rfq=await RFQ.findById(req.params.id).select('+photos');
+    const photo=rfq?.photos?.[Number(req.params.index)];
+    if(!photo)return res.status(404).json({error:'Photo not found'});
+    res.set({'Content-Type':photo.mime,'Content-Disposition':`attachment; filename="${photo.name}"`,'X-Content-Type-Options':'nosniff','Cache-Control':'no-store'}).send(photo.data);
+  }catch{res.status(500).json({error:'Unable to retrieve photo'});}
+});
+
 app.delete("/rfq/:id", authenticateToken, async (req, res) => {
   try {
     const deleted = await RFQ.findByIdAndDelete(req.params.id);
@@ -726,7 +742,7 @@ app.patch("/rfq/:id/status", authenticateToken, async (req, res) => {
   try {
     const { status } = req.body;
 
-    const allowedStatuses = ["New", "Quoted", "In Progress", "Completed", "Archived"];
+    const allowedStatuses = ["New", "Reviewing", "Quoted", "Scheduled", "In Progress", "Completed", "Archived"];
 
     if (!allowedStatuses.includes(status)) {
       return res.status(400).json({ error: "Invalid RFQ status" });
@@ -3003,6 +3019,7 @@ async function startServer() {
     await Promise.all(Object.values(mongoose.models).map(model => model.init()));
     await initializeParts();
     await initializeManuals();
+    await initializeGenerators();
     const server = app.listen(PORT, () => console.log('Server running on port ' + PORT));
     server.on('error', async () => {
       console.error('Server could not start listening.');
