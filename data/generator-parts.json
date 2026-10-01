@@ -1,0 +1,5463 @@
+{
+  "source": "PARTS BREAKDOWN.xlsx",
+  "sheet": "Sheet1",
+  "sourceSha256": "5c3b7dbd22dfaab1e5d0a0506f489ff870f726bca47283aa0218c1974cd04e47",
+  "variants": [
+    {
+      "id": "generator-row-2",
+      "model": "D250U",
+      "engine": "P126TI",
+      "sourceRow": 2,
+      "parts": [
+        {
+          "id": "row-2-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G2"
+        },
+        {
+          "id": "row-2-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K2"
+        },
+        {
+          "id": "row-2-col-15",
+          "name": "Air filter",
+          "partNumber": "330510066",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O2"
+        },
+        {
+          "id": "row-2-col-17",
+          "name": "Fan belt",
+          "partNumber": "330601802",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q2"
+        },
+        {
+          "id": "row-2-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600190",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U2"
+        },
+        {
+          "id": "row-2-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330601245",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE2"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-3",
+      "model": "D300U",
+      "engine": "P126TI -II",
+      "sourceRow": 3,
+      "parts": [
+        {
+          "id": "row-3-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G3"
+        },
+        {
+          "id": "row-3-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K3"
+        },
+        {
+          "id": "row-3-col-15",
+          "name": "Air filter",
+          "partNumber": "330510066",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O3"
+        },
+        {
+          "id": "row-3-col-17",
+          "name": "Fan belt",
+          "partNumber": "330601786",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q3"
+        },
+        {
+          "id": "row-3-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600190",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U3"
+        },
+        {
+          "id": "row-3-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330601634",
+          "category": "Cooling",
+          "quantity": 2,
+          "sourceCell": "W3"
+        },
+        {
+          "id": "row-3-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330600013",
+          "category": "Cooling",
+          "quantity": 2,
+          "sourceCell": "Y3"
+        },
+        {
+          "id": "row-3-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330600244",
+          "category": "Gaskets",
+          "quantity": 2,
+          "sourceCell": "AA3"
+        },
+        {
+          "id": "row-3-col-29",
+          "name": "Injector",
+          "partNumber": "330600554",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC3"
+        },
+        {
+          "id": "row-3-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330601245",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE3"
+        },
+        {
+          "id": "row-3-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330600599",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AG3"
+        },
+        {
+          "id": "row-3-col-35",
+          "name": "Oil switch",
+          "partNumber": "330601741",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI3"
+        },
+        {
+          "id": "row-3-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101002401",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ3"
+        },
+        {
+          "id": "row-3-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330600522",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK3"
+        },
+        {
+          "id": "row-3-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330600520",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM3"
+        },
+        {
+          "id": "row-3-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330600342",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS3"
+        },
+        {
+          "id": "row-3-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330600510",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU3"
+        },
+        {
+          "id": "row-3-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330601629",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY3"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-4",
+      "model": "D400U",
+      "engine": "P158LE",
+      "sourceRow": 4,
+      "parts": [
+        {
+          "id": "row-4-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G4"
+        },
+        {
+          "id": "row-4-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K4"
+        },
+        {
+          "id": "row-4-col-15",
+          "name": "Air filter",
+          "partNumber": "330510071",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O4"
+        },
+        {
+          "id": "row-4-col-17",
+          "name": "Fan belt",
+          "partNumber": "330600367",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q4"
+        },
+        {
+          "id": "row-4-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330601794",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S4"
+        },
+        {
+          "id": "row-4-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600189",
+          "category": "Gaskets",
+          "quantity": 8,
+          "sourceCell": "U4"
+        },
+        {
+          "id": "row-4-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330601634",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "W4"
+        },
+        {
+          "id": "row-4-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330600013",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "Y4"
+        },
+        {
+          "id": "row-4-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330600244",
+          "category": "Gaskets",
+          "quantity": 3,
+          "sourceCell": "AA4"
+        },
+        {
+          "id": "row-4-col-29",
+          "name": "Injector",
+          "partNumber": "330600156",
+          "category": "Fuel system",
+          "quantity": 8,
+          "sourceCell": "AC4"
+        },
+        {
+          "id": "row-4-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330600063",
+          "category": "Gaskets",
+          "quantity": 8,
+          "sourceCell": "AE4"
+        },
+        {
+          "id": "row-4-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330600030",
+          "category": "Gaskets",
+          "quantity": 8,
+          "sourceCell": "AG4"
+        },
+        {
+          "id": "row-4-col-35",
+          "name": "Oil switch",
+          "partNumber": "330601741",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI4"
+        },
+        {
+          "id": "row-4-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101002401",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ4"
+        },
+        {
+          "id": "row-4-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330601677",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AK4"
+        },
+        {
+          "id": "row-4-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330601717",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AM4"
+        },
+        {
+          "id": "row-4-col-41",
+          "name": "Coolant hose",
+          "partNumber": "330600830",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO4"
+        },
+        {
+          "id": "row-4-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330600401",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AS4"
+        },
+        {
+          "id": "row-4-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330600829",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU4"
+        },
+        {
+          "id": "row-4-col-49",
+          "name": "Air hose 3",
+          "partNumber": "330600210",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AW4"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-5",
+      "model": "D500U",
+      "engine": "DP158LDS",
+      "sourceRow": 5,
+      "parts": [
+        {
+          "id": "row-5-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G5"
+        },
+        {
+          "id": "row-5-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K5"
+        },
+        {
+          "id": "row-5-col-15",
+          "name": "Air filter",
+          "partNumber": "330510073",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O5"
+        },
+        {
+          "id": "row-5-col-17",
+          "name": "Fan belt",
+          "partNumber": "330601804",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q5"
+        },
+        {
+          "id": "row-5-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330601801",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S5"
+        },
+        {
+          "id": "row-5-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600189",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "U5"
+        },
+        {
+          "id": "row-5-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330601634",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "W5"
+        },
+        {
+          "id": "row-5-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330600013",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "Y5"
+        },
+        {
+          "id": "row-5-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330600244",
+          "category": "Gaskets",
+          "quantity": 3,
+          "sourceCell": "AA5"
+        },
+        {
+          "id": "row-5-col-29",
+          "name": "Injector",
+          "partNumber": "330600156",
+          "category": "Fuel system",
+          "quantity": 10,
+          "sourceCell": "AC5"
+        },
+        {
+          "id": "row-5-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330600063",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "AE5"
+        },
+        {
+          "id": "row-5-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330600030",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "AG5"
+        },
+        {
+          "id": "row-5-col-35",
+          "name": "Oil switch",
+          "partNumber": "330601741",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI5"
+        },
+        {
+          "id": "row-5-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101002401",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ5"
+        },
+        {
+          "id": "row-5-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330601677",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AK5"
+        },
+        {
+          "id": "row-5-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330601717",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AM5"
+        },
+        {
+          "id": "row-5-col-41",
+          "name": "Coolant hose",
+          "partNumber": "330600830",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO5"
+        },
+        {
+          "id": "row-5-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330600401",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AS5"
+        },
+        {
+          "id": "row-5-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330600829",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU5"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-6",
+      "model": "D600U",
+      "engine": "DP180LB",
+      "sourceRow": 6,
+      "parts": [
+        {
+          "id": "row-6-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G6"
+        },
+        {
+          "id": "row-6-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "K6"
+        },
+        {
+          "id": "row-6-col-15",
+          "name": "Air filter",
+          "partNumber": "330510072",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O6"
+        },
+        {
+          "id": "row-6-col-17",
+          "name": "Fan belt",
+          "partNumber": "330600573",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q6"
+        },
+        {
+          "id": "row-6-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330600799",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S6"
+        },
+        {
+          "id": "row-6-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600191",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "U6"
+        },
+        {
+          "id": "row-6-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330601634",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "W6"
+        },
+        {
+          "id": "row-6-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330600013",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "Y6"
+        },
+        {
+          "id": "row-6-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330600244",
+          "category": "Gaskets",
+          "quantity": 3,
+          "sourceCell": "AA6"
+        },
+        {
+          "id": "row-6-col-29",
+          "name": "Injector",
+          "partNumber": "330600156",
+          "category": "Fuel system",
+          "quantity": 10,
+          "sourceCell": "AC6"
+        },
+        {
+          "id": "row-6-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330600063",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "AE6"
+        },
+        {
+          "id": "row-6-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330600030",
+          "category": "Gaskets",
+          "quantity": 10,
+          "sourceCell": "AG6"
+        },
+        {
+          "id": "row-6-col-35",
+          "name": "Oil switch",
+          "partNumber": "330601741",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI6"
+        },
+        {
+          "id": "row-6-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101002401",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ6"
+        },
+        {
+          "id": "row-6-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330601677",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AK6"
+        },
+        {
+          "id": "row-6-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330601717",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AM6"
+        },
+        {
+          "id": "row-6-col-41",
+          "name": "Coolant hose",
+          "partNumber": "330600830",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO6"
+        },
+        {
+          "id": "row-6-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330600401",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AS6"
+        },
+        {
+          "id": "row-6-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330600829",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU6"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-7",
+      "model": "D750U",
+      "engine": "DP222LC",
+      "sourceRow": 7,
+      "parts": [
+        {
+          "id": "row-7-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510070",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G7"
+        },
+        {
+          "id": "row-7-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560507",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "K7"
+        },
+        {
+          "id": "row-7-col-15",
+          "name": "Air filter",
+          "partNumber": "330510072",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O7"
+        },
+        {
+          "id": "row-7-col-17",
+          "name": "Fan belt",
+          "partNumber": "330601804",
+          "category": "Belts",
+          "quantity": 6,
+          "sourceCell": "Q7"
+        },
+        {
+          "id": "row-7-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330601801",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S7"
+        },
+        {
+          "id": "row-7-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330600191",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "U7"
+        },
+        {
+          "id": "row-7-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330601634",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "W7"
+        },
+        {
+          "id": "row-7-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330600013",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "Y7"
+        },
+        {
+          "id": "row-7-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330600244",
+          "category": "Gaskets",
+          "quantity": 3,
+          "sourceCell": "AA7"
+        },
+        {
+          "id": "row-7-col-29",
+          "name": "Injector",
+          "partNumber": "330600156",
+          "category": "Fuel system",
+          "quantity": 12,
+          "sourceCell": "AC7"
+        },
+        {
+          "id": "row-7-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330600063",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AE7"
+        },
+        {
+          "id": "row-7-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330600030",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AG7"
+        },
+        {
+          "id": "row-7-col-35",
+          "name": "Oil switch",
+          "partNumber": "330601741",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI7"
+        },
+        {
+          "id": "row-7-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101002401",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ7"
+        },
+        {
+          "id": "row-7-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810161201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK7"
+        },
+        {
+          "id": "row-7-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810163901",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM7"
+        },
+        {
+          "id": "row-7-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810166801",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO7"
+        },
+        {
+          "id": "row-7-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330600401",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AS7"
+        },
+        {
+          "id": "row-7-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330600829",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU7"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-8",
+      "model": "J100U",
+      "engine": "4045HF120",
+      "sourceRow": 8,
+      "parts": [
+        {
+          "id": "row-8-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510061",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G8"
+        },
+        {
+          "id": "row-8-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K8"
+        },
+        {
+          "id": "row-8-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O8"
+        },
+        {
+          "id": "row-8-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q8"
+        },
+        {
+          "id": "row-8-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U8"
+        },
+        {
+          "id": "row-8-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330360150",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AE8"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-9",
+      "model": "J100U",
+      "engine": "4045HSG20",
+      "sourceRow": 9,
+      "parts": [
+        {
+          "id": "row-9-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G9"
+        },
+        {
+          "id": "row-9-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K9"
+        },
+        {
+          "id": "row-9-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O9"
+        },
+        {
+          "id": "row-9-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q9"
+        },
+        {
+          "id": "row-9-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330365704",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U9"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-10",
+      "model": "J120U",
+      "engine": "4045HSG21",
+      "sourceRow": 10,
+      "parts": [
+        {
+          "id": "row-10-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G10"
+        },
+        {
+          "id": "row-10-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K10"
+        },
+        {
+          "id": "row-10-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O10"
+        },
+        {
+          "id": "row-10-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q10"
+        },
+        {
+          "id": "row-10-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330365704",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U10"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-11",
+      "model": "J120U",
+      "engine": "6068TF220",
+      "sourceRow": 11,
+      "parts": [
+        {
+          "id": "row-11-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510061",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G11"
+        },
+        {
+          "id": "row-11-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K11"
+        },
+        {
+          "id": "row-11-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O11"
+        },
+        {
+          "id": "row-11-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360006",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q11"
+        },
+        {
+          "id": "row-11-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364809",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U11"
+        },
+        {
+          "id": "row-11-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W11"
+        },
+        {
+          "id": "row-11-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA11"
+        },
+        {
+          "id": "row-11-col-29",
+          "name": "Injector",
+          "partNumber": "330360022",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC11"
+        },
+        {
+          "id": "row-11-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI11"
+        },
+        {
+          "id": "row-11-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ11"
+        },
+        {
+          "id": "row-11-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054601",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK11"
+        },
+        {
+          "id": "row-11-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054501",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM11"
+        },
+        {
+          "id": "row-11-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY11"
+        },
+        {
+          "id": "row-11-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ11"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-12",
+      "model": "J150U",
+      "engine": "6068HF120",
+      "sourceRow": 12,
+      "parts": [
+        {
+          "id": "row-12-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560553",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G12"
+        },
+        {
+          "id": "row-12-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K12"
+        },
+        {
+          "id": "row-12-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O12"
+        },
+        {
+          "id": "row-12-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360006",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q12"
+        },
+        {
+          "id": "row-12-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364809",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U12"
+        },
+        {
+          "id": "row-12-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W12"
+        },
+        {
+          "id": "row-12-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA12"
+        },
+        {
+          "id": "row-12-col-29",
+          "name": "Injector",
+          "partNumber": "330360022",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC12"
+        },
+        {
+          "id": "row-12-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI12"
+        },
+        {
+          "id": "row-12-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ12"
+        },
+        {
+          "id": "row-12-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054801",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK12"
+        },
+        {
+          "id": "row-12-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054701",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM12"
+        },
+        {
+          "id": "row-12-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810045001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS12"
+        },
+        {
+          "id": "row-12-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810045201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AU12"
+        },
+        {
+          "id": "row-12-col-49",
+          "name": "Air hose 3",
+          "partNumber": "31810045301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AW12"
+        },
+        {
+          "id": "row-12-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY12"
+        },
+        {
+          "id": "row-12-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ12"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-13",
+      "model": "J150U",
+      "engine": "6068HFG20-153",
+      "sourceRow": 13,
+      "parts": [
+        {
+          "id": "row-13-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G13"
+        },
+        {
+          "id": "row-13-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K13"
+        },
+        {
+          "id": "row-13-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O13"
+        },
+        {
+          "id": "row-13-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366289",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q13"
+        },
+        {
+          "id": "row-13-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330510056",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U13"
+        },
+        {
+          "id": "row-13-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "30801011204",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "Y13"
+        },
+        {
+          "id": "row-13-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330366290",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA13"
+        },
+        {
+          "id": "row-13-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330365673",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AE13"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-14",
+      "model": "J165U",
+      "engine": "6068HF275",
+      "sourceRow": 14,
+      "parts": [
+        {
+          "id": "row-14-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G14"
+        },
+        {
+          "id": "row-14-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560653",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K14"
+        },
+        {
+          "id": "row-14-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O14"
+        },
+        {
+          "id": "row-14-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360181",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q14"
+        },
+        {
+          "id": "row-14-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360181",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U14"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-15",
+      "model": "J175U",
+      "engine": "6068HF120",
+      "sourceRow": 15,
+      "parts": [
+        {
+          "id": "row-15-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560553",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G15"
+        },
+        {
+          "id": "row-15-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K15"
+        },
+        {
+          "id": "row-15-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O15"
+        },
+        {
+          "id": "row-15-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360181",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q15"
+        },
+        {
+          "id": "row-15-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364809",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U15"
+        },
+        {
+          "id": "row-15-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W15"
+        },
+        {
+          "id": "row-15-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA15"
+        },
+        {
+          "id": "row-15-col-29",
+          "name": "Injector",
+          "partNumber": "330361497",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC15"
+        },
+        {
+          "id": "row-15-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI15"
+        },
+        {
+          "id": "row-15-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ15"
+        },
+        {
+          "id": "row-15-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054801",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK15"
+        },
+        {
+          "id": "row-15-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054701",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM15"
+        },
+        {
+          "id": "row-15-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810045001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS15"
+        },
+        {
+          "id": "row-15-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810045201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AU15"
+        },
+        {
+          "id": "row-15-col-49",
+          "name": "Air hose 3",
+          "partNumber": "31810045301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AW15"
+        },
+        {
+          "id": "row-15-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY15"
+        },
+        {
+          "id": "row-15-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ15"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-16",
+      "model": "J175U",
+      "engine": "6068HFG20-183",
+      "sourceRow": 16,
+      "parts": [
+        {
+          "id": "row-16-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G16"
+        },
+        {
+          "id": "row-16-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K16"
+        },
+        {
+          "id": "row-16-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O16"
+        },
+        {
+          "id": "row-16-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366290",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q16"
+        },
+        {
+          "id": "row-16-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330365673",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U16"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-17",
+      "model": "J200U",
+      "engine": "6068HF475",
+      "sourceRow": 17,
+      "parts": [
+        {
+          "id": "row-17-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G17"
+        },
+        {
+          "id": "row-17-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510058",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K17"
+        },
+        {
+          "id": "row-17-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O17"
+        },
+        {
+          "id": "row-17-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360181",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q17"
+        },
+        {
+          "id": "row-17-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330365353",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U17"
+        },
+        {
+          "id": "row-17-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330361711",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W17"
+        },
+        {
+          "id": "row-17-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330362688",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "Y17"
+        },
+        {
+          "id": "row-17-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361605",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA17"
+        },
+        {
+          "id": "row-17-col-29",
+          "name": "Injector",
+          "partNumber": "330361708",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC17"
+        },
+        {
+          "id": "row-17-col-35",
+          "name": "Oil switch",
+          "partNumber": "330361601",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI17"
+        },
+        {
+          "id": "row-17-col-36",
+          "name": "Temperature switch",
+          "partNumber": "330361710",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ17"
+        },
+        {
+          "id": "row-17-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810047501",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK17"
+        },
+        {
+          "id": "row-17-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810047401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM17"
+        },
+        {
+          "id": "row-17-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810045001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS17"
+        },
+        {
+          "id": "row-17-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810045201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AU17"
+        },
+        {
+          "id": "row-17-col-49",
+          "name": "Air hose 3",
+          "partNumber": "31810045301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AW17"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-18",
+      "model": "J20U-J30U",
+      "engine": "3029DF120",
+      "sourceRow": 18,
+      "parts": [
+        {
+          "id": "row-18-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560554",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G18"
+        },
+        {
+          "id": "row-18-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K18"
+        },
+        {
+          "id": "row-18-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O18"
+        },
+        {
+          "id": "row-18-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360175",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q18"
+        },
+        {
+          "id": "row-18-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U18"
+        },
+        {
+          "id": "row-18-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W18"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-19",
+      "model": "J20U-J30U",
+      "engine": "3029DFS29",
+      "sourceRow": 19,
+      "parts": [
+        {
+          "id": "row-19-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560554",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G19"
+        },
+        {
+          "id": "row-19-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510057",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K19"
+        },
+        {
+          "id": "row-19-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O19"
+        },
+        {
+          "id": "row-19-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360175",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q19"
+        },
+        {
+          "id": "row-19-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U19"
+        },
+        {
+          "id": "row-19-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W19"
+        },
+        {
+          "id": "row-19-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA19"
+        },
+        {
+          "id": "row-19-col-29",
+          "name": "Injector",
+          "partNumber": "330360020",
+          "category": "Fuel system",
+          "quantity": 3,
+          "sourceCell": "AC19"
+        },
+        {
+          "id": "row-19-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI19"
+        },
+        {
+          "id": "row-19-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ19"
+        },
+        {
+          "id": "row-19-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810166101",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK19"
+        },
+        {
+          "id": "row-19-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810166201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM19"
+        },
+        {
+          "id": "row-19-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330360017",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY19"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-20",
+      "model": "J210",
+      "engine": "6068HFS55",
+      "sourceRow": 20,
+      "parts": [
+        {
+          "id": "row-20-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330365128",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G20"
+        },
+        {
+          "id": "row-20-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510059",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K20"
+        },
+        {
+          "id": "row-20-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330365303",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M20"
+        },
+        {
+          "id": "row-20-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011204",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O20"
+        },
+        {
+          "id": "row-20-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366270",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q20"
+        },
+        {
+          "id": "row-20-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330361727",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AE20"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-21",
+      "model": "J280",
+      "engine": "6090HF485",
+      "sourceRow": 21,
+      "parts": [
+        {
+          "id": "row-21-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560767",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G21"
+        },
+        {
+          "id": "row-21-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330362917",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K21"
+        },
+        {
+          "id": "row-21-col-15",
+          "name": "Air filter",
+          "partNumber": "30801056401",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O21"
+        },
+        {
+          "id": "row-21-col-17",
+          "name": "Fan belt",
+          "partNumber": "330365372",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q21"
+        },
+        {
+          "id": "row-21-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364496",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "U21"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-22",
+      "model": "J30U",
+      "engine": "3029DSG20",
+      "sourceRow": 22,
+      "parts": [
+        {
+          "id": "row-22-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560554",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G22"
+        },
+        {
+          "id": "row-22-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K22"
+        },
+        {
+          "id": "row-22-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O22"
+        },
+        {
+          "id": "row-22-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360175",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q22"
+        },
+        {
+          "id": "row-22-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U22"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-23",
+      "model": "J40U",
+      "engine": "3029TF120",
+      "sourceRow": 23,
+      "parts": [
+        {
+          "id": "row-23-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560632",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G23"
+        },
+        {
+          "id": "row-23-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K23"
+        },
+        {
+          "id": "row-23-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O23"
+        },
+        {
+          "id": "row-23-col-17",
+          "name": "Fan belt",
+          "partNumber": "330360175",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q23"
+        },
+        {
+          "id": "row-23-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U23"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-24",
+      "model": "J40U",
+      "engine": "3029TFS29",
+      "sourceRow": 24,
+      "parts": [
+        {
+          "id": "row-24-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560632",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G24"
+        },
+        {
+          "id": "row-24-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K24"
+        },
+        {
+          "id": "row-24-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O24"
+        },
+        {
+          "id": "row-24-col-17",
+          "name": "Fan belt",
+          "partNumber": "330365243",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q24"
+        },
+        {
+          "id": "row-24-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U24"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-25",
+      "model": "J40U",
+      "engine": "3029TSG20",
+      "sourceRow": 25,
+      "parts": [
+        {
+          "id": "row-25-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560632",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G25"
+        },
+        {
+          "id": "row-25-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K25"
+        },
+        {
+          "id": "row-25-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O25"
+        },
+        {
+          "id": "row-25-col-17",
+          "name": "Fan belt",
+          "partNumber": "330365243",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q25"
+        },
+        {
+          "id": "row-25-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330360007",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U25"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-26",
+      "model": "J60U",
+      "engine": "4045TSG20",
+      "sourceRow": 26,
+      "parts": [
+        {
+          "id": "row-26-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G26"
+        },
+        {
+          "id": "row-26-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K26"
+        },
+        {
+          "id": "row-26-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O26"
+        },
+        {
+          "id": "row-26-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q26"
+        },
+        {
+          "id": "row-26-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U26"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-27",
+      "model": "J60U",
+      "engine": "4045TF120",
+      "sourceRow": 27,
+      "parts": [
+        {
+          "id": "row-27-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560553",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G27"
+        },
+        {
+          "id": "row-27-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K27"
+        },
+        {
+          "id": "row-27-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O27"
+        },
+        {
+          "id": "row-27-col-17",
+          "name": "Fan belt",
+          "partNumber": "330361614",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q27"
+        },
+        {
+          "id": "row-27-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U27"
+        },
+        {
+          "id": "row-27-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W27"
+        },
+        {
+          "id": "row-27-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA27"
+        },
+        {
+          "id": "row-27-col-29",
+          "name": "Injector",
+          "partNumber": "330360022",
+          "category": "Fuel system",
+          "quantity": 4,
+          "sourceCell": "AC27"
+        },
+        {
+          "id": "row-27-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI27"
+        },
+        {
+          "id": "row-27-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ27"
+        },
+        {
+          "id": "row-27-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054101",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK27"
+        },
+        {
+          "id": "row-27-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM27"
+        },
+        {
+          "id": "row-27-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY27"
+        },
+        {
+          "id": "row-27-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ27"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-28",
+      "model": "J70U",
+      "engine": "4045TF120",
+      "sourceRow": 28,
+      "parts": [
+        {
+          "id": "row-28-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560553",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G28"
+        },
+        {
+          "id": "row-28-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K28"
+        },
+        {
+          "id": "row-28-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O28"
+        },
+        {
+          "id": "row-28-col-17",
+          "name": "Fan belt",
+          "partNumber": "330361614",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q28"
+        },
+        {
+          "id": "row-28-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U28"
+        },
+        {
+          "id": "row-28-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W28"
+        },
+        {
+          "id": "row-28-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA28"
+        },
+        {
+          "id": "row-28-col-29",
+          "name": "Injector",
+          "partNumber": "330360022",
+          "category": "Fuel system",
+          "quantity": 4,
+          "sourceCell": "AC28"
+        },
+        {
+          "id": "row-28-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI28"
+        },
+        {
+          "id": "row-28-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ28"
+        },
+        {
+          "id": "row-28-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054101",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK28"
+        },
+        {
+          "id": "row-28-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM28"
+        },
+        {
+          "id": "row-28-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY28"
+        },
+        {
+          "id": "row-28-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ28"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-29",
+      "model": "J80U",
+      "engine": "4045TF220",
+      "sourceRow": 29,
+      "parts": [
+        {
+          "id": "row-29-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510061",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G29"
+        },
+        {
+          "id": "row-29-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560552",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K29"
+        },
+        {
+          "id": "row-29-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O29"
+        },
+        {
+          "id": "row-29-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q29"
+        },
+        {
+          "id": "row-29-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U29"
+        },
+        {
+          "id": "row-29-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330360012",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W29"
+        },
+        {
+          "id": "row-29-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330361286",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA29"
+        },
+        {
+          "id": "row-29-col-29",
+          "name": "Injector",
+          "partNumber": "330360022",
+          "category": "Fuel system",
+          "quantity": 4,
+          "sourceCell": "AC29"
+        },
+        {
+          "id": "row-29-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI29"
+        },
+        {
+          "id": "row-29-col-36",
+          "name": "Temperature switch",
+          "partNumber": "91101033701",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ29"
+        },
+        {
+          "id": "row-29-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810054101",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK29"
+        },
+        {
+          "id": "row-29-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810054001",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM29"
+        },
+        {
+          "id": "row-29-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330365748",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY29"
+        },
+        {
+          "id": "row-29-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330360173",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ29"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-30",
+      "model": "J80U",
+      "engine": "4045TSG20",
+      "sourceRow": 30,
+      "parts": [
+        {
+          "id": "row-30-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510062",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G30"
+        },
+        {
+          "id": "row-30-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510056",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K30"
+        },
+        {
+          "id": "row-30-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011203",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O30"
+        },
+        {
+          "id": "row-30-col-17",
+          "name": "Fan belt",
+          "partNumber": "330366745",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q30"
+        },
+        {
+          "id": "row-30-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330364495",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U30"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-31",
+      "model": "K09UM",
+      "engine": "KDW1003",
+      "sourceRow": 31,
+      "parts": [
+        {
+          "id": "row-31-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330371081",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G31"
+        },
+        {
+          "id": "row-31-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330370922",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K31"
+        },
+        {
+          "id": "row-31-col-15",
+          "name": "Air filter",
+          "partNumber": "330371080",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O31"
+        },
+        {
+          "id": "row-31-col-17",
+          "name": "Fan belt",
+          "partNumber": "330371079",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q31"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-32",
+      "model": "K16U",
+      "engine": "KDW1603",
+      "sourceRow": 32,
+      "parts": [
+        {
+          "id": "row-32-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330371962",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G32"
+        },
+        {
+          "id": "row-32-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330371964",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K32"
+        },
+        {
+          "id": "row-32-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011201",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O32"
+        },
+        {
+          "id": "row-32-col-17",
+          "name": "Fan belt",
+          "partNumber": "330373948",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q32"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-33",
+      "model": "K20U",
+      "engine": "KDI1903M",
+      "sourceRow": 33,
+      "parts": [
+        {
+          "id": "row-33-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330371962",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G33"
+        },
+        {
+          "id": "row-33-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330370475",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K33"
+        },
+        {
+          "id": "row-33-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011201",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O33"
+        },
+        {
+          "id": "row-33-col-17",
+          "name": "Fan belt",
+          "partNumber": "330373992",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q33"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-34",
+      "model": "K30U",
+      "engine": "KDI2504TM-30",
+      "sourceRow": 34,
+      "parts": [
+        {
+          "id": "row-34-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330373630",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G34"
+        },
+        {
+          "id": "row-34-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330370475",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K34"
+        },
+        {
+          "id": "row-34-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O34"
+        },
+        {
+          "id": "row-34-col-17",
+          "name": "Fan belt",
+          "partNumber": "330373797",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q34"
+        },
+        {
+          "id": "row-34-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330373127",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U34"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-35",
+      "model": "K40UM",
+      "engine": "KDI2504TM-40",
+      "sourceRow": 35,
+      "parts": [
+        {
+          "id": "row-35-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330373630",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G35"
+        },
+        {
+          "id": "row-35-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330370475",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K35"
+        },
+        {
+          "id": "row-35-col-15",
+          "name": "Air filter",
+          "partNumber": "30801047801",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O35"
+        },
+        {
+          "id": "row-35-col-17",
+          "name": "Fan belt",
+          "partNumber": "330373799",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q35"
+        },
+        {
+          "id": "row-35-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330373127",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U35"
+        },
+        {
+          "id": "row-35-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330373599",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W35"
+        },
+        {
+          "id": "row-35-col-29",
+          "name": "Injector",
+          "partNumber": "330373583",
+          "category": "Fuel system",
+          "quantity": 4,
+          "sourceCell": "AC35"
+        },
+        {
+          "id": "row-35-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330370100",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AE35"
+        },
+        {
+          "id": "row-35-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330370577",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AG35"
+        },
+        {
+          "id": "row-35-col-35",
+          "name": "Oil switch",
+          "partNumber": "330373511",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI35"
+        },
+        {
+          "id": "row-35-col-36",
+          "name": "Temperature switch",
+          "partNumber": "330373492",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ35"
+        },
+        {
+          "id": "row-35-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330373585",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK35"
+        },
+        {
+          "id": "row-35-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330373586",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM35"
+        },
+        {
+          "id": "row-35-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330373924",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY35"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-36",
+      "model": "KD1000",
+      "engine": "KD27V12",
+      "sourceRow": 36,
+      "parts": [
+        {
+          "id": "row-36-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "230510001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G36"
+        },
+        {
+          "id": "row-36-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "230510003",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K36"
+        },
+        {
+          "id": "row-36-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M36"
+        },
+        {
+          "id": "row-36-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O36"
+        },
+        {
+          "id": "row-36-col-17",
+          "name": "Fan belt",
+          "partNumber": "230611947",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q36"
+        },
+        {
+          "id": "row-36-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230611924",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S36"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-37",
+      "model": "KD8000",
+      "engine": "KD27V1",
+      "sourceRow": 37,
+      "parts": [
+        {
+          "id": "row-37-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "230510001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G37"
+        },
+        {
+          "id": "row-37-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "230510003",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K37"
+        },
+        {
+          "id": "row-37-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M37"
+        },
+        {
+          "id": "row-37-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O37"
+        },
+        {
+          "id": "row-37-col-17",
+          "name": "Fan belt",
+          "partNumber": "230611947",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q37"
+        },
+        {
+          "id": "row-37-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230611924",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S37"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-38",
+      "model": "T11U",
+      "engine": "S3L2-61SD",
+      "sourceRow": 38,
+      "parts": [
+        {
+          "id": "row-38-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510018",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G38"
+        },
+        {
+          "id": "row-38-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510039",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K38"
+        },
+        {
+          "id": "row-38-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011201",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O38"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-39",
+      "model": "T1600",
+      "engine": "S16R-PTA",
+      "sourceRow": 39,
+      "parts": [
+        {
+          "id": "row-39-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510048",
+          "category": "Filters",
+          "quantity": 4,
+          "sourceCell": "G39"
+        },
+        {
+          "id": "row-39-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330177308",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I39"
+        },
+        {
+          "id": "row-39-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510042",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K39"
+        },
+        {
+          "id": "row-39-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M39"
+        },
+        {
+          "id": "row-39-col-15",
+          "name": "Air filter",
+          "partNumber": "30801074201",
+          "category": "Filters",
+          "quantity": 4,
+          "sourceCell": "O39"
+        },
+        {
+          "id": "row-39-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330171375",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S39"
+        },
+        {
+          "id": "row-39-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330170344",
+          "category": "Gaskets",
+          "quantity": 16,
+          "sourceCell": "U39"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-40",
+      "model": "T16U",
+      "engine": "S4L2-61SD",
+      "sourceRow": 40,
+      "parts": [
+        {
+          "id": "row-40-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510039",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G40"
+        },
+        {
+          "id": "row-40-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510018",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K40"
+        },
+        {
+          "id": "row-40-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011201",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O40"
+        },
+        {
+          "id": "row-40-col-17",
+          "name": "Fan belt",
+          "partNumber": "330170052",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q40"
+        },
+        {
+          "id": "row-40-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330170343",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U40"
+        },
+        {
+          "id": "row-40-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330176806",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W40"
+        },
+        {
+          "id": "row-40-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330170389",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA40"
+        },
+        {
+          "id": "row-40-col-29",
+          "name": "Injector",
+          "partNumber": "330170349",
+          "category": "Fuel system",
+          "quantity": 4,
+          "sourceCell": "AC40"
+        },
+        {
+          "id": "row-40-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330170097",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AE40"
+        },
+        {
+          "id": "row-40-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330171558",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AG40"
+        },
+        {
+          "id": "row-40-col-35",
+          "name": "Oil switch",
+          "partNumber": "31101015101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AI40"
+        },
+        {
+          "id": "row-40-col-36",
+          "name": "Temperature switch",
+          "partNumber": "31101060101",
+          "category": "Switches",
+          "quantity": null,
+          "sourceCell": "AJ40"
+        },
+        {
+          "id": "row-40-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "330173602",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK40"
+        },
+        {
+          "id": "row-40-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "330173603",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM40"
+        },
+        {
+          "id": "row-40-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330176733",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY40"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-41",
+      "model": "T20U",
+      "engine": "S4Q2.SD",
+      "sourceRow": 41,
+      "parts": [
+        {
+          "id": "row-41-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510040",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G41"
+        },
+        {
+          "id": "row-41-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510038",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K41"
+        },
+        {
+          "id": "row-41-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011201",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O41"
+        },
+        {
+          "id": "row-41-col-17",
+          "name": "Fan belt",
+          "partNumber": "330170365",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q41"
+        },
+        {
+          "id": "row-41-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330170371",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U41"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-42",
+      "model": "T30U",
+      "engine": "S4S -61SD",
+      "sourceRow": 42,
+      "parts": [
+        {
+          "id": "row-42-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510049",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G42"
+        },
+        {
+          "id": "row-42-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510038",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K42"
+        },
+        {
+          "id": "row-42-col-15",
+          "name": "Air filter",
+          "partNumber": "30801011202",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O42"
+        },
+        {
+          "id": "row-42-col-17",
+          "name": "Fan belt",
+          "partNumber": "330170335",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q42"
+        },
+        {
+          "id": "row-42-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330170336",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U42"
+        },
+        {
+          "id": "row-42-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330170097",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AE42"
+        },
+        {
+          "id": "row-42-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330171558",
+          "category": "Gaskets",
+          "quantity": 4,
+          "sourceCell": "AG42"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-43",
+      "model": "V250",
+      "engine": "TAD734GE",
+      "sourceRow": 43,
+      "parts": [
+        {
+          "id": "row-43-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560675",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "G43"
+        },
+        {
+          "id": "row-43-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560678",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K43"
+        },
+        {
+          "id": "row-43-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330560777",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M43"
+        },
+        {
+          "id": "row-43-col-15",
+          "name": "Air filter",
+          "partNumber": "30801056401",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O43"
+        },
+        {
+          "id": "row-43-col-17",
+          "name": "Fan belt",
+          "partNumber": "230055843",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q43"
+        },
+        {
+          "id": "row-43-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230052128",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U43"
+        },
+        {
+          "id": "row-43-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230053620",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W43"
+        },
+        {
+          "id": "row-43-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230055771",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA43"
+        },
+        {
+          "id": "row-43-col-29",
+          "name": "Injector",
+          "partNumber": "230053345NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC43"
+        },
+        {
+          "id": "row-43-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230052129",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE43"
+        },
+        {
+          "id": "row-43-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810071401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK43"
+        },
+        {
+          "id": "row-43-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810071501",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM43"
+        },
+        {
+          "id": "row-43-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810069801",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO43"
+        },
+        {
+          "id": "row-43-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810068401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS43"
+        },
+        {
+          "id": "row-43-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810057601",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AU43"
+        },
+        {
+          "id": "row-43-col-49",
+          "name": "Air hose 3",
+          "partNumber": "31810057701",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AW43"
+        },
+        {
+          "id": "row-43-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055767",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY43"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-44",
+      "model": "V300",
+      "engine": "TAD941GE",
+      "sourceRow": 44,
+      "parts": [
+        {
+          "id": "row-44-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G44"
+        },
+        {
+          "id": "row-44-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I44"
+        },
+        {
+          "id": "row-44-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K44"
+        },
+        {
+          "id": "row-44-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M44"
+        },
+        {
+          "id": "row-44-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O44"
+        },
+        {
+          "id": "row-44-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053077",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q44"
+        },
+        {
+          "id": "row-44-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051955",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S44"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-45",
+      "model": "V300",
+      "engine": "TAD1341GE-B",
+      "sourceRow": 45,
+      "parts": [
+        {
+          "id": "row-45-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G45"
+        },
+        {
+          "id": "row-45-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I45"
+        },
+        {
+          "id": "row-45-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K45"
+        },
+        {
+          "id": "row-45-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M45"
+        },
+        {
+          "id": "row-45-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O45"
+        },
+        {
+          "id": "row-45-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053221",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q45"
+        },
+        {
+          "id": "row-45-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051953",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S45"
+        },
+        {
+          "id": "row-45-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230053744",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U45"
+        },
+        {
+          "id": "row-45-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230054547",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W45"
+        },
+        {
+          "id": "row-45-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230053704",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA45"
+        },
+        {
+          "id": "row-45-col-29",
+          "name": "Injector",
+          "partNumber": "230053357NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC45"
+        },
+        {
+          "id": "row-45-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230051475",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE45"
+        },
+        {
+          "id": "row-45-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "230053890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AG45"
+        },
+        {
+          "id": "row-45-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "230054543",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK45"
+        },
+        {
+          "id": "row-45-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "230053876",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM45"
+        },
+        {
+          "id": "row-45-col-41",
+          "name": "Coolant hose",
+          "partNumber": "230053877",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO45"
+        },
+        {
+          "id": "row-45-col-45",
+          "name": "Air hose 1",
+          "partNumber": "230050283",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AS45"
+        },
+        {
+          "id": "row-45-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY45"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-46",
+      "model": "V350",
+      "engine": "TAD1241GE",
+      "sourceRow": 46,
+      "parts": [
+        {
+          "id": "row-46-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G46"
+        },
+        {
+          "id": "row-46-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I46"
+        },
+        {
+          "id": "row-46-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560727",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K46"
+        },
+        {
+          "id": "row-46-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M46"
+        },
+        {
+          "id": "row-46-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O46"
+        },
+        {
+          "id": "row-46-col-17",
+          "name": "Fan belt",
+          "partNumber": "230051037",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q46"
+        },
+        {
+          "id": "row-46-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051027",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S46"
+        },
+        {
+          "id": "row-46-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230052504",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U46"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-47",
+      "model": "V350",
+      "engine": "TAD1343GE",
+      "sourceRow": 47,
+      "parts": [
+        {
+          "id": "row-47-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G47"
+        },
+        {
+          "id": "row-47-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I47"
+        },
+        {
+          "id": "row-47-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K47"
+        },
+        {
+          "id": "row-47-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M47"
+        },
+        {
+          "id": "row-47-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O47"
+        },
+        {
+          "id": "row-47-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053221",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q47"
+        },
+        {
+          "id": "row-47-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051953",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S47"
+        },
+        {
+          "id": "row-47-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230053744",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U47"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-48",
+      "model": "V350U",
+      "engine": "TAD1342GE-B",
+      "sourceRow": 48,
+      "parts": [
+        {
+          "id": "row-48-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G48"
+        },
+        {
+          "id": "row-48-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I48"
+        },
+        {
+          "id": "row-48-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K48"
+        },
+        {
+          "id": "row-48-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M48"
+        },
+        {
+          "id": "row-48-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O48"
+        },
+        {
+          "id": "row-48-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053221",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q48"
+        },
+        {
+          "id": "row-48-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051953",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S48"
+        },
+        {
+          "id": "row-48-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230053744",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U48"
+        },
+        {
+          "id": "row-48-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230054547",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W48"
+        },
+        {
+          "id": "row-48-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230053704",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA48"
+        },
+        {
+          "id": "row-48-col-29",
+          "name": "Injector",
+          "partNumber": "230053357NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC48"
+        },
+        {
+          "id": "row-48-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230051475",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE48"
+        },
+        {
+          "id": "row-48-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "230053890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AG48"
+        },
+        {
+          "id": "row-48-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "230054543",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK48"
+        },
+        {
+          "id": "row-48-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "230053876",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM48"
+        },
+        {
+          "id": "row-48-col-41",
+          "name": "Coolant hose",
+          "partNumber": "230053877",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO48"
+        },
+        {
+          "id": "row-48-col-45",
+          "name": "Air hose 1",
+          "partNumber": "230050283",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AS48"
+        },
+        {
+          "id": "row-48-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY48"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-49",
+      "model": "V400",
+      "engine": "TAD1344GE-B",
+      "sourceRow": 49,
+      "parts": [
+        {
+          "id": "row-49-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G49"
+        },
+        {
+          "id": "row-49-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I49"
+        },
+        {
+          "id": "row-49-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K49"
+        },
+        {
+          "id": "row-49-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M49"
+        },
+        {
+          "id": "row-49-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O49"
+        },
+        {
+          "id": "row-49-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053221",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q49"
+        },
+        {
+          "id": "row-49-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051953",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S49"
+        },
+        {
+          "id": "row-49-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230053744",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U49"
+        },
+        {
+          "id": "row-49-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230054547",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W49"
+        },
+        {
+          "id": "row-49-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230053704",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA49"
+        },
+        {
+          "id": "row-49-col-29",
+          "name": "Injector",
+          "partNumber": "230053357NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC49"
+        },
+        {
+          "id": "row-49-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230051475",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE49"
+        },
+        {
+          "id": "row-49-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "230053890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AG49"
+        },
+        {
+          "id": "row-49-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "230054543",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK49"
+        },
+        {
+          "id": "row-49-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "230053876",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM49"
+        },
+        {
+          "id": "row-49-col-41",
+          "name": "Coolant hose",
+          "partNumber": "230053877",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO49"
+        },
+        {
+          "id": "row-49-col-45",
+          "name": "Air hose 1",
+          "partNumber": "230050283",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AS49"
+        },
+        {
+          "id": "row-49-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY49"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-50",
+      "model": "V400",
+      "engine": "TAD1242GE",
+      "sourceRow": 50,
+      "parts": [
+        {
+          "id": "row-50-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G50"
+        },
+        {
+          "id": "row-50-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I50"
+        },
+        {
+          "id": "row-50-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560727",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K50"
+        },
+        {
+          "id": "row-50-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M50"
+        },
+        {
+          "id": "row-50-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O50"
+        },
+        {
+          "id": "row-50-col-17",
+          "name": "Fan belt",
+          "partNumber": "230053092",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q50"
+        },
+        {
+          "id": "row-50-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051027",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S50"
+        },
+        {
+          "id": "row-50-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230052504",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U50"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-51",
+      "model": "V450U",
+      "engine": "TAD1640GE",
+      "sourceRow": 51,
+      "parts": [
+        {
+          "id": "row-51-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G51"
+        },
+        {
+          "id": "row-51-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I51"
+        },
+        {
+          "id": "row-51-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K51"
+        },
+        {
+          "id": "row-51-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M51"
+        },
+        {
+          "id": "row-51-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O51"
+        },
+        {
+          "id": "row-51-col-17",
+          "name": "Fan belt",
+          "partNumber": "230052393",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q51"
+        },
+        {
+          "id": "row-51-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230051812",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U51"
+        },
+        {
+          "id": "row-51-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230055891",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W51"
+        },
+        {
+          "id": "row-51-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230052245",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA51"
+        },
+        {
+          "id": "row-51-col-29",
+          "name": "Injector",
+          "partNumber": "230056107",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC51"
+        },
+        {
+          "id": "row-51-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230051475",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE51"
+        },
+        {
+          "id": "row-51-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810043201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK51"
+        },
+        {
+          "id": "row-51-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810058301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM51"
+        },
+        {
+          "id": "row-51-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810003214",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO51"
+        },
+        {
+          "id": "row-51-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810058401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS51"
+        },
+        {
+          "id": "row-51-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810058501",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AU51"
+        },
+        {
+          "id": "row-51-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230051958",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY51"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-52",
+      "model": "V500UC2",
+      "engine": "TAD1641GE",
+      "sourceRow": 52,
+      "parts": [
+        {
+          "id": "row-52-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G52"
+        },
+        {
+          "id": "row-52-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I52"
+        },
+        {
+          "id": "row-52-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K52"
+        },
+        {
+          "id": "row-52-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M52"
+        },
+        {
+          "id": "row-52-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O52"
+        },
+        {
+          "id": "row-52-col-17",
+          "name": "Fan belt",
+          "partNumber": "230052530",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q52"
+        },
+        {
+          "id": "row-52-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051537",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S52"
+        },
+        {
+          "id": "row-52-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230051812",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U52"
+        },
+        {
+          "id": "row-52-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230055865",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W52"
+        },
+        {
+          "id": "row-52-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230052347",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA52"
+        },
+        {
+          "id": "row-52-col-29",
+          "name": "Injector",
+          "partNumber": "230053323NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC52"
+        },
+        {
+          "id": "row-52-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230052890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE52"
+        },
+        {
+          "id": "row-52-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810043201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK52"
+        },
+        {
+          "id": "row-52-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810058301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM52"
+        },
+        {
+          "id": "row-52-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810003214",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO52"
+        },
+        {
+          "id": "row-52-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810058401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS52"
+        },
+        {
+          "id": "row-52-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810058501",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AU52"
+        },
+        {
+          "id": "row-52-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY52"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-53",
+      "model": "V500UC2",
+      "engine": "TAD1641GE-B",
+      "sourceRow": 53,
+      "parts": [
+        {
+          "id": "row-53-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560779",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G53"
+        },
+        {
+          "id": "row-53-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560778",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I53"
+        },
+        {
+          "id": "row-53-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K53"
+        },
+        {
+          "id": "row-53-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M53"
+        },
+        {
+          "id": "row-53-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O53"
+        },
+        {
+          "id": "row-53-col-17",
+          "name": "Fan belt",
+          "partNumber": "230052530",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q53"
+        },
+        {
+          "id": "row-53-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051537",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S53"
+        },
+        {
+          "id": "row-53-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230051812",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U53"
+        },
+        {
+          "id": "row-53-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230055865",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W53"
+        },
+        {
+          "id": "row-53-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230052347",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA53"
+        },
+        {
+          "id": "row-53-col-29",
+          "name": "Injector",
+          "partNumber": "230056554",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC53"
+        },
+        {
+          "id": "row-53-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230052890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE53"
+        },
+        {
+          "id": "row-53-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810043201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK53"
+        },
+        {
+          "id": "row-53-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810058301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM53"
+        },
+        {
+          "id": "row-53-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810003214",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO53"
+        },
+        {
+          "id": "row-53-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810058401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS53"
+        },
+        {
+          "id": "row-53-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810058501",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AU53"
+        },
+        {
+          "id": "row-53-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY53"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-54",
+      "model": "V550",
+      "engine": "TAD1642GE",
+      "sourceRow": 54,
+      "parts": [
+        {
+          "id": "row-54-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560633",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G54"
+        },
+        {
+          "id": "row-54-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560634",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I54"
+        },
+        {
+          "id": "row-54-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K54"
+        },
+        {
+          "id": "row-54-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M54"
+        },
+        {
+          "id": "row-54-col-15",
+          "name": "Air filter",
+          "partNumber": "330560643",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O54"
+        },
+        {
+          "id": "row-54-col-17",
+          "name": "Fan belt",
+          "partNumber": "230052530",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q54"
+        },
+        {
+          "id": "row-54-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230051537",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S54"
+        },
+        {
+          "id": "row-54-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230051812",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U54"
+        },
+        {
+          "id": "row-54-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230055865",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W54"
+        },
+        {
+          "id": "row-54-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230052347",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA54"
+        },
+        {
+          "id": "row-54-col-29",
+          "name": "Injector",
+          "partNumber": "230053323NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC54"
+        },
+        {
+          "id": "row-54-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230052890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE54"
+        },
+        {
+          "id": "row-54-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "31810043201",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK54"
+        },
+        {
+          "id": "row-54-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "31810058301",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM54"
+        },
+        {
+          "id": "row-54-col-41",
+          "name": "Coolant hose",
+          "partNumber": "31810003214",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO54"
+        },
+        {
+          "id": "row-54-col-45",
+          "name": "Air hose 1",
+          "partNumber": "31810058401",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AS54"
+        },
+        {
+          "id": "row-54-col-47",
+          "name": "Air hose 2",
+          "partNumber": "31810058501",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AU54"
+        },
+        {
+          "id": "row-54-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY54"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-55",
+      "model": "V600UC2_208",
+      "engine": "TWD1643GE",
+      "sourceRow": 55,
+      "parts": [
+        {
+          "id": "row-55-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330560779",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G55"
+        },
+        {
+          "id": "row-55-col-9",
+          "name": "Oil filter 2",
+          "partNumber": "330560778",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "I55"
+        },
+        {
+          "id": "row-55-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330560689",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K55"
+        },
+        {
+          "id": "row-55-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510015",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "M55"
+        },
+        {
+          "id": "row-55-col-15",
+          "name": "Air filter",
+          "partNumber": "230055339",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "O55"
+        },
+        {
+          "id": "row-55-col-17",
+          "name": "Fan belt",
+          "partNumber": "230052563",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q55"
+        },
+        {
+          "id": "row-55-col-19",
+          "name": "Alternator belt",
+          "partNumber": "230055851",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S55"
+        },
+        {
+          "id": "row-55-col-21",
+          "name": "Cover gasket",
+          "partNumber": "230051812",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "U55"
+        },
+        {
+          "id": "row-55-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "230055865",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "W55"
+        },
+        {
+          "id": "row-55-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "230052347",
+          "category": "Gaskets",
+          "quantity": 1,
+          "sourceCell": "AA55"
+        },
+        {
+          "id": "row-55-col-29",
+          "name": "Injector",
+          "partNumber": "230053343NE",
+          "category": "Fuel system",
+          "quantity": 6,
+          "sourceCell": "AC55"
+        },
+        {
+          "id": "row-55-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "230052890",
+          "category": "Gaskets",
+          "quantity": 6,
+          "sourceCell": "AE55"
+        },
+        {
+          "id": "row-55-col-37",
+          "name": "Upper radiator hose",
+          "partNumber": "230053003",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AK55"
+        },
+        {
+          "id": "row-55-col-39",
+          "name": "Lower radiator hose",
+          "partNumber": "230052905",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AM55"
+        },
+        {
+          "id": "row-55-col-41",
+          "name": "Coolant hose",
+          "partNumber": "230052796",
+          "category": "Hoses",
+          "quantity": 1,
+          "sourceCell": "AO55"
+        },
+        {
+          "id": "row-55-col-43",
+          "name": "Unlabeled part — confirm description",
+          "partNumber": "230052891",
+          "category": "Other",
+          "quantity": 1,
+          "sourceCell": "AQ55"
+        },
+        {
+          "id": "row-55-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "230055699",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY55"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-56",
+      "model": "X1000UC",
+      "engine": "16V2000TD-G85",
+      "sourceRow": 56,
+      "parts": [
+        {
+          "id": "row-56-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510031",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G56"
+        },
+        {
+          "id": "row-56-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510028",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K56"
+        },
+        {
+          "id": "row-56-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "M56"
+        },
+        {
+          "id": "row-56-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O56"
+        },
+        {
+          "id": "row-56-col-17",
+          "name": "Fan belt",
+          "partNumber": "330243653",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q56"
+        },
+        {
+          "id": "row-56-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330242937",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S56"
+        },
+        {
+          "id": "row-56-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330243899",
+          "category": "Gaskets",
+          "quantity": 16,
+          "sourceCell": "U56"
+        },
+        {
+          "id": "row-56-col-23",
+          "name": "Thermostat 1",
+          "partNumber": "330247353",
+          "category": "Cooling",
+          "quantity": 3,
+          "sourceCell": "W56"
+        },
+        {
+          "id": "row-56-col-25",
+          "name": "Thermostat 2",
+          "partNumber": "330240152",
+          "category": "Cooling",
+          "quantity": 1,
+          "sourceCell": "Y56"
+        },
+        {
+          "id": "row-56-col-27",
+          "name": "Thermostat gasket",
+          "partNumber": "330242060",
+          "category": "Gaskets",
+          "quantity": 3,
+          "sourceCell": "AA56"
+        },
+        {
+          "id": "row-56-col-29",
+          "name": "Injector",
+          "partNumber": "330244905",
+          "category": "Fuel system",
+          "quantity": 16,
+          "sourceCell": "AC56"
+        },
+        {
+          "id": "row-56-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330242067",
+          "category": "Gaskets",
+          "quantity": 16,
+          "sourceCell": "AE56"
+        },
+        {
+          "id": "row-56-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330242051",
+          "category": "Gaskets",
+          "quantity": 16,
+          "sourceCell": "AG56"
+        },
+        {
+          "id": "row-56-col-45",
+          "name": "Air hose 1",
+          "partNumber": "330245514",
+          "category": "Hoses",
+          "quantity": 2,
+          "sourceCell": "AS56"
+        },
+        {
+          "id": "row-56-col-47",
+          "name": "Air hose 2",
+          "partNumber": "330244895",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AU56"
+        },
+        {
+          "id": "row-56-col-49",
+          "name": "Air hose 3",
+          "partNumber": "31810016801",
+          "category": "Hoses",
+          "quantity": 4,
+          "sourceCell": "AW56"
+        },
+        {
+          "id": "row-56-col-51",
+          "name": "Fuel lift pump",
+          "partNumber": "330244930",
+          "category": "Fuel system",
+          "quantity": null,
+          "sourceCell": "AY56"
+        },
+        {
+          "id": "row-56-col-52",
+          "name": "Fuel lift pump gasket",
+          "partNumber": "330242860",
+          "category": "Gaskets",
+          "quantity": null,
+          "sourceCell": "AZ56"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-57",
+      "model": "X1000UC",
+      "engine": "18V2000TD-G85",
+      "sourceRow": 57,
+      "parts": [
+        {
+          "id": "row-57-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510031",
+          "category": "Filters",
+          "quantity": 3,
+          "sourceCell": "G57"
+        },
+        {
+          "id": "row-57-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510028",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K57"
+        },
+        {
+          "id": "row-57-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "M57"
+        },
+        {
+          "id": "row-57-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O57"
+        },
+        {
+          "id": "row-57-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330243899",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "U57"
+        },
+        {
+          "id": "row-57-col-29",
+          "name": "Injector",
+          "partNumber": "330244905",
+          "category": "Fuel system",
+          "quantity": 18,
+          "sourceCell": "AC57"
+        },
+        {
+          "id": "row-57-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330242067",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "AE57"
+        },
+        {
+          "id": "row-57-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330242051",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "AG57"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-58",
+      "model": "X1200UC",
+      "engine": "18V2000TD-G85",
+      "sourceRow": 58,
+      "parts": [
+        {
+          "id": "row-58-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510031",
+          "category": "Filters",
+          "quantity": 3,
+          "sourceCell": "G58"
+        },
+        {
+          "id": "row-58-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510028",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K58"
+        },
+        {
+          "id": "row-58-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "M58"
+        },
+        {
+          "id": "row-58-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O58"
+        },
+        {
+          "id": "row-58-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330243899",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "U58"
+        },
+        {
+          "id": "row-58-col-29",
+          "name": "Injector",
+          "partNumber": "330244905",
+          "category": "Fuel system",
+          "quantity": 18,
+          "sourceCell": "AC58"
+        },
+        {
+          "id": "row-58-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330242067",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "AE58"
+        },
+        {
+          "id": "row-58-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330242051",
+          "category": "Gaskets",
+          "quantity": 18,
+          "sourceCell": "AG58"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-59",
+      "model": "X700UC2",
+      "engine": "12V2000TD-G85",
+      "sourceRow": 59,
+      "parts": [
+        {
+          "id": "row-59-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510031",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G59"
+        },
+        {
+          "id": "row-59-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510028",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K59"
+        },
+        {
+          "id": "row-59-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "M59"
+        },
+        {
+          "id": "row-59-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O59"
+        },
+        {
+          "id": "row-59-col-17",
+          "name": "Fan belt",
+          "partNumber": "330243653",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q59"
+        },
+        {
+          "id": "row-59-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330242937",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S59"
+        },
+        {
+          "id": "row-59-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330243899",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "U59"
+        },
+        {
+          "id": "row-59-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330242067",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AE59"
+        },
+        {
+          "id": "row-59-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330242051",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AG59"
+        }
+      ]
+    },
+    {
+      "id": "generator-row-60",
+      "model": "X800UC2",
+      "engine": "12V2000TD-G85",
+      "sourceRow": 60,
+      "parts": [
+        {
+          "id": "row-60-col-7",
+          "name": "Oil filter 1",
+          "partNumber": "330510031",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "G60"
+        },
+        {
+          "id": "row-60-col-11",
+          "name": "Fuel filter 1",
+          "partNumber": "330510028",
+          "category": "Filters",
+          "quantity": 1,
+          "sourceCell": "K60"
+        },
+        {
+          "id": "row-60-col-13",
+          "name": "Fuel filter 2",
+          "partNumber": "330510016",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "M60"
+        },
+        {
+          "id": "row-60-col-15",
+          "name": "Air filter",
+          "partNumber": "10801001001",
+          "category": "Filters",
+          "quantity": 2,
+          "sourceCell": "O60"
+        },
+        {
+          "id": "row-60-col-17",
+          "name": "Fan belt",
+          "partNumber": "330243653",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "Q60"
+        },
+        {
+          "id": "row-60-col-19",
+          "name": "Alternator belt",
+          "partNumber": "330242937",
+          "category": "Belts",
+          "quantity": 1,
+          "sourceCell": "S60"
+        },
+        {
+          "id": "row-60-col-21",
+          "name": "Cover gasket",
+          "partNumber": "330243899",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "U60"
+        },
+        {
+          "id": "row-60-col-31",
+          "name": "Injector gasket 1",
+          "partNumber": "330242067",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AE60"
+        },
+        {
+          "id": "row-60-col-33",
+          "name": "Injector gasket 2",
+          "partNumber": "330242051",
+          "category": "Gaskets",
+          "quantity": 12,
+          "sourceCell": "AG60"
+        }
+      ]
+    }
+  ]
+}

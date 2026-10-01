@@ -12,6 +12,8 @@ const crypto = require("crypto");
 const { buildDocumentPdf } = require("./document-pdf");
 
 const app = express();
+const initializeParts = require('./parts-api').setupMongoParts(app, mongoose);
+const initializeManuals = require('./manuals-api').setupMongoManuals(app, mongoose, authenticateToken);
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
@@ -2999,6 +3001,8 @@ async function startServer() {
   try {
     await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 10000 });
     await Promise.all(Object.values(mongoose.models).map(model => model.init()));
+    await initializeParts();
+    await initializeManuals();
     const server = app.listen(PORT, () => console.log('Server running on port ' + PORT));
     server.on('error', async () => {
       console.error('Server could not start listening.');
