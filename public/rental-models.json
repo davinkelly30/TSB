@@ -1,34 +1,46 @@
 [
   {
     "model": "90REOZT4",
-    "prime": "70–76",
+    "prime": "70\u201376",
     "max": 76,
-    "size": "50–100 kW",
+    "size": "50\u2013100 kW",
     "image": "/images/rentals/aab85428_rgb-Rehlko.webp",
-    "source": "https://www.powersystems.rehlko.com/product/90reozt4"
+    "source": "https://www.powersystems.rehlko.com/product/90reozt4",
+    "noise": "71 dB(A) at 7 m, full load at prime rating (log average)",
+    "fuelCapacity": "192 gal.",
+    "verifiedAt": "2026-10-01"
   },
   {
     "model": "120REOZT4",
-    "prime": "90–96",
+    "prime": "90\u201396",
     "max": 96,
-    "size": "50–100 kW",
+    "size": "50\u2013100 kW",
     "image": "/images/rentals/aab85428_rgb-Rehlko.webp",
-    "source": "https://www.powersystems.rehlko.com/product/120reozt4"
+    "source": "https://www.powersystems.rehlko.com/product/120reozt4",
+    "noise": "71 dB(A) at 7 m, full load at prime rating (log average)",
+    "fuelCapacity": "192 gal.",
+    "verifiedAt": "2026-10-01"
   },
   {
     "model": "145REOZT4",
-    "prime": "105.5–117",
+    "prime": "105.5\u2013117",
     "max": 117,
-    "size": "100–250 kW",
+    "size": "100\u2013250 kW",
     "image": "/images/rentals/aab85438_rgb-Rehlko.webp",
-    "source": "https://www.powersystems.rehlko.com/product/145reozt4"
+    "source": "https://www.powersystems.rehlko.com/product/145reozt4",
+    "noise": "70 dB(A) at 7 m, full load at prime rating",
+    "fuelCapacity": "244 gal.",
+    "verifiedAt": "2026-10-01"
   },
   {
     "model": "175REOZT4",
-    "prime": "106–139",
+    "prime": "106\u2013139",
     "max": 139,
-    "size": "100–250 kW",
+    "size": "100\u2013250 kW",
     "image": "/images/rentals/aab85438_rgb-Rehlko.webp",
-    "source": "https://www.powersystems.rehlko.com/product/175reozt4"
+    "source": "https://www.powersystems.rehlko.com/product/175reozt4",
+    "noise": "71 dB(A) at 7 m, full load at prime rating",
+    "fuelCapacity": "244 gal.",
+    "verifiedAt": "2026-10-01"
   }
 ]

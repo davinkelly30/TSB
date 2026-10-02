@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const target=document.querySelector('#rfqForm,#rentalForm') || document.getElementById('partsSubmit')?.parentElement;
+const target=document.querySelector('#rfqForm,#rentalForm,#newRequestForm') || document.getElementById('partsSubmit')?.parentElement;
 if(!target)return;
 const box=document.createElement('div');box.className='request-photos';
 box.innerHTML='<label for="requestPhotos">Equipment photos (optional)</label><p>Attach up to 3 JPEG or PNG photos of the label, old part or fault. Maximum 10 MB per original. Photos are resized before sending.</p><input id="requestPhotos" type="file" accept="image/jpeg,image/png" multiple><p id="photoFeedback" role="status"></p>';

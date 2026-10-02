@@ -12,6 +12,7 @@ const crypto = require("crypto");
 const { buildDocumentPdf } = require("./document-pdf");
 
 const app = express();
+const access = require('./access-control').createAccess({mongoose,jwt,bcrypt});
 const initializeParts = require('./parts-api').setupMongoParts(app, mongoose);
 const initializeManuals = require('./manuals-api').setupMongoManuals(app, mongoose, authenticateToken);
 const initializeGenerators = require('./generators-api').setupMongoGenerators(app,mongoose,authenticateToken);
@@ -21,7 +22,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
    MIDDLEWARE
 ========================= */
 
-app.use('/rfq', express.json({limit:'5mb'}));
+app.use(['/rfq','/api/admin/requests','/api/admin/rental-units'], express.json({limit:'5mb'}));
 app.use(express.json());
 const {validatePhotos,newReference}=require('./request-photos');
 
@@ -61,6 +62,9 @@ const mailer = nodemailer.createTransport({
 ========================= */
 
 const rfqSchema = new mongoose.Schema({
+  requestType: {type:String,enum:['general','rental'],default:'general'},
+  createdBy:String,
+  rental: {startDate:String,endDate:String,location:String,requirements:String,application:String,model:String,phone:String},
   reference: {type:String,unique:true,sparse:true},
   photoCount: {type:Number,default:0},
   photos: {type:[{name:String,mime:String,data:Buffer}],select:false},
@@ -538,92 +542,15 @@ function calculateQuoteTotals(quoteData) {
    AUTH MIDDLEWARE
 ========================= */
 
-function authenticateToken(req, res, next) {
-
-  const authHeader = req.headers["authorization"];
-
-  if (!authHeader) {
-    return res.status(401).json({
-      error: "Access denied"
-    });
-  }
-
-  const token = authHeader.split(" ")[1];
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-
-    if (err) {
-      return res.status(403).json({
-        error: "Invalid token"
-      });
-    }
-
-    req.user = user;
-
-    next();
-  });
-}
-
-/* =========================
-   LOGIN ROUTE
-========================= */
-
-app.post("/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    if (!username || !password) {
-      return res.status(400).json({
-        error: "Username and password are required",
-      });
-    }
-
-    if (username !== process.env.ADMIN_USER) {
-      return res.status(401).json({
-        error: "Invalid credentials",
-      });
-    }
-
-    const passwordMatch = await bcrypt.compare(
-      password,
-      process.env.ADMIN_PASSWORD_HASH
-    );
-
-    if (!passwordMatch) {
-      return res.status(401).json({
-        error: "Invalid credentials",
-      });
-    }
-
-    const token = jwt.sign(
-      {
-        username,
-        role: "admin",
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "8h",
-      }
-    );
-
-    res.json({
-      message: "Login successful",
-      token,
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-
-    res.status(500).json({
-      error: "Login failed",
-    });
-  }
-});
+function authenticateToken(req,res,next){return access.authenticate(req,res,next);}
+access.register(app);
+app.post('/login',access.login);
 
 /* =========================
    RFQ ROUTES
 ========================= */
 
-app.post("/rfq", async (req, res) => {
+app.post("/rfq", access.optionalRequest, async (req, res) => {
 
   try {
 
@@ -643,10 +570,10 @@ app.post("/rfq", async (req, res) => {
       });
     }
 
-    let photos;
-    try { photos=validatePhotos(req.body.photos); } catch(error) { return res.status(400).json({error:error.message}); }
+    let photos,rental;
+    try { photos=validatePhotos(req.body.photos); if(req.body.rental!==undefined)rental=require('./rentals-api').rentalDetails(req.body.rental); } catch(error) { return res.status(400).json({error:error.message}); }
     const rfq = new RFQ({
-      reference:newReference(), photos, photoCount:photos.length,
+      reference:newReference(), photos, photoCount:photos.length, requestType:rental?'rental':'general',rental,createdBy:req.user?.username,
       name,
       company,
       email,
@@ -697,7 +624,7 @@ app.get("/rfq", authenticateToken, async (req, res) => {
 
   try {
 
-    const rfqs = await RFQ.find()
+    const rfqs = await RFQ.find({requestType:{$ne:'rental'},message:{$not:/^GENERATOR RENTAL REQUEST/}})
       .sort({ createdAt: -1 });
 
     res.json(rfqs);
@@ -836,6 +763,7 @@ app.delete("/products/:id", authenticateToken, async (req, res) => {
 
 app.post(
   "/site-assessments",
+  access.optionalRequest,
   async (req, res) => {
     try {
       const {
@@ -3011,6 +2939,8 @@ app.post(
     }
   }
 );
+
+require('./rentals-api').setupRentals(app,mongoose,RFQ,authenticateToken);
 
 // Do not accept traffic until MongoDB and required indexes are ready.
 async function startServer() {

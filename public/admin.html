@@ -862,7 +862,7 @@
 
     <!-- SIDEBAR -->
 
-    <aside class="sidebar"><a href="/generators-admin.html" style="display:block;padding:18px;color:inherit">Generators We Offer</a><a href="/manuals-admin.html" style="display:block;padding:18px;color:inherit">Generator Manuals</a>
+    <aside class="sidebar"><a href="/admin-console.html" style="display:block;padding:18px;color:inherit">Rentals &amp; Team Access</a><p data-account style="padding:0 18px"></p><a href="/generators-admin.html" style="display:block;padding:18px;color:inherit">Generators We Offer</a><a href="/manuals-admin.html" style="display:block;padding:18px;color:inherit">Generator Manuals</a>
 
       <div class="sidebar-section">
         Management
@@ -1605,7 +1605,7 @@
 <div id="toast"></div>
 
 
-<script>
+<script src="/admin-access.js"></script><script>
 
   const API = window.location.origin;
 
@@ -1746,7 +1746,7 @@
       data = {};
     }
 
-    if (response.status === 401 || response.status === 403) {
+    if (response.status === 401) {
 
       logout();
 
@@ -1828,7 +1828,9 @@
     });
 
 
-  function showDashboard() {
+  async function showDashboard() {
+    try { await window.TSBAccess.refresh(); } catch(error) { logout(); showToast(error.message,'error'); return; }
+
 
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
