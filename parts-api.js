@@ -13,6 +13,7 @@ function kitsFor(variants,query){
 }
 function registerPartsApi(app,load){
  app.get('/api/parts',async(req,res)=>{try{res.json(publicParts(await load()));}catch{res.status(503).json({error:'Parts lookup temporarily unavailable. Please retry.'});}});
+ app.get('/api/service-kit-models',async(req,res)=>{try{const rows=await load();res.json([...new Set(rows.filter(v=>v.parts.some(p=>p.category==='Filters')).map(v=>v.model))].sort((a,b)=>a.localeCompare(b)));}catch{res.status(503).json({error:'Supported models temporarily unavailable.'});}});
  app.get('/api/service-kits',async(req,res)=>{
   if(typeof req.query.model!=='string'||!normalize(req.query.model)||['model','engine','partNumber'].some(k=>req.query[k]!==undefined&&(typeof req.query[k]!=='string'||req.query[k].length>100)))return res.status(400).json({error:'Enter a generator model (maximum 100 characters).'});
   try{res.json(kitsFor(await load(),req.query));}catch{res.status(503).json({error:'Service-kit lookup temporarily unavailable. Please retry.'});}

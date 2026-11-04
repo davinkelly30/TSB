@@ -3,6 +3,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
+const fieldServiceApi = require("./field-service-api");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -16,7 +17,9 @@ const access = require('./access-control').createAccess({mongoose,jwt,bcrypt});
 const initializeParts = require('./parts-api').setupMongoParts(app, mongoose);
 const initializeManuals = require('./manuals-api').setupMongoManuals(app, mongoose, authenticateToken);
 const initializeGenerators = require('./generators-api').setupMongoGenerators(app,mongoose,authenticateToken);
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 /* =========================
    MIDDLEWARE
@@ -24,6 +27,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(['/rfq','/api/admin/requests','/api/admin/rental-units'], express.json({limit:'5mb'}));
 app.use(express.json());
+
+fieldServiceApi.register(app);
+
 const {validatePhotos,newReference}=require('./request-photos');
 
 app.use(cors({
