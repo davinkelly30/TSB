@@ -367,6 +367,35 @@
       margin-bottom: 25px;
     }
 
+    .rfq-chart {
+      margin-bottom: 25px;
+    }
+
+    .rfq-chart-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .rfq-chart-svg {
+      display: block;
+      width: 100%;
+      min-width: 620px;
+      height: auto;
+      max-height: 300px;
+    }
+
+    #rfqStatusChart {
+      overflow-x: auto;
+    }
+
+    .rfq-chart-empty {
+      margin: 0;
+      color: var(--muted);
+      text-align: center;
+      padding: 25px 10px;
+    }
+
     .stat {
       background: white;
       border: 1px solid var(--border);
@@ -954,6 +983,18 @@
             <div id="statProducts" class="stat-value">0</div>
           </div>
 
+        </div>
+
+        <div class="panel rfq-chart">
+          <div class="panel-header">
+            <div>
+              <h2>RFQs by status</h2>
+              <p class="rfq-chart-note">Current customer requests across the workflow.</p>
+            </div>
+          </div>
+          <div class="panel-body" id="rfqStatusChart">
+            <p class="rfq-chart-empty">Loading request totals…</p>
+          </div>
         </div>
 
 
@@ -5290,6 +5331,95 @@ ${Array.from({length:Math.min(3,rfq.photoCount||0)},(_,i)=>`<button class="btn b
     ).textContent =
       products.length;
 
+    renderRfqStatusChart();
+
+  }
+
+
+  function renderRfqStatusChart() {
+    const host = document.getElementById("rfqStatusChart");
+    if (!host) return;
+
+    const statuses = [
+      ["New", "#d97706"],
+      ["Reviewing", "#2563eb"],
+      ["Quoted", "#7c3aed"],
+      ["Scheduled", "#0891b2"],
+      ["In Progress", "#0f766e"],
+      ["Completed", "#15803d"],
+      ["Archived", "#64748b"],
+      ["Other", "#94a3b8"]
+    ];
+    const totals = new Map(statuses.map(([name]) => [name, 0]));
+    for (const rfq of rfqs) {
+      const name = !rfq.status
+        ? "New"
+        : statuses.some(([status]) => status === rfq.status)
+          ? rfq.status
+          : "Other";
+      totals.set(name, totals.get(name) + 1);
+    }
+
+    if (!rfqs.length) {
+      host.replaceChildren();
+      const empty = document.createElement("p");
+      empty.className = "rfq-chart-empty";
+      empty.textContent = "No customer requests yet.";
+      host.append(empty);
+      return;
+    }
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.classList.add("rfq-chart-svg");
+    svg.setAttribute("viewBox", "0 0 760 294");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-labelledby", "rfqChartTitle rfqChartDescription");
+    const title = document.createElementNS(svg.namespaceURI, "title");
+    title.id = "rfqChartTitle";
+    title.textContent = "RFQs by status";
+    const description = document.createElementNS(svg.namespaceURI, "desc");
+    description.id = "rfqChartDescription";
+    description.textContent = "Counts of current customer requests by workflow status.";
+    svg.append(title, description);
+
+    const max = Math.max(1, ...totals.values());
+    const barMax = 470;
+    statuses.forEach(([name, color], index) => {
+      const y = 26 + index * 34;
+      const label = document.createElementNS(svg.namespaceURI, "text");
+      label.setAttribute("x", "0");
+      label.setAttribute("y", String(y + 5));
+      label.setAttribute("fill", "#334155");
+      label.setAttribute("font-size", "14");
+      label.textContent = name;
+
+      const track = document.createElementNS(svg.namespaceURI, "rect");
+      track.setAttribute("x", "155");
+      track.setAttribute("y", String(y - 9));
+      track.setAttribute("width", String(barMax));
+      track.setAttribute("height", "18");
+      track.setAttribute("rx", "9");
+      track.setAttribute("fill", "#edf2f7");
+
+      const bar = document.createElementNS(svg.namespaceURI, "rect");
+      bar.setAttribute("x", "155");
+      bar.setAttribute("y", String(y - 9));
+      bar.setAttribute("width", String((totals.get(name) / max) * barMax));
+      bar.setAttribute("height", "18");
+      bar.setAttribute("rx", "9");
+      bar.setAttribute("fill", color);
+
+      const count = document.createElementNS(svg.namespaceURI, "text");
+      count.setAttribute("x", "650");
+      count.setAttribute("y", String(y + 5));
+      count.setAttribute("fill", "#0f172a");
+      count.setAttribute("font-size", "14");
+      count.setAttribute("font-weight", "700");
+      count.textContent = String(totals.get(name));
+      svg.append(label, track, bar, count);
+    });
+
+    host.replaceChildren(svg);
   }
 
 
